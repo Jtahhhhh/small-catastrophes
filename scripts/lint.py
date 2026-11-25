@@ -16,6 +16,7 @@ NUMBERY = re.compile(r"\b(percent|million|billion|thousand|hundred|half|one in|t
 
 
 def kind(sh):
+    if sh.get('brand') or sh['set'] == 'endcard': return 'brand'
     if sh.get('panels'): return 'panels'
     if sh.get('insert'): return 'insert'
     if sh.get('chart') or sh.get('map') or sh['set'] == 'desk': return 'board'
@@ -33,7 +34,7 @@ def main(path):
     if tl.exists() and len(json.loads(tl.read_text())['shots']) == len(shots):
         durs = [s['end'] - s['start'] for s in json.loads(tl.read_text())['shots']]; src = 'timeline'
     else:
-        durs = [sum(len(l['text'].split()) / WPS + GAP for l in s['lines']) + 0.4 for s in shots]; src = 'estimate'
+        durs = [max(s.get('duration', 0), sum(len(l['text'].split()) / WPS + GAP for l in s.get('lines', [])) + 0.4) for s in shots]; src = 'estimate'
     total = sum(durs); errs, warns = [], []
 
     if not script.get('plan'): warns.append('no "plan": write the location plan (segment → location) before the lines')
@@ -48,9 +49,9 @@ def main(path):
     for n, (s, d) in enumerate(zip(shots, durs)):
         if d > MAX_SHOT: warns.append(f'shot {n}: {d:.1f}s long ({s["set"]}) — split it or add a move')
         has_src = s.get('source') or (s.get('chart') or {}).get('source') or (s.get('map') or {}).get('source') or (s.get('headline') or {}).get('source')
-        for l in s['lines']:
+        for l in s.get('lines', []):
             if NUMBERY.search(l['text']) and not (l.get('source') or has_src): warns.append(f'shot {n}: number without source: "{l["text"][:60]}"')
-    places = collections.Counter(place(s) for s in shots if kind(s) not in ('board', 'insert', 'panels'))
+    places = collections.Counter(place(s) for s in shots if kind(s) not in ('board', 'insert', 'panels', 'brand'))
     if len(places) < MIN_LOCATIONS: errs.append(f'only {len(places)} locations (min {MIN_LOCATIONS})')
 
     share = collections.Counter()

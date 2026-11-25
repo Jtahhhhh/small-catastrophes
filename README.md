@@ -27,7 +27,11 @@ Needs Node 18+, Python 3.10+, ffmpeg and Google Chrome.
 python3 scripts/lint.py episodes/demo-day1/script.json       # location / pacing rules (before any voice or render)
 python3 scripts/tts.py episodes/demo-day1/script.json        # per-line cache in build/tts-cache: only changed lines are re-voiced
 node scripts/render.mjs episodes/demo-day1 --frames 40,250   # stills to review first
-node scripts/render.mjs episodes/demo-day1                   # full video
+python3 scripts/audio.py episodes/demo-day1/script.json      # music bed + SFX + mix (all synthesised) → mix.wav
+node scripts/render.mjs episodes/demo-day1                   # full video (uses mix.wav when present)
+node scripts/render.mjs episodes/demo-day1 --remux           # new sound on a finished video, no frames rendered
+node scripts/thumbnail.mjs episodes/demo-day1                # thumbnail(s) from the "thumbnail" spec + watermark.png
+python3 scripts/make_short.py episodes/ep01-cash-vanished/script.json short1 "Hook text" 0,1,8   # vertical Short
 ```
 
 Render speed on 2 CPU cores: ~1.6 s of render per 1 s of video (19 s demo in 31 s).
@@ -39,6 +43,17 @@ Render speed on 2 CPU cores: ~1.6 s of render per 1 s of video (19 s demo in 31 
    when the board (charts/maps) passes 25 % of runtime, or when the episode has fewer than 6 locations; it warns on shots over
    12.5 s and on numbers without a `source`.
 3. A place is set + locale: the U.S. street and the Indian street count as different places.
+
+## v0.5 additions
+
+| Key | What |
+|---|---|
+| `brand: "intro"` + `duration` | 3–4 s sting: ink blot, logo stamp, name writes itself, tagline |
+| `set: "endcard"` + `duration` | 15 s end screen: two 16:9 boxes for YouTube "watch next" elements, Mortimer waves |
+| `duration` | shots without lines hold for a fixed time |
+| `vertical: true`, `hook` | 9:16 output: hook on top, shot cropped near-square in the middle (charts crop on the board), big captions below |
+| `thumbnail` | `{time, shift, title: [..], accent, stamp, size, ty, sx, sy}` or a list of them for A/B variants |
+| audio | `audio.py`: D-minor music-box waltz + drone, ducked under speech; tear / ink / iris / stamp / card / chart / headline / intro sounds from the timeline |
 
 ## v0.4 additions
 

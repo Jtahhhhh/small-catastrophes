@@ -180,6 +180,18 @@ export const SETS = {
     draw(ctx) { tableTop(ctx, -300, -200, 2220, 1280); },
   },
 
+  endcard: {   // YouTube end screen: two 16:9 boxes for "watch next" elements, room for Mortimer below
+    paper: '#b7a682',
+    depth: () => 0.8,
+    anchors: {},
+    draw(ctx) {
+      shape(ctx, [[-400, -400], [2320, -400], [2320, 1500], [-400, 1500]], { fill: 'rgba(40,32,28,0.35)', outline: 0 });
+      for (const x0 of [150, 1050]) { shape(ctx, [[x0 - 14, 226], [x0 + 734, 220], [x0 + 738, 664], [x0 - 10, 670]], { fill: '#2a211b', outline: 8 });
+        for (let k = 0; k < 4; k++) ink(ctx, [[x0 + 40 + k * 170, 446], [x0 + 110 + k * 170, 446]], { size: 4, color: 'rgba(230,220,190,0.25)' }); }
+      ground(ctx, 1000, '#8f7b58', true);
+    },
+  },
+
   desk: {   // chart inserts: a big sheet pinned to a dark wall, presenter stands to the right
     paper: '#3a2e25',
     depth: y => 1.0 * (y - 300) / (1050 - 300),

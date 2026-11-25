@@ -1,0 +1,260 @@
+{
+ "title": "India cancelled 86% of its cash overnight",
+ "voice": "bm_george",
+ "speed": 0.95,
+ "fps": 24,
+ "size": [
+  1920,
+  1080
+ ],
+ "hook": "India cancelled 86% of its cash overnight",
+ "vertical": true,
+ "source_episode": "ep01-cash-vanished",
+ "source_shots": [
+  34,
+  35,
+  36,
+  37,
+  38
+ ],
+ "shots": [
+  {
+   "set": "hall",
+   "variant": {
+    "locale": "in"
+   },
+   "vo": true,
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "headline": {
+    "paper": "THE EVENING COURIER",
+    "date": "8 November 2016",
+    "text": "500 AND 1,000 RUPEE NOTES SCRAPPED",
+    "sub": "Old notes stop being legal tender at midnight",
+    "source": "Illustration of the announcement · CNN, Al Jazeera reporting"
+   },
+   "lines": [
+    {
+     "text": "On the eighth of November, 2016, India announced that its five hundred and one thousand rupee notes would stop being money at midnight."
+    }
+   ]
+  },
+  {
+   "set": "desk",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "chart": {
+    "title": "India, 8 November 2016",
+    "subtitle": "share of cash in circulation, by value",
+    "bars": [
+     [
+      "Cancelled",
+      86
+     ],
+     [
+      "Still valid",
+      14
+     ]
+    ],
+    "unit": "%",
+    "highlight": 0,
+    "source": "Reserve Bank of India, via CNN Business (2017)"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1680,
+      1050
+     ],
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 1.5,
+       "dur": 3.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "That was about eighty-six percent of all the cash in the country."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "transition": "tear",
+   "stamp": "INDIA, 2016",
+   "vo": true,
+   "variant": {
+    "locale": "in",
+    "noCart": true
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-right"
+   },
+   "actors": [
+    {
+     "id": "q",
+     "crowd": {
+      "n": 9,
+      "seed": 41,
+      "area": [
+       1150,
+       760,
+       2150,
+       800
+      ],
+      "queue": true,
+      "fidget": true
+     }
+    },
+    {
+     "id": "c",
+     "crowd": {
+      "n": 3,
+      "seed": 42,
+      "area": [
+       -200,
+       900,
+       2100,
+       1050
+      ],
+      "walk": "right",
+      "speed": 120
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "Within the hour, lines formed at cash machines. Many ran out within minutes."
+    },
+    {
+     "text": "And because the new notes were a different size, more than two hundred thousand ATMs had to be refitted.",
+     "source": "CNN Business, Jan 2017"
+    }
+   ]
+  },
+  {
+   "set": "bank",
+   "transition": "iris",
+   "vo": true,
+   "variant": {
+    "locale": "in"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "teller",
+     "who": "person:801",
+     "at": [
+      1180,
+      880
+     ],
+     "layer": "behind"
+    },
+    {
+     "id": "teller2",
+     "who": "person:802",
+     "at": [
+      1560,
+      880
+     ],
+     "layer": "behind"
+    },
+    {
+     "id": "q",
+     "crowd": {
+      "n": 8,
+      "seed": 43,
+      "area": [
+       -60,
+       1000,
+       1050,
+       1030
+      ],
+      "queue": true,
+      "fidget": true
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "In a country where most purchases were made in cash, people queued for hours just to buy food.",
+     "source": "Google India & BCG via CBS News: 78% of transactions in cash"
+    }
+   ]
+  },
+  {
+   "set": "desk",
+   "transition": "tear",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "chart": {
+    "title": "Cancelled notes returned to banks",
+    "subtitle": "India, by mid-2017",
+    "bars": [
+     [
+      "Returned",
+      99
+     ],
+     [
+      "Never returned",
+      1
+     ]
+    ],
+    "unit": "%",
+    "highlight": 0,
+    "source": "Reserve Bank of India annual report, via Business Standard (2017)"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1680,
+      1050
+     ],
+     "actions": [
+      {
+       "do": "raise",
+       "at": 1.0,
+       "dur": 1.6
+      },
+      {
+       "do": "point-left",
+       "at": 5.0,
+       "dur": 3.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Here's the twist."
+    },
+    {
+     "text": "Almost all of that cancelled money, about ninety-nine percent, came back to the banks."
+    },
+    {
+     "text": "The money didn't vanish. It just couldn't move."
+    },
+    {
+     "text": "The full story is on Small Catastrophes."
+    }
+   ]
+  }
+ ]
+}

@@ -24,7 +24,7 @@ function crackedLens(ctx) {               // in Mortimer's local coords: left le
   ink(ctx, [[-38, -474], [-48, -470]], { size: 2.2, smooth: false, jit: 0.6 });
 }
 
-window.drawLogo = function (S = 800) {
+export function logoCanvas(S = 800) {
   BOIL.seed = 3; resetParts();
   const c = canvas(S, S), ctx = c.getContext('2d');
   ctx.save(); ctx.beginPath(); ctx.arc(S / 2, S / 2, S / 2 - 6, 0, 7); ctx.clip();
@@ -38,8 +38,9 @@ window.drawLogo = function (S = 800) {
   ctx.restore();
   ctx.restore();
   ink(ctx, ellipse(S / 2, S / 2, S / 2 - 16, S / 2 - 16, 48, 0.012, 502).concat([[S - 16, S / 2]]), { size: 18, jit: 1, thin: 0.2 });
-  return c.toDataURL('image/png');
-};
+  return c;
+}
+window.drawLogo = (S = 800) => logoCanvas(S).toDataURL('image/png');
 
 function scene(ctx, W, H, safe, { heroScale = 0.62, crowScale = 0.75 } = {}) {
   const [sx, sy, sw, sh] = safe; const ground = sy + sh * 0.93;

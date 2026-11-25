@@ -8,7 +8,7 @@ import { PAL, BOIL, resetParts, paper, ink, shape, handText, ellipse, rng } from
 import { MORTIMER, GRISTLE, TALLY, POSE, drawCast } from './cast.js';
 import { makePerson } from './people.js';
 import { ACTIONS, walkPose, idlePose, mergePoses } from './actions.js';
-import { titleText } from './brand.js';
+import { titleText, logoCanvas } from './brand.js';
 import { SETS, V, applyVariant } from './sets.js';
 import { HERO } from './props.js';
 
@@ -163,6 +163,7 @@ function drawActors(ctx, sh, t, i, which) {
 function renderShot(sh, t, i) {
   const boil = Math.floor(i / 2) % 3, lt = t - sh.start, dur = sh.end - sh.start;
   if (sh.panels) return renderPanels(sh, t, i);
+  if (sh.brand === 'intro') return renderIntro(sh, t, i);
   const L = layers(sh, boil), cam = baseCamera(sh), off = camOffset(sh, t); applyVariant(sh);
   const scene = cv(W, H), ctx = scene.getContext('2d');
   ctx.drawImage(L.base, 0, 0);
@@ -185,10 +186,13 @@ function renderShot(sh, t, i) {
   const out = cv(W, H), o = out.getContext('2d');
   o.translate(W / 2, H / 2); o.scale(z, z); o.translate(-W / 2, -H / 2); o.drawImage(scene, 0, 0); o.setTransform(1, 0, 0, 1, 0, 0);
   BOIL.seed = 20 + boil; resetParts();
-  if (!sh.chart && !sh.map) { const ls = sh.lines.filter(l => l.card); ls.forEach((l, n) => { const until = n + 1 < ls.length ? ls[n + 1].start : sh.end; if (t <= until) card(o, 1330, 90, 500, 280, l.card.big, l.card.small, t - l.start); }); }
+  if (!sh.chart && !sh.map) { const ls = sh.lines.filter(l => l.card); ls.forEach((l, n) => { const until = n + 1 < ls.length ? ls[n + 1].start : sh.end; if (t <= until) card(o, TL.vertical ? 1030 : 1330, 90, 500, 280, l.card.big, l.card.small, t - l.start); }); }
   if (sh.headline) headline(o, sh.headline, lt);
-  if (sh.stamp) { o.save(); o.font = 'bold 72px "DejaVu Serif"'; const sw = o.measureText(sh.stamp).width * 0.9 + 80; o.restore();
-    shape(o, [[60, 50], [60 + sw, 40], [66 + sw, 150], [66, 160]], { fill: PAL.cream, outline: 7, jit: 4 }); handText(o, sh.stamp, 63 + sw / 2, 100, { size: 72, color: PAL.red }); }
+  if (sh.set === 'endcard') { titleText(o, sh.endTitle || 'WATCH NEXT', W / 2, 120, 84, { seed: 61 });
+    handText(o, sh.endLine || 'Mind the small catastrophes.', 520, 790, { size: 40, weight: 'normal', color: PAL.cream });
+    handText(o, sh.endSub || 'Subscribe for the next one', 1410, 790, { size: 40, weight: 'normal', color: '#e8b04a' }); }
+  if (sh.stamp) { o.save(); if (TL.vertical) o.translate(330, 0); o.save(); o.font = 'bold 72px "DejaVu Serif"'; const sw = o.measureText(sh.stamp).width * 0.9 + 80; o.restore();
+    shape(o, [[60, 50], [60 + sw, 40], [66 + sw, 150], [66, 160]], { fill: PAL.cream, outline: 7, jit: 4 }); handText(o, sh.stamp, 63 + sw / 2, 100, { size: 72, color: PAL.red });  o.restore(); }
   return out;
 }
 
@@ -250,6 +254,46 @@ function worldInsert(ctx, spec, k, box) {
   if (spec.source) handText(ctx, 'Source: ' + spec.source, box.cx, box.source, { size: 22, weight: 'normal', color: '#5a4a3a' });
 }
 
+// ---------- intro sting: an ink blot opens, the logo stamps in, the name writes itself ----------
+let LOGO = null;
+function renderIntro(sh, t, i) {
+  const lt = t - sh.start, out = cv(W, H), o = out.getContext('2d'), boil = Math.floor(i / 2) % 3;
+  paper(o, W, H, { base: '#2a211b', vignette: 0.6, seed: 31 });
+  BOIL.seed = 70 + boil; resetParts();
+  const blob = ease(Math.min(1, lt / 0.5)) * 520; if (blob > 4) shape(o, ellipse(W / 2, H / 2 - 60, blob * 1.25, blob, 30, 0.12, 990 + boil), { fill: '#cbbb94', outline: 10, jit: 3 });
+  LOGO = LOGO || logoCanvas(520);
+  const k = lt < 0.35 ? 0 : Math.min(1, (lt - 0.35) / 0.35), bounce = k < 1 ? 0.6 + 0.55 * ease(k) : 1 + 0.04 * Math.sin((lt - 0.7) * 3);
+  if (k > 0) { o.save(); o.translate(W / 2, H / 2 - 110); o.rotate((1 - k) * -0.5); o.scale(bounce, bounce); o.drawImage(LOGO, -190, -190, 380, 380); o.restore(); }
+  const name = 'SMALL CATASTROPHES', n = Math.floor(Math.max(0, (lt - 0.8) / 0.9) * name.length);
+  if (n > 0) titleText(o, name.slice(0, n), W / 2 - (name.length - n) * 0, H / 2 + 190, 88, { seed: 41 });
+  if (lt > 1.9) { o.save(); o.globalAlpha = Math.min(1, (lt - 1.9) / 0.4); handText(o, sh.tagline || 'everyday systems, breaking hour by hour', W / 2, H / 2 + 290, { size: 40, weight: 'normal', color: '#3a2e25' }); o.restore(); }
+  return out;
+}
+
+// ---------- vertical 9:16: hook on top, the shot cropped near-square in the middle, big captions below ----------
+let VBG = null;
+function vertical(out, sh, t, i) {
+  const VW = 1080, VH = 1920, v = cv(VW, VH), o = v.getContext('2d');
+  if (!VBG) { VBG = cv(VW, VH); paper(VBG.getContext('2d'), VW, VH, { base: '#2a211b', vignette: 0.55, seed: 33 }); }
+  o.drawImage(VBG, 0, 0);
+  const cw = 1180, cx = sh.vcrop ?? (sh.set === 'desk' && (sh.chart || sh.map) ? SETS.desk.chartBox.cx : sh.panels ? W / 2 : W / 2 + (sh.vshift || 0));
+  const sx = Math.max(0, Math.min(W - cw, cx - cw / 2)), top = 360, dh = Math.round(H * VW / cw);
+  o.drawImage(out, sx, 0, cw, H, 0, top, VW, dh);
+  BOIL.seed = 80 + (Math.floor(i / 2) % 3); resetParts();
+  ink(o, [[0, top], [VW, top - 3]], { size: 9 }); ink(o, [[0, top + dh], [VW, top + dh + 3]], { size: 9 });
+  const words = (TL.hook || '').split(' '), rows = []; let cur = '';
+  for (const w of words) { if ((cur + ' ' + w).trim().length > 18) { rows.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); } if (cur) rows.push(cur);
+  rows.forEach((r, n) => titleText(o, r.toUpperCase(), VW / 2, 140 + n * 96 - (rows.length - 2) * 40, 78, { seed: 90 + n, fill: n === rows.length - 1 ? '#e8b04a' : PAL.cream }));
+  const line = sh.lines.find(l => t >= l.start && t < l.end + 0.3);
+  if (line) { const c = captionFor(line, t).toUpperCase(), ws = c.split(' '), half = c.length > 20 ? Math.ceil(ws.length / 2) : ws.length;
+    titleText(o, ws.slice(0, half).join(' '), VW / 2, top + dh + 150, 66, { seed: 21 + c.length });
+    if (half < ws.length) titleText(o, ws.slice(half).join(' '), VW / 2, top + dh + 240, 66, { seed: 22 + c.length }); }
+  LOGO = LOGO || logoCanvas(520); o.drawImage(LOGO, 60, VH - 230, 150, 150);
+  handText(o, 'SMALL CATASTROPHES', 520, VH - 175, { size: 44, color: PAL.cream });
+  handText(o, 'full episode on the channel', 520, VH - 120, { size: 30, weight: 'normal', color: '#cbbb94' });
+  return v;
+}
+
 // ---------- transitions ----------
 function inkBlob(o, k, boil) {
   if (k <= 0) return; BOIL.seed = 30 + boil; resetParts(); const r = k * 1250;
@@ -291,6 +335,7 @@ window.frame = (i) => {
   if (sh.transition === 'iris' && lt < 0.45) iris(o2, 1 - lt / 0.45);
   if (sh.fadeIn && lt < 0.6) { o2.fillStyle = `rgba(20,14,10,${1 - lt / 0.6})`; o2.fillRect(0, 0, W, H); }
   if (sh.fadeOut && t > sh.end - 0.8) { o2.fillStyle = `rgba(20,14,10,${(t - sh.end + 0.8) / 0.8})`; o2.fillRect(0, 0, W, H); }
+  if (TL.vertical) return vertical(out, sh, t, i).toDataURL('image/jpeg', 0.92);
   const line = sh.lines.find(l => t >= l.start && t < l.end + 0.3);
   if (line) { const c = captionFor(line, t); titleText(o2, c.toUpperCase(), W / 2, H - 70, 54, { seed: 21 + c.length }); }
   return out.toDataURL('image/jpeg', 0.92);
@@ -312,4 +357,24 @@ function chunks(t) {
 }
 function captionFor(line, t) { const cs = chunks(line.text), wt = cs.map(c => c.length + (/[.?!]$/.test(c) ? 6 : 0)); const tot = wt.reduce((a, b) => a + b, 0);
   let acc = 0; for (let i = 0; i < cs.length; i++) { acc += wt[i]; if (t <= line.start + (line.end - line.start) * acc / tot) return cs[i]; } return cs[cs.length - 1]; }
+// ---------- thumbnail: one frame of the episode + big hand-lettered title + red stamp, 1280×720 ----------
+window.thumbnail = (spec) => {
+  const t = spec.time, i = Math.round(t * FPS); GTL.seek(t, false);
+  let si = TL.shots.findIndex(s => t >= s.start && t < s.end); if (si < 0) si = 0;
+  const shot = renderShot(TL.shots[si], t, i), c = cv(W, H), o = c.getContext('2d');
+  o.drawImage(shot, spec.shift || 0, 0);
+  if (spec.shift > 0) { o.save(); o.globalAlpha = 1; o.drawImage(shot, 0, 0, 2, H, 0, 0, spec.shift, H); o.restore(); }
+  const g = o.createLinearGradient(0, 0, W * 0.62, 0); g.addColorStop(0, 'rgba(20,14,10,0.88)'); g.addColorStop(1, 'rgba(20,14,10,0)');
+  o.fillStyle = g; o.fillRect(0, 0, W, H);
+  BOIL.seed = 3; resetParts();
+  let size = spec.size || 190; o.save(); o.font = `bold ${size}px "DejaVu Serif"`;      // shrink until the longest row fits 1000 px
+  const widest = Math.max(...(spec.title || ['']).map(r => o.measureText(r).width * 1.06)); o.restore(); size = Math.min(size, size * 1000 / widest);
+  const y0 = spec.ty || 290; (spec.title || []).forEach((r, n) => { o.save(); o.font = `bold ${size}px "DejaVu Serif"`; const w = o.measureText(r).width * 1.06; o.restore();
+    titleText(o, r, 70 + w / 2, y0 + n * size * 1.02, size, { seed: 7 + n, fill: n === (spec.accent ?? 1) ? '#e8b04a' : PAL.cream }); });
+  if (spec.stamp) { o.save(); o.translate(spec.sx || 340, spec.sy || 800); o.rotate(-0.08); o.font = 'bold 84px "DejaVu Serif"'; const sw = o.measureText(spec.stamp).width * 0.9 + 90;
+    shape(o, [[-sw / 2, -70], [sw / 2, -78], [sw / 2 + 6, 62], [-sw / 2 + 4, 70]], { fill: PAL.cream, outline: 12, inkColor: PAL.red, jit: 4 });
+    handText(o, spec.stamp, 0, -4, { size: 84, color: PAL.red }); o.restore(); }
+  const out = cv(1280, 720); out.getContext('2d').drawImage(c, 0, 0, 1280, 720); return out.toDataURL('image/jpeg', 0.92);
+};
+window.logoPNG = (S = 150) => logoCanvas(S).toDataURL('image/png');
 window.ready = true;

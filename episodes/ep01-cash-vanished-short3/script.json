@@ -1,0 +1,265 @@
+{
+ "title": "Nigeria ran out of cash in 2023",
+ "voice": "bm_george",
+ "speed": 0.95,
+ "fps": 24,
+ "size": [
+  1920,
+  1080
+ ],
+ "hook": "Nigeria ran out of cash in 2023",
+ "vertical": true,
+ "source_episode": "ep01-cash-vanished",
+ "source_shots": [
+  39,
+  40,
+  41,
+  42,
+  43,
+  51
+ ],
+ "shots": [
+  {
+   "set": "market",
+   "stamp": "NIGERIA, 2023",
+   "vo": true,
+   "variant": {
+    "locale": "ng"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "c",
+     "crowd": {
+      "n": 7,
+      "seed": 52,
+      "area": [
+       -200,
+       760,
+       2100,
+       1050
+      ],
+      "walk": "both",
+      "speed": 110
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "Seven years later, Nigeria tried something smaller."
+    },
+    {
+     "text": "New naira notes, and a deadline of February tenth, 2023, to stop using the old ones.",
+     "source": "OkayAfrica, Legit.ng (CBN deadline)"
+    }
+   ]
+  },
+  {
+   "set": "bank",
+   "vo": true,
+   "variant": {
+    "locale": "ng"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "teller",
+     "who": "person:901",
+     "at": [
+      1180,
+      880
+     ],
+     "layer": "behind",
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 2.0,
+       "dur": 2.0
+      }
+     ]
+    },
+    {
+     "id": "q",
+     "crowd": {
+      "n": 8,
+      "seed": 51,
+      "area": [
+       -60,
+       1000,
+       1050,
+       1030
+      ],
+      "queue": true,
+      "fidget": true
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "But the new notes were scarce. Some banks capped cash withdrawals at ten thousand naira, about twenty dollars.",
+     "source": "Cash Essentials (2023)"
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "vo": true,
+   "variant": {
+    "locale": "ng",
+    "noCart": true
+   },
+   "camera": {
+    "size": "medium",
+    "on": "agent",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "agent",
+     "who": "person:911",
+     "at": [
+      1150,
+      900
+     ],
+     "face": "left",
+     "actions": [
+      {
+       "do": "raise",
+       "at": 2.0,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "cust",
+     "who": "person:912",
+     "at": [
+      880,
+      930
+     ],
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 4.0,
+       "dur": 2.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "So people paid street agents to get their own money out.",
+     "card": {
+      "big": "10%",
+      "small": "fee to get your own cash"
+     },
+     "source": "Nairametrics, Feb 2023"
+    },
+    {
+     "text": "Some agents were charging as much as ten percent.",
+     "source": "Nairametrics, Feb 2023"
+    }
+   ]
+  },
+  {
+   "set": "busstop",
+   "transition": "tear",
+   "vo": true,
+   "variant": {
+    "locale": "ng"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pull"
+   },
+   "actors": [
+    {
+     "id": "c",
+     "crowd": {
+      "n": 9,
+      "seed": 61,
+      "area": [
+       -200,
+       760,
+       2100,
+       1060
+      ],
+      "walk": "both",
+      "speed": 180
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "In some cities, angry customers burned tires and blocked the streets.",
+     "source": "Reuters via Al Arabiya, 15 Feb 2023"
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "vo": true,
+   "variant": {
+    "locale": "ng"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "headline": {
+    "paper": "THE LAGOS LEDGER",
+    "date": "3 March 2023",
+    "text": "OLD NAIRA NOTES STAY LEGAL",
+    "sub": "Court extends old notes to 31 December",
+    "source": "Illustration · BusinessDay reporting"
+   },
+   "lines": [
+    {
+     "text": "In March, the Supreme Court let the old notes stay legal until the end of the year.",
+     "source": "BusinessDay"
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "variant": {
+    "sky": "dusk"
+   },
+   "camera": {
+    "size": "close",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      560,
+      985
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "That's the real catastrophe."
+    },
+    {
+     "text": "Not that money disappeared."
+    },
+    {
+     "text": "But that it disappeared for some people, and not for others."
+    },
+    {
+     "text": "The full story is on Small Catastrophes."
+    }
+   ]
+  }
+ ]
+}

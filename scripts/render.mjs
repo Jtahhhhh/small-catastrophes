@@ -32,7 +32,7 @@ async function openPlayer() {
 
 async function renderRange(a, b, file) {
   const { browser, grab } = await openPlayer();
-  const [w, h] = timeline.size;
+  const [w, h] = timeline.vertical ? [1080, 1920] : timeline.size;
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(timeline.fps), '-c:v', 'mjpeg', '-i', '-',
     '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', '-s', `${w}x${h}`, file + '.tmp.mp4'], { stdio: ['pipe', 'inherit', 'inherit'] });
   for (let i = a; i < b; i++) {
@@ -44,6 +44,11 @@ async function renderRange(a, b, file) {
   fs.renameSync(file + '.tmp.mp4', file);
 }
 
+if (process.argv.includes('--remux')) {      // new sound on a finished video, no frames rendered
+  const out = path.join(build, 'video.mp4'), snd = fs.existsSync(path.join(build, 'mix.wav')) ? path.join(build, 'mix.wav') : path.join(build, 'narration.wav');
+  const r = spawnSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', out, '-i', snd, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-af', 'loudnorm=I=-16:TP=-1.5:LRA=11', '-ar', '48000', '-c:a', 'aac', '-b:a', '160k', '-shortest', out + '.tmp.mp4'], { stdio: 'inherit' });
+  if (r.status === 0) fs.renameSync(out + '.tmp.mp4', out); console.log('remuxed', out, 'with', path.basename(snd)); process.exit(r.status);
+}
 if (arg('--frames')) {
   const { browser, grab } = await openPlayer();
   for (const i of arg('--frames').split(',').map(Number)) fs.writeFileSync(path.join(build, `frame_${i}.jpg`), await grab(i));
@@ -67,7 +72,7 @@ if (arg('--frames')) {
   await Promise.all(Array.from({ length: workers }, async () => { while (todo.length) { const [a, b, f] = todo.shift(); await renderRange(a, b, f); } }));
   const list = path.join(build, 'parts.txt'); fs.writeFileSync(list, files.map(f => `file '${f}'`).join('\n'));
   const out = path.join(build, 'video.mp4');
-  const r = spawnSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', list, '-i', path.join(build, 'narration.wav'),
+  const r = spawnSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', list, '-i', (fs.existsSync(path.join(build, 'mix.wav')) ? path.join(build, 'mix.wav') : path.join(build, 'narration.wav')),
     '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-af', 'loudnorm=I=-16:TP=-1.5:LRA=11', '-ar', '48000', '-c:a', 'aac', '-b:a', '160k', '-shortest', out + '.tmp.mp4'], { stdio: 'inherit' });
   if (r.status !== 0) { console.error('join failed'); process.exit(1); }
   fs.renameSync(out + '.tmp.mp4', out); fs.rmSync(list);

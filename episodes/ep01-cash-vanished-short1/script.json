@@ -1,0 +1,208 @@
+{
+ "title": "What if cash vanished tonight?",
+ "voice": "bm_george",
+ "speed": 0.95,
+ "fps": 24,
+ "size": [
+  1920,
+  1080
+ ],
+ "hook": "What if cash vanished tonight?",
+ "vertical": true,
+ "source_episode": "ep01-cash-vanished",
+ "source_shots": [
+  0,
+  1,
+  8,
+  9,
+  10,
+  18
+ ],
+ "shots": [
+  {
+   "set": "street",
+   "stamp": "HOUR 0",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ]
+    },
+    {
+     "id": "tally",
+     "who": "tally",
+     "at": [
+      1560,
+      300
+     ],
+     "scale": 0.95,
+     "perch": true
+    }
+   ],
+   "lines": [
+    {
+     "text": "Tonight, at midnight, every coin and every banknote in the country stops working."
+    },
+    {
+     "text": "Not stolen. Not burned. Just... no longer money."
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "notes",
+    "text": [
+     "NOT MONEY ANYMORE"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "lines": [
+    {
+     "text": "Every note in every wallet is now a nicely printed piece of paper."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "follow"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      250,
+      985
+     ],
+     "to": 1350,
+     "walk": [
+      0.3,
+      7.0
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Right now, about three out of four Americans are carrying cash.",
+     "card": {
+      "big": "76%",
+      "small": "carry cash on them"
+     },
+     "source": "Federal Reserve DCPC 2026"
+    },
+    {
+     "text": "On average, sixty-nine dollars.",
+     "card": {
+      "big": "$69",
+      "small": "average cash in a wallet"
+     },
+     "source": "Federal Reserve DCPC 2026"
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "wallet"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pull"
+   },
+   "lines": [
+    {
+     "text": "At midnight, that became sixty-nine dollars of nothing.",
+     "source": "Federal Reserve DCPC 2026"
+    }
+   ]
+  },
+  {
+   "set": "home",
+   "transition": "iris",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1350,
+      980
+     ],
+     "face": "left",
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 3.5,
+       "dur": 3.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "It gets worse."
+    },
+    {
+     "text": "Almost half of people keep extra cash tucked away at home, for emergencies.",
+     "card": {
+      "big": "45%",
+      "small": "keep cash stored at home"
+     },
+     "source": "Federal Reserve DCPC 2026"
+    },
+    {
+     "text": "Tonight, the emergency fund is the emergency."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "camera": {
+    "size": "close",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "For them, midnight didn't change how they pay."
+    },
+    {
+     "text": "It erased how they pay."
+    },
+    {
+     "text": "No card to fall back on. No app. Just a wallet full of paper."
+    },
+    {
+     "text": "The full story is on Small Catastrophes."
+    }
+   ]
+  }
+ ]
+}

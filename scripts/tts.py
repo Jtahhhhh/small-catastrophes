@@ -26,7 +26,7 @@ def main(script_path):
         s_start = t; lines = []
         lead = sc.get('lead', LEAD if n == 0 else 0.15)
         pieces.append(np.zeros(int(lead * sr))); t += lead
-        for ln in sc['lines']:
+        for ln in sc.get('lines', []):
             key = cache / (hashlib.sha1(f"{voice}|{speed}|{ln['text']}".encode()).hexdigest()[:16] + '.wav')
             if key.exists(): audio, sr = sf.read(key, dtype='float32')       # unchanged line: reuse, no re-synthesis
             else:
@@ -37,6 +37,8 @@ def main(script_path):
             pieces += [audio, np.zeros(int(GAP * sr))]; t += d + GAP
         hold = sc.get('hold', TAIL if n == len(shots) - 1 else 0.25)
         pieces.append(np.zeros(int(hold * sr))); t += hold
+        if sc.get('duration') and t - s_start < sc['duration']:          # line-less shots (intro sting, end screen)
+            pad = sc['duration'] - (t - s_start); pieces.append(np.zeros(int(pad * sr))); t += pad
         scenes.append({k: v for k, v in sc.items() if k != 'lines'} | {'lines': lines, 'start': round(s_start, 3), 'end': round(t, 3)})
     wav = np.concatenate(pieces).astype(np.float32)
     sf.write(out / 'narration.wav', wav, sr)
@@ -52,7 +54,7 @@ def main(script_path):
         mag = np.abs(np.fft.rfft(seg * np.hanning(hop)))
         cen = float((freqs * mag).sum() / (mag.sum() + 1e-9))
         vis.append(2 if cen < 900 else 3 if cen > 2200 else 1)
-    tl = {'title': script.get('title', ep), 'fps': fps, 'size': script.get('size', [1920, 1080]),
+    tl = {'title': script.get('title', ep), 'vertical': script.get('vertical', False), 'hook': script.get('hook', ''), 'fps': fps, 'size': script.get('size', [1920, 1080]),
           'duration': round(t, 3), 'shots': scenes, 'amps': [round(float(a), 3) for a in amps], 'visemes': vis}
     (out / 'timeline.json').write_text(json.dumps(tl))
     print(f'{ep}: {t:.1f}s narration, {sum(len(s["lines"]) for s in scenes)} lines, {len(scenes)} shots, {synth} lines synthesised')
