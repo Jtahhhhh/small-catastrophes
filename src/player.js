@@ -182,7 +182,8 @@ function renderShot(sh, t, i) {
   o.translate(W / 2, H / 2); o.scale(z, z); o.translate(-W / 2, -H / 2); o.drawImage(scene, 0, 0); o.setTransform(1, 0, 0, 1, 0, 0);
   BOIL.seed = 20 + boil; resetParts();
   if (!sh.chart && !sh.map) { const ls = sh.lines.filter(l => l.card); ls.forEach((l, n) => { const until = n + 1 < ls.length ? ls[n + 1].start : sh.end; if (t <= until) card(o, 1330, 90, 500, 280, l.card.big, l.card.small, t - l.start); }); }
-  if (sh.stamp) { shape(o, [[60, 50], [430, 40], [436, 150], [66, 160]], { fill: PAL.cream, outline: 7, jit: 4 }); handText(o, sh.stamp, 248, 100, { size: 72, color: PAL.red }); }
+  if (sh.stamp) { o.save(); o.font = 'bold 72px "DejaVu Serif"'; const sw = o.measureText(sh.stamp).width * 0.9 + 80; o.restore();
+    shape(o, [[60, 50], [60 + sw, 40], [66 + sw, 150], [66, 160]], { fill: PAL.cream, outline: 7, jit: 4 }); handText(o, sh.stamp, 63 + sw / 2, 100, { size: 72, color: PAL.red }); }
   return out;
 }
 

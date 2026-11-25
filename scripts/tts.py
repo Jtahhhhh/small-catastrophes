@@ -3,7 +3,7 @@ Writes build/<episode>/narration.wav and build/<episode>/timeline.json for the r
 
 usage: python3 scripts/tts.py episodes/demo-day1/script.json
 """
-import json, sys, pathlib
+import json, sys, pathlib, hashlib
 import numpy as np, soundfile as sf
 from kokoro_onnx import Kokoro
 
@@ -15,17 +15,23 @@ def main(script_path):
     ep = pathlib.Path(script_path).parent.name
     out = ROOT / 'build' / ep; out.mkdir(parents=True, exist_ok=True)
     fps = script.get('fps', 24)
-    kok = Kokoro(str(ROOT / 'models/kokoro-v1.0.int8.onnx'), str(ROOT / 'models/voices-v1.0.bin'))
+    cache = ROOT / 'build' / 'tts-cache'; cache.mkdir(parents=True, exist_ok=True)
+    kok = None
     voice, speed = script.get('voice', 'bm_george'), script.get('speed', 0.95)
     lang = 'en-gb' if voice.startswith('b') else 'en-us'
     sr, pieces, t, scenes = 24000, [], 0.0, []
     shots = script.get('shots') or script['scenes']
+    synth = 0
     for n, sc in enumerate(shots):
         s_start = t; lines = []
         lead = sc.get('lead', LEAD if n == 0 else 0.15)
         pieces.append(np.zeros(int(lead * sr))); t += lead
         for ln in sc['lines']:
-            audio, sr = kok.create(ln['text'], voice=voice, speed=speed, lang=lang)
+            key = cache / (hashlib.sha1(f"{voice}|{speed}|{ln['text']}".encode()).hexdigest()[:16] + '.wav')
+            if key.exists(): audio, sr = sf.read(key, dtype='float32')       # unchanged line: reuse, no re-synthesis
+            else:
+                kok = kok or Kokoro(str(ROOT / 'models/kokoro-v1.0.int8.onnx'), str(ROOT / 'models/voices-v1.0.bin'))
+                audio, sr = kok.create(ln['text'], voice=voice, speed=speed, lang=lang); sf.write(key, audio, sr); synth += 1
             d = len(audio) / sr
             lines.append({**ln, 'start': round(t, 3), 'end': round(t + d, 3)})
             pieces += [audio, np.zeros(int(GAP * sr))]; t += d + GAP
@@ -49,7 +55,7 @@ def main(script_path):
     tl = {'title': script.get('title', ep), 'fps': fps, 'size': script.get('size', [1920, 1080]),
           'duration': round(t, 3), 'shots': scenes, 'amps': [round(float(a), 3) for a in amps], 'visemes': vis}
     (out / 'timeline.json').write_text(json.dumps(tl))
-    print(f'{ep}: {t:.1f}s narration, {sum(len(s["lines"]) for s in scenes)} lines, {len(scenes)} shots')
+    print(f'{ep}: {t:.1f}s narration, {sum(len(s["lines"]) for s in scenes)} lines, {len(scenes)} shots, {synth} lines synthesised')
 
 if __name__ == '__main__':
     main(sys.argv[1])
