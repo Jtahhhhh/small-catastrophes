@@ -19,7 +19,7 @@ const chrome = process.env.CHROME || '/usr/bin/google-chrome';
 const N = Math.round(timeline.duration * timeline.fps);
 
 async function openPlayer() {
-  const browser = await puppeteer.launch({ executablePath: chrome, headless: true, args: ['--no-sandbox', '--allow-file-access-from-files', '--disable-web-security'] });
+  const browser = await puppeteer.launch({ executablePath: chrome, headless: true, protocolTimeout: 600000, args: ['--no-sandbox', '--allow-file-access-from-files', '--disable-web-security'] });
   const page = await browser.newPage();
   page.on('pageerror', e => console.error('page error:', e.message));
   await page.goto('file://' + path.join(ROOT, 'src/player.html'));
@@ -36,7 +36,7 @@ async function renderRange(a, b, file) {
     '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', '-s', `${w}x${h}`, file + '.tmp.mp4'], { stdio: ['pipe', 'inherit', 'inherit'] });
   for (let i = a; i < b; i++) {
     if (!ff.stdin.write(await grab(i))) await new Promise(r => ff.stdin.once('drain', r));
-    if ((i - a) % 480 === 0) console.log(`[${path.basename(file)}] ${i - a}/${b - a}`);
+    if ((i - a) % 480 === 0 && i > a) console.log(`[${path.basename(file)}] ${i - a}/${b - a}`);
   }
   ff.stdin.end(); const code = await new Promise(r => ff.on('close', r)); await browser.close();
   if (code !== 0) throw new Error('ffmpeg failed on ' + file);
@@ -48,15 +48,23 @@ if (arg('--frames')) {
   for (const i of arg('--frames').split(',').map(Number)) fs.writeFileSync(path.join(build, `frame_${i}.jpg`), await grab(i));
   await browser.close();
 } else {
+  // Resumable: frames are cut into chunks at shot boundaries (~40 s each). Each chunk is its own file and its own fresh
+  // browser; a chunk already on disk is skipped, so a stopped render picks up where it left off.
   const workers = Math.max(1, Number(arg('--workers') || Math.min(4, os.cpus().length)));
-  const t0 = Date.now(), seg = Math.ceil(N / workers), parts = [];
-  for (let k = 0; k < workers; k++) { const a = k * seg, b = Math.min(N, a + seg); if (a < b) parts.push([a, b, path.join(build, `part${k}.mp4`)]); }
-  await Promise.all(parts.map(([a, b, f]) => renderRange(a, b, f)));
-  const list = path.join(build, 'parts.txt'); fs.writeFileSync(list, parts.map(p => `file '${p[2]}'`).join('\n'));
+  const t0 = Date.now(), fps = timeline.fps, chunks = []; let a = 0;
+  for (const sh of timeline.shots) { const end = Math.min(N, Math.round(sh.end * fps)); if (end - a >= fps * 40 || sh === timeline.shots.at(-1)) { if (end > a) chunks.push([a, end]); a = end; } }
+  if (a < N) chunks.push([a, N]);
+  const sig = `${N}:${chunks.length}:${fs.statSync(path.join(build, 'timeline.json')).mtimeMs}`, sigFile = path.join(build, 'chunks.sig');
+  if (!fs.existsSync(sigFile) || fs.readFileSync(sigFile, 'utf8') !== sig) { fs.readdirSync(build).filter(f => /^chunk\d+\.mp4/.test(f)).forEach(f => fs.rmSync(path.join(build, f))); fs.writeFileSync(sigFile, sig); }
+  const files = chunks.map((_, k) => path.join(build, `chunk${String(k).padStart(3, '0')}.mp4`));
+  const todo = chunks.map((c, k) => [...c, files[k]]).filter(([, , f]) => !fs.existsSync(f));
+  console.log(`${chunks.length} chunks, ${chunks.length - todo.length} already done, ${workers} workers`);
+  await Promise.all(Array.from({ length: workers }, async () => { while (todo.length) { const [a, b, f] = todo.shift(); await renderRange(a, b, f); } }));
+  const list = path.join(build, 'parts.txt'); fs.writeFileSync(list, files.map(f => `file '${f}'`).join('\n'));
   const out = path.join(build, 'video.mp4');
   const r = spawnSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', list, '-i', path.join(build, 'narration.wav'),
     '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-af', 'loudnorm=I=-16:TP=-1.5:LRA=11', '-ar', '48000', '-c:a', 'aac', '-b:a', '160k', '-shortest', out + '.tmp.mp4'], { stdio: 'inherit' });
   if (r.status !== 0) { console.error('join failed'); process.exit(1); }
-  fs.renameSync(out + '.tmp.mp4', out); parts.forEach(p => fs.rmSync(p[2])); fs.rmSync(list);
-  console.log(`done: ${out} (${N} frames, ${workers} workers, ${((Date.now() - t0) / 1000).toFixed(0)}s)`);
+  fs.renameSync(out + '.tmp.mp4', out); fs.rmSync(list);
+  console.log(`done: ${out} (${N} frames, ${chunks.length} chunks, ${workers} workers, ${((Date.now() - t0) / 1000).toFixed(0)}s)`);
 }

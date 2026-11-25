@@ -230,10 +230,10 @@ function renderPanels(sh, t, i) {
 
 // ---------- world map: outlines draw in, highlighted countries pop in one by one with labels ----------
 function worldInsert(ctx, spec, k, box) {
-  const lon0 = -168, lon1 = 190, lat0 = -56, lat1 = 80;
+  const lon0 = -170, lon1 = 180, lat0 = -56, lat1 = 80;
   const sc = Math.min((box.x1 - box.x0) / (lon1 - lon0), (box.y1 - box.y0) / (lat1 - lat0));
   const ox = box.cx - (lon1 - lon0) * sc / 2, oy = (box.y0 + box.y1) / 2 - (lat1 - lat0) * sc / 2 + 20;
-  const P = ([lon, lat]) => [ox + ((lon < lon0 ? lon + 360 : lon) - lon0) * sc, oy + (lat1 - lat) * sc];
+  const P = ([lon, lat]) => [ox + (Math.max(lon, lon0) - lon0) * sc, oy + (lat1 - lat) * sc];
   handText(ctx, spec.title, box.cx, box.top + 50, { size: 50 });
   const hi = spec.highlight || [], idx = hi.map(h => WORLD.names.indexOf(h.name));
   const shown = Math.floor(WORLD.polys.length * ease(k / 1.2));
@@ -273,6 +273,9 @@ window.frame = (i) => {
   const t = i / FPS; GTL.seek(t, false);
   let si = TL.shots.findIndex(s => t >= s.start && t < s.end); if (si < 0) si = TL.shots.length - 1;
   const sh = TL.shots[si], boil = Math.floor(i / 2) % 3, lt = t - sh.start;
+  if (si !== frame.last) { frame.last = si; const keep = new Set([si - 1, si, si + 1]);     // free layer canvases of shots we left
+    for (const k of Object.keys(CACHE)) { const n = parseInt(k); if (!keep.has(n)) delete CACHE[k]; }
+    for (const k of Object.keys(LASTFRAME)) if (!keep.has(Number(k))) delete LASTFRAME[k]; }
   let out = renderShot(sh, t, i);
   const prev = TL.shots[si - 1], next = TL.shots[si + 1];
   if (sh.transition === 'tear' && prev && lt < 0.7) {
