@@ -1,0 +1,9 @@
+{ "title": "Proportion check: everyone on one line", "voice": "bm_george", "fps": 24, "size": [1920, 1080],
+  "shots": [ { "set": "street", "vo": true, "camera": { "size": "wide", "move": "static" },
+    "actors": [
+      { "id": "p1", "who": "person:11", "at": [180, 985] }, { "id": "p2", "who": "person:12", "at": [400, 985] },
+      { "id": "mortimer", "who": "mortimer", "at": [640, 985] }, { "id": "gristle", "who": "gristle", "at": [880, 985] },
+      { "id": "p3", "who": "person:13", "at": [1110, 985] }, { "id": "p4", "who": "person:14", "at": [1330, 985] },
+      { "id": "p5", "who": "person:15", "at": [1550, 985] }, { "id": "p6", "who": "person:16", "at": [1760, 985] },
+      { "id": "b1", "who": "person:17", "at": [520, 700] }, { "id": "b2", "who": "mortimer", "at": [1180, 700] } ],
+    "lines": [ { "text": "Line up." } ] } ] }

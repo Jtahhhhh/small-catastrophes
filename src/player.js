@@ -17,11 +17,14 @@ const ease = t => { t = Math.min(Math.max(t, 0), 1); return t * t * (3 - 2 * t);
 const RIGS = { mortimer: MORTIMER, gristle: GRISTLE, tally: TALLY };
 const rigFor = who => RIGS[who] || makePerson(Number(String(who).split(':')[1] || 1));
 const HEAD_H = { mortimer: 480, gristle: 320, tally: 110 };
+// Rig normalisation so every adult follows the same body spec (heights to top of head, at scale 1):
+// Mortimer 552 (tall), townsfolk 510–600, Mrs. Gristle 370 in her rig → ×1.2 ≈ 445 (short and stout).
+const RIG_SIZE = { gristle: 1.2 };
 const PAR = { far: 0.35, back: 1, front: 1.15 };
 const PAN = 110;                       // px of camera travel for pan-left / pan-right
 
 // ---------- size rule ----------
-function actorScale(sh, a) { const set = SETS[sh.set]; if (a.perch || !set.depth) return a.scale || 1; return set.depth(a.at[1]) * (a.size || 1); }
+function actorScale(sh, a) { const set = SETS[sh.set]; if (a.perch || !set.depth) return a.scale || 1; return set.depth(a.at[1]) * (a.size || 1) * (RIG_SIZE[a.who] || 1); }
 
 // ---------- camera ----------
 const SIZES = { wide: 1, medium: 1.65, close: 2.6 };
@@ -62,7 +65,7 @@ function expandCrowds(sh) {
     const c = a.crowd, r = rng(c.seed || 1), [x0, y0, x1, y1] = c.area;
     for (let n = 0; n < c.n; n++) {
       const y = y0 + r() * (y1 - y0), x = x0 + r() * (x1 - x0), who = `person:${(c.seed || 1) * 100 + n}`;
-      const p = { id: `${a.id || 'crowd'}${n}`, who, at: [x, y], size: 0.9 + r() * 0.2, crowd: true };
+      const p = { id: `${a.id || 'crowd'}${n}`, who, at: [x, y], crowd: true };
       if (c.walk) { const dir = c.walk === 'left' ? -1 : c.walk === 'right' ? 1 : (r() < 0.5 ? -1 : 1); const speed = (c.speed || 140) * (0.8 + r() * 0.5);
         const dur = sh.end - sh.start; p.to = x + dir * speed * dur; p.walk = [0, dur]; }
       if (c.queue) p.at = [x0 + n * (x1 - x0) / Math.max(1, c.n - 1) + (r() - 0.5) * 30, y0 + (r() - 0.5) * (y1 - y0)];
