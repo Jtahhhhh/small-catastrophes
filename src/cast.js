@@ -124,11 +124,11 @@ export function drawCast(ctx, parts, x, y, s = 1, { explode = 0, pivots = false,
 }
 
 // ---------------- PROPS ----------------
-export function atm(c, x, y, s = 1) {
+export function atm(c, x, y, s = 1, text = 'NO CASH') {
   c.save(); c.translate(x, y); c.scale(s, s);
   shape(c, P([[-70, 0], [72, -4], [66, -260], [-64, -252]]), { fill: PAL.slate, hatch: 0.3, outline: 7 });
   shape(c, P([[-46, -220], [44, -224], [42, -160], [-44, -156]]), { fill: '#2f3d2f', outline: 5 });
-  handText(c, 'NO CASH', 0, -190, { size: 22, color: '#a9c58a' });
+  handText(c, text, 0, -190, { size: Math.min(22, 150 / (text.length * 0.62)), color: '#a9c58a' });
   for (let r = 0; r < 3; r++) for (let k = 0; k < 3; k++) shape(c, ellipse(-24 + k * 24, -128 + r * 22, 8, 7, 8, 0.2, 80 + r * 3 + k), { fill: PAL.cream, outline: 2.5 });
   shape(c, P([[-40, -50], [40, -52], [40, -40], [-40, -38]]), { fill: PAL.ink, outline: 3 });
   c.restore();
@@ -142,10 +142,10 @@ export function register(c, x, y, s = 1) {
   handText(c, 'EMPTY', 0, 12, { size: 20, color: PAL.cream });
   c.restore();
 }
-export function bill(c, x, y, s = 1, rot = -0.15) {
+export function bill(c, x, y, s = 1, rot = -0.15, cur = '$') {
   c.save(); c.translate(x, y); c.rotate(rot); c.scale(s, s);
   shape(c, P([[-60, -26], [-10, -30], [58, -24], [62, 26], [10, 30], [-58, 24]]), { fill: PAL.bill, outline: 5, hatch: 0.15 });
-  shape(c, ellipse(0, 0, 16, 18, 12, 0.08, 101), { fill: '#b7c49f', outline: 3 }); handText(c, '$', 0, 1, { size: 24 });
+  shape(c, ellipse(0, 0, 16, 18, 12, 0.08, 101), { fill: '#b7c49f', outline: 3 }); handText(c, cur, 0, 1, { size: cur.length > 1 ? 16 : 24 });
   c.restore();
 }
 export function storefront(c, x, y, s = 1, sign = 'CARD ONLY') {
@@ -157,7 +157,7 @@ export function storefront(c, x, y, s = 1, sign = 'CARD ONLY') {
   shape(c, P([[30, 0], [110, 0], [106, -200], [34, -196]]), { fill: '#3b2a1b', outline: 6, hatch: 0.3 });   // door
   dot(c, 92, -98, 5, PAL.mustard);
   shape(c, P([[-130, -330], [120, -342], [122, -398], [-126, -386]]), { fill: PAL.cream, outline: 6 });
-  handText(c, sign, -2, -364, { size: 40, color: PAL.red });
+  handText(c, sign, -2, -364, { size: Math.min(40, 300 / (sign.length * 0.72)), color: PAL.red });
   c.restore();
 }
 export function lamp(c, x, y, s = 1) {

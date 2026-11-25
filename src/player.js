@@ -9,13 +9,14 @@ import { MORTIMER, GRISTLE, TALLY, POSE, drawCast } from './cast.js';
 import { makePerson } from './people.js';
 import { ACTIONS, walkPose, idlePose, mergePoses } from './actions.js';
 import { titleText } from './brand.js';
-import { SETS } from './sets.js';
+import { SETS, V, applyVariant } from './sets.js';
+import { HERO } from './props.js';
 
-let TL, W, H, FPS, GTL, US = null; const CACHE = {}, LASTFRAME = {};
+let TL, W, H, FPS, GTL, US = null, WORLD = null; const SUBS = []; const CACHE = {}, LASTFRAME = {};
 const cv = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; };
 const ease = t => { t = Math.min(Math.max(t, 0), 1); return t * t * (3 - 2 * t); };
 const RIGS = { mortimer: MORTIMER, gristle: GRISTLE, tally: TALLY };
-const rigFor = who => RIGS[who] || makePerson(Number(String(who).split(':')[1] || 1));
+const rigFor = (who, locale) => RIGS[who] || makePerson(Number(String(who).split(':')[1] || 1), locale || V.locale);
 const HEAD_H = { mortimer: 480, gristle: 320, tally: 110 };
 // Rig normalisation so every adult follows the same body spec (heights to top of head, at scale 1):
 // Mortimer 552 (tall), townsfolk 510–600, Mrs. Gristle 370 in her rig → ×1.2 ≈ 445 (short and stout).
@@ -51,7 +52,7 @@ const camMatrix = (cam, M) => [cam.z, 0, 0, cam.z, W / 2 - cam.cx * cam.z + M, H
 
 function layers(sh, boil) {
   const key = `${sh.index}:${boil}`; if (CACHE[key]) return CACHE[key];
-  const set = SETS[sh.set], cam = baseCamera(sh), M = margin(sh), m = camMatrix(cam, M);
+  applyVariant(sh); const set = SETS[sh.set], cam = baseCamera(sh), M = margin(sh), m = camMatrix(cam, M);
   const make = fn => { if (!fn) return null; const c = cv(W + 2 * M, H), x = c.getContext('2d'); x.setTransform(...m); BOIL.seed = boil + 1; resetParts(); fn.call(set, x); return c; };
   const base = cv(W, H); paper(base.getContext('2d'), W, H, { base: set.paper, vignette: 0.7, seed: 11 });
   return (CACHE[key] = { M, base, far: make(set.far), back: make(set.draw), front: make(set.front) });
@@ -79,7 +80,7 @@ function expandCrowds(sh) {
 // ---------- timeline ----------
 function buildTimeline() {
   const tl = gsap.timeline({ paused: true });
-  for (const sh of TL.shots) for (const a of sh.actors) {
+  for (const sh of [...TL.shots, ...SUBS]) for (const a of sh.actors) {
     a.pos = { x: a.at[0] };
     if (a.to != null) { const [t0, dur] = a.walk || [0, sh.end - sh.start - 0.5];
       tl.to(a.pos, { x: a.to, duration: dur, ease: a.crowd ? 'none' : 'power1.inOut' }, sh.start + t0); a.walkWin = [sh.start + t0, sh.start + t0 + dur]; }
@@ -153,7 +154,7 @@ function drawActors(ctx, sh, t, i, which) {
     const s = actorScale(sh, a), flip = a.flip ?? (dirLeft && a.who !== 'tally');
     const lean = wAmt * 0.06 * (flip ? -1 : 1);
     if (a.who !== 'tally') shape(ctx, ellipse(x, a.at[1], 95 * s, 18 * s, 14, 0.1, 300), { fill: 'rgba(34,28,22,0.22)', outline: 0 });
-    drawCast(ctx, rigFor(a.who), x, a.at[1] + pose.dy * s, s, { rot: pose.rot, flip, lean });
+    drawCast(ctx, rigFor(a.who, a.locale), x, a.at[1] + pose.dy * s, s, { rot: pose.rot, flip, lean });
     POSE.mouth = 0; POSE.viseme = 0; POSE.blink = 0; POSE.look = 0;
   }
 }
@@ -161,7 +162,8 @@ function drawActors(ctx, sh, t, i, which) {
 // ---------- one shot ----------
 function renderShot(sh, t, i) {
   const boil = Math.floor(i / 2) % 3, lt = t - sh.start, dur = sh.end - sh.start;
-  const L = layers(sh, boil), cam = baseCamera(sh), off = camOffset(sh, t);
+  if (sh.panels) return renderPanels(sh, t, i);
+  const L = layers(sh, boil), cam = baseCamera(sh), off = camOffset(sh, t); applyVariant(sh);
   const scene = cv(W, H), ctx = scene.getContext('2d');
   ctx.drawImage(L.base, 0, 0);
   if (L.far) ctx.drawImage(L.far, -L.M + off * PAR.far, 0);
@@ -174,7 +176,9 @@ function renderShot(sh, t, i) {
   if (L.front) { ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.drawImage(L.front, -L.M + off * PAR.front, 0); setCam(); }
   drawActors(ctx, sh, t, i, sorted.filter(a => a.layer !== 'behind'));
   if (sh.chart) chart(ctx, sh.chart, lt, SETS[sh.set].chartBox);
-  if (sh.map) mapInsert(ctx, sh.map, lt, SETS[sh.set].mapBox);
+  if (sh.map) (sh.map.region === 'world' ? worldInsert : mapInsert)(ctx, sh.map, lt, SETS[sh.set].mapBox);
+  if (sh.insert) { const h = HERO[sh.insert.prop]; ctx.save(); ctx.translate(960, 470); ctx.rotate(sh.insert.tilt ?? -0.03); ctx.scale(sh.insert.scale || 1.3, sh.insert.scale || 1.3);
+    if (h) h(ctx, V, sh.insert.text || []); ctx.restore(); }
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   const mv = (sh.camera || {}).move || 'push', k = ease(lt / dur); let z = 1;
   if (mv === 'push') z = 1 + 0.08 * k; if (mv === 'pull') z = 1.08 - 0.08 * k;
@@ -182,9 +186,68 @@ function renderShot(sh, t, i) {
   o.translate(W / 2, H / 2); o.scale(z, z); o.translate(-W / 2, -H / 2); o.drawImage(scene, 0, 0); o.setTransform(1, 0, 0, 1, 0, 0);
   BOIL.seed = 20 + boil; resetParts();
   if (!sh.chart && !sh.map) { const ls = sh.lines.filter(l => l.card); ls.forEach((l, n) => { const until = n + 1 < ls.length ? ls[n + 1].start : sh.end; if (t <= until) card(o, 1330, 90, 500, 280, l.card.big, l.card.small, t - l.start); }); }
+  if (sh.headline) headline(o, sh.headline, lt);
   if (sh.stamp) { o.save(); o.font = 'bold 72px "DejaVu Serif"'; const sw = o.measureText(sh.stamp).width * 0.9 + 80; o.restore();
     shape(o, [[60, 50], [60 + sw, 40], [66 + sw, 150], [66, 160]], { fill: PAL.cream, outline: 7, jit: 4 }); handText(o, sh.stamp, 63 + sw / 2, 100, { size: 72, color: PAL.red }); }
   return out;
+}
+
+// ---------- headline: a newspaper spins in, as in old films ----------
+function headline(o, h, lt) {
+  const k = ease(lt / 0.9); if (k <= 0) return;
+  o.save(); o.fillStyle = `rgba(20,14,10,${0.55 * k})`; o.fillRect(0, 0, W, H);
+  o.translate(W / 2, H / 2 - 20); o.rotate((1 - k) * Math.PI * 4 - 0.04); o.scale(0.15 + 0.85 * k, 0.15 + 0.85 * k);
+  shape(o, [[-640, -400], [640, -414], [652, 400], [-628, 412]], { fill: '#e9e0c6', outline: 8, jit: 3 });
+  handText(o, h.paper || 'THE DAILY LEDGER', 0, -330, { size: 58, font: 'DejaVu Serif' });
+  ink(o, [[-590, -285], [590, -290]], { size: 5 }); ink(o, [[-590, -270], [590, -275]], { size: 2 });
+  if (h.date) handText(o, h.date, 0, -250, { size: 28, weight: 'normal' });
+  const words = h.text.split(' '), rows = []; let cur = '';
+  for (const w of words) { if ((cur + ' ' + w).trim().length > 18) { rows.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); } rows.push(cur);
+  rows.forEach((r, n) => handText(o, r, 0, -140 + n * 105 + (3 - rows.length) * 50, { size: 96, color: PAL.ink }));
+  if (h.sub) handText(o, h.sub, 0, 250, { size: 38, weight: 'normal' });
+  for (let yy = 310; yy < 380; yy += 22) ink(o, [[-560, yy], [560, yy - 2]], { size: 2, color: 'rgba(34,28,22,0.35)' });
+  if (h.source) handText(o, h.source, 0, 375, { size: 22, weight: 'normal', color: '#5a4a3a' });
+  o.restore();
+}
+
+// ---------- panels: 2 or 3 sub-shots side by side (split screen / comic strip) ----------
+function renderPanels(sh, t, i) {
+  const n = sh.panels.length, gap = 26, top = 40, bottom = 40, pw = (W - gap * (n + 1)) / n, ph = H - top - bottom;
+  const out = cv(W, H), o = out.getContext('2d'); paper(o, W, H, { base: '#2a211b', vignette: 0.5, seed: 12 });
+  const lt = t - sh.start, dur = sh.end - sh.start;
+  sh.panels.forEach((p, k) => {
+    const appear = sh.reveal ? (p.at ?? k * dur / n * 0.8) : 0; if (lt < appear) return;
+    const img = renderShot(p, t, i), cw = Math.min(W, H * pw / ph), cx = W / 2 - cw / 2, x = gap + k * (pw + gap);
+    o.save(); o.globalAlpha = Math.min(1, (lt - appear) / 0.3 + (sh.reveal ? 0 : 1)); o.drawImage(img, cx, 0, cw, H, x, top, pw, ph); o.restore();
+    BOIL.seed = 50 + (Math.floor(i / 2) % 3); resetParts();
+    shape(o, [[x, top], [x + pw, top - 2], [x + pw + 2, top + ph], [x - 2, top + ph + 2]], { fill: 'rgba(0,0,0,0)', outline: 9, jit: 2 });
+    if (p.label) { o.save(); o.font = 'bold 44px "DejaVu Serif"'; const lw = o.measureText(p.label).width * 0.9 + 50; o.restore();
+      shape(o, [[x + 20, top + 20], [x + 20 + lw, top + 16], [x + 24 + lw, top + 86], [x + 24, top + 90]], { fill: PAL.cream, outline: 6, jit: 3 });
+      handText(o, p.label, x + 22 + lw / 2, top + 54, { size: 44, color: PAL.red }); }
+  });
+  return out;
+}
+
+// ---------- world map: outlines draw in, highlighted countries pop in one by one with labels ----------
+function worldInsert(ctx, spec, k, box) {
+  const lon0 = -168, lon1 = 190, lat0 = -56, lat1 = 80;
+  const sc = Math.min((box.x1 - box.x0) / (lon1 - lon0), (box.y1 - box.y0) / (lat1 - lat0));
+  const ox = box.cx - (lon1 - lon0) * sc / 2, oy = (box.y0 + box.y1) / 2 - (lat1 - lat0) * sc / 2 + 20;
+  const P = ([lon, lat]) => [ox + ((lon < lon0 ? lon + 360 : lon) - lon0) * sc, oy + (lat1 - lat) * sc];
+  handText(ctx, spec.title, box.cx, box.top + 50, { size: 50 });
+  const hi = spec.highlight || [], idx = hi.map(h => WORLD.names.indexOf(h.name));
+  const shown = Math.floor(WORLD.polys.length * ease(k / 1.2));
+  WORLD.polys.slice(0, shown).forEach((poly, n) => { const h = idx.indexOf(WORLD.owner[n]), at = h >= 0 ? (hi[h].at ?? 1.4 + h * 0.9) : 0;
+    const on = h >= 0 && k >= at; shape(ctx, poly.map(P), { fill: on ? (hi[h].color || PAL.red) : (n % 2 ? '#d9cba8' : '#d2c39d'), outline: on ? 3 : 2, jit: 0.8, hatch: on ? 0.3 : 0 }); });
+  hi.forEach((h, n) => { const at = h.at ?? 1.4 + n * 0.9; if (k < at || idx[n] < 0) return;
+    const rings = WORLD.polys.filter((_, m) => WORLD.owner[m] === idx[n]).sort((a, b) => b.length - a.length)[0];
+    const c = rings.reduce((a, p) => [a[0] + p[0] / rings.length, a[1] + p[1] / rings.length], [0, 0]), [x, y] = P(c);
+    const [dx, dy] = h.offset || [0, -110], kk = ease((k - at) / 0.4);
+    ink(ctx, [[x, y], [x + dx * kk, y + dy * kk]], { size: 4 });
+    if (kk > 0.6) { ctx.save(); ctx.font = 'bold 40px "DejaVu Serif"'; const lw = ctx.measureText(h.label || h.name).width * 0.9 + 40; ctx.restore();
+      shape(ctx, [[x + dx - lw / 2, y + dy - 34], [x + dx + lw / 2, y + dy - 38], [x + dx + lw / 2 + 4, y + dy + 30], [x + dx - lw / 2 + 2, y + dy + 34]], { fill: PAL.cream, outline: 5, jit: 2 });
+      handText(ctx, h.label || h.name, x + dx, y + dy - 2, { size: 40, color: h.color || PAL.red }); } });
+  if (spec.source) handText(ctx, 'Source: ' + spec.source, box.cx, box.source, { size: 22, weight: 'normal', color: '#5a4a3a' });
 }
 
 // ---------- transitions ----------
@@ -200,8 +263,9 @@ function tearMask(k, seed) { const x = W * (1 - ease(k)); const pts = [[x, -10]]
   return pts.concat([[W + 10, H + 10], [W + 10, -10]]); }
 
 window.setup = (timeline, mapData) => {
-  TL = timeline; [W, H] = TL.size; FPS = TL.fps; US = mapData;
-  TL.shots.forEach((s, i) => { s.index = i; s.actors = s.actors || []; expandCrowds(s); });
+  TL = timeline; [W, H] = TL.size; FPS = TL.fps; US = mapData.us || mapData; WORLD = mapData.world || null;
+  TL.shots.forEach((s, i) => { s.index = i; s.actors = s.actors || []; expandCrowds(s);
+    (s.panels || []).forEach((p, k) => { Object.assign(p, { index: `${i}p${k}`, start: s.start, end: s.end, lines: [], actors: p.actors || [] }); expandCrowds(p); SUBS.push(p); }); });
   GTL = buildTimeline(); return Math.round(TL.duration * FPS);
 };
 
@@ -229,7 +293,20 @@ window.frame = (i) => {
   return out.toDataURL('image/jpeg', 0.92);
 };
 
-function chunks(t) { const out = []; let cur = ''; for (const w of t.split(' ')) { if (cur && (cur.length + w.length > 30 || /[.?!,]$/.test(cur))) { out.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); } if (cur) out.push(cur); return out; }
+// Caption chunks: break after punctuation, keep chunks ≤ 34 chars, never end a chunk on a small joining word.
+const JOIN = new Set(['a', 'an', 'the', 'of', 'to', 'in', 'on', 'at', 'for', 'and', 'or', 'but', 'with', 'from', 'by', 'is', 'are', 'was', 'that', 'their', 'your', 'its', 'her', 'his', 'my', 'every', 'no', 'just', 'it', 'they', 'you', 'we', 'i', 'as', 'so', 'than', 'who', 'what', 'about', 'into', 'over', 'had', 'has', 'have', 'be', 'were', 'all', 'more', 'most', 'some', 'only', 'one', 'two', 'this', 'these', 'those', 'can', 'would', 'will', "don't", "didn't", "can't", "isn't", 'not', 'very', 'how', 'when', 'where', 'there', 'then', 'if']);
+function chunks(t) {
+  const ws = t.split(' '), out = []; let cur = [];
+  const len = a => a.join(' ').length;
+  for (let n = 0; n < ws.length; n++) { const w = ws[n];
+    if (cur.length && len([...cur, w]) > 34) {               // too long: move trailing joining words to the next chunk
+      const carry = []; while (cur.length > 1 && JOIN.has(cur[cur.length - 1].toLowerCase().replace(/[^a-z']/g, ''))) carry.unshift(cur.pop());
+      out.push(cur.join(' ')); cur = carry; }
+    cur.push(w);
+    if (/[.?!,;:]$/.test(w) && len(cur) >= 12 && n < ws.length - 1) { out.push(cur.join(' ')); cur = []; } }
+  if (cur.length) { if (out.length && len(cur) < 10 && len([out[out.length - 1], ...cur]) <= 40) out[out.length - 1] += ' ' + cur.join(' '); else out.push(cur.join(' ')); }
+  return out;
+}
 function captionFor(line, t) { const cs = chunks(line.text), wt = cs.map(c => c.length + (/[.?!]$/.test(c) ? 6 : 0)); const tot = wt.reduce((a, b) => a + b, 0);
   let acc = 0; for (let i = 0; i < cs.length; i++) { acc += wt[i]; if (t <= line.start + (line.end - line.start) * acc / tot) return cs[i]; } return cs[cs.length - 1]; }
 window.ready = true;

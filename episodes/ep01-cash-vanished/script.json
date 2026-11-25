@@ -1,1994 +1,338 @@
 {
- "title": "What If Cash Vanished Overnight?",
- "voice": "bm_george",
- "speed": 0.95,
- "fps": 24,
- "size": [
-  1920,
-  1080
- ],
- "shots": [
-  {
-   "set": "street",
-   "stamp": "HOUR 0",
-   "fadeIn": true,
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ]
-    },
-    {
-     "id": "tally",
-     "who": "tally",
-     "at": [
-      1560,
-      300
-     ],
-     "scale": 0.95,
-     "perch": true
-    }
-   ],
-   "lines": [
-    {
-     "text": "Tonight, at midnight, every coin and every banknote in the country stops working."
-    },
-    {
-     "text": "Not stolen. Not burned. Just... no longer money."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "camera": {
-    "size": "close",
-    "on": "mortimer",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ],
-     "actions": [
-      {
-       "do": "raise",
-       "at": 0.4,
-       "dur": 1.6
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "I'm Mortimer Penny, and this is a small catastrophe."
-    },
-    {
-     "text": "Let's watch what happens, hour by hour."
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "transition": "tear",
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "chart": {
-    "title": "How Americans pay each month",
-    "subtitle": "average payments per person, 2025",
-    "bars": [
-     [
-      "Credit",
-      16
-     ],
-     [
-      "Debit",
-      15
-     ],
-     [
-      "Cash",
-      6
-     ]
-    ],
-    "unit": "",
-    "highlight": 2,
-    "source": "Federal Reserve, Diary of Consumer Payment Choice (2026)"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "point-left",
-       "at": 3.0,
-       "dur": 3.5
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "Most people's first reaction is: so what?"
-    },
-    {
-     "text": "The average American makes about forty-seven payments a month."
-    },
-    {
-     "text": "Only six of them are cash."
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "camera": {
-    "size": "wide",
-    "move": "static"
-   },
-   "chart": {
-    "title": "How Americans prefer to pay in person",
-    "subtitle": "share of consumers, 2025",
-    "bars": [
-     [
-      "Debit",
-      40
-     ],
-     [
-      "Credit",
-      38
-     ],
-     [
-      "Cash",
-      16
-     ]
-    ],
-    "unit": "%",
-    "highlight": 2,
-    "source": "Federal Reserve, Diary of Consumer Payment Choice (2026)"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "shrug",
-       "at": 2.8,
-       "dur": 2.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "And only sixteen percent say cash is how they'd rather pay in a shop."
-    },
-    {
-     "text": "So on paper, this should be a quiet night."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "ink",
-   "camera": {
-    "size": "medium",
-    "on": "mortimer",
-    "move": "pan-right"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ],
-     "actions": [
-      {
-       "do": "nod",
-       "at": 1.2,
-       "dur": 1.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "Paper, as it turns out, is exactly the problem."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "stamp": "HOUR 1",
-   "camera": {
-    "size": "wide",
-    "move": "pan-left"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      520,
-      985
-     ]
-    },
-    {
-     "id": "c",
-     "crowd": {
-      "n": 4,
-      "seed": 11,
-      "area": [
-       -200,
-       760,
-       2100,
-       1000
-      ],
-      "walk": "both",
-      "speed": 110
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "The first people to notice are the ones who are still awake."
-    },
-    {
-     "text": "Night-shift workers. Bartenders. Taxi drivers. Anyone whose tips are sitting in a jar."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "camera": {
-    "size": "medium",
-    "on": "mortimer",
-    "move": "follow"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      250,
-      985
-     ],
-     "to": 1350,
-     "walk": [
-      0.3,
-      7.0
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "Right now, about three out of four Americans are carrying cash.",
-     "card": {
-      "big": "76%",
-      "small": "carry cash on them"
-     },
-     "source": "Federal Reserve DCPC 2026"
-    },
-    {
-     "text": "On average, sixty-nine dollars.",
-     "card": {
-      "big": "$69",
-      "small": "average cash in a wallet"
-     },
-     "source": "Federal Reserve DCPC 2026"
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "camera": {
-    "size": "close",
-    "on": "mortimer",
-    "move": "static"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1350,
-      985
-     ],
-     "face": "left",
-     "actions": [
-      {
-       "do": "shrug",
-       "at": 0.6,
-       "dur": 2.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "At midnight, that became sixty-nine dollars of nothing."
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "transition": "tear",
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "chart": {
-    "title": "Keep cash stored for savings or emergencies",
-    "subtitle": "share of U.S. consumers, 2025",
-    "bars": [
-     [
-      "Yes",
-      45
-     ],
-     [
-      "No",
-      55
-     ]
-    ],
-    "unit": "%",
-    "highlight": 0,
-    "source": "Federal Reserve, Diary of Consumer Payment Choice (2026)"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "point-left",
-       "at": 2.0,
-       "dur": 3.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "It gets worse."
-    },
-    {
-     "text": "Almost half of people keep extra cash tucked away at home, for emergencies."
-    },
-    {
-     "text": "Tonight, the emergency fund is the emergency."
-    }
-   ]
-  },
-  {
-   "set": "supermarket",
-   "transition": "iris",
-   "stamp": "HOUR 8",
-   "vo": true,
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "gristle",
-     "who": "gristle",
-     "at": [
-      1690,
-      880
-     ],
-     "layer": "behind",
-     "actions": [
-      {
-       "do": "nod",
-       "at": 2.0,
-       "dur": 1.2
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "At eight in the morning, Mrs. Gristle opens her shop."
-    },
-    {
-     "text": "Her card terminal works perfectly."
-    }
-   ]
-  },
-  {
-   "set": "supermarket",
-   "vo": true,
-   "camera": {
-    "size": "wide",
-    "move": "pan-left"
-   },
-   "actors": [
-    {
-     "id": "gristle",
-     "who": "gristle",
-     "at": [
-      1690,
-      880
-     ],
-     "layer": "behind",
-     "actions": [
-      {
-       "do": "shrug",
-       "at": 2.5,
-       "dur": 2.0
-      }
-     ]
-    },
-    {
-     "id": "q",
-     "crowd": {
-      "n": 7,
-      "seed": 7,
-      "area": [
-       120,
-       990,
-       1150,
-       1030
-      ],
-      "queue": true,
-      "fidget": true
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "Her problem is the people standing in front of it."
-    },
-    {
-     "text": "Because cash isn't spread evenly. It belongs to particular people."
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "transition": "tear",
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "chart": {
-    "title": "Cash payments per month, by age",
-    "subtitle": "U.S. consumers, 2025",
-    "bars": [
-     [
-      "18 to 24",
-      2
-     ],
-     [
-      "25 to 54",
-      5
-     ],
-     [
-      "55 and over",
-      10
-     ]
-    ],
-    "unit": "",
-    "highlight": 2,
-    "source": "Federal Reserve, Diary of Consumer Payment Choice (2026)"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "point-left",
-       "at": 3.5,
-       "dur": 3.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "People over fifty-five pay with cash about ten times a month."
-    },
-    {
-     "text": "People under twenty-five? About twice."
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "camera": {
-    "size": "wide",
-    "move": "static"
-   },
-   "chart": {
-    "title": "Cash payments per month, by place",
-    "subtitle": "U.S. consumers, 2025",
-    "bars": [
-     [
-      "Rural",
-      9
-     ],
-     [
-      "Urban and suburban",
-      6
-     ]
-    ],
-    "unit": "",
-    "highlight": 0,
-    "source": "Federal Reserve, Diary of Consumer Payment Choice (2026)"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "nod",
-       "at": 2.5,
-       "dur": 1.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "And people in the countryside use cash more than people in cities."
-    }
-   ]
-  },
-  {
-   "set": "supermarket",
-   "vo": true,
-   "camera": {
-    "size": "medium",
-    "on": "gristle",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "gristle",
-     "who": "gristle",
-     "at": [
-      1690,
-      880
-     ],
-     "layer": "behind",
-     "actions": [
-      {
-       "do": "shrug",
-       "at": 1.0,
-       "dur": 2.0
-      }
-     ]
-    },
-    {
-     "id": "q",
-     "crowd": {
-      "n": 4,
-      "seed": 8,
-      "area": [
-       700,
-       990,
-       1250,
-       1030
-      ],
-      "queue": true,
-      "fidget": true
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "So the first customers she has to turn away are her regulars."
-    },
-    {
-     "text": "The older ones. The ones who drove in from out of town."
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "transition": "ink",
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "map": {
-    "title": "Households with no bank account",
-    "dots": {
-     "n": 112,
-     "seed": 4,
-     "counter": 5600000,
-     "label": "households"
-    },
-    "source": "FDIC 2023 \u00b7 1 dot \u2248 50,000 households \u00b7 placement illustrative"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "point-left",
-       "at": 4.0,
-       "dur": 3.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "Then there are people for whom cash isn't a habit. It's the whole system."
-    },
-    {
-     "text": "About five point six million American households have no bank account at all."
-    },
-    {
-     "text": "And they live in every corner of the country."
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "camera": {
-    "size": "wide",
-    "move": "static"
-   },
-   "chart": {
-    "title": "Households with no bank account",
-    "subtitle": "share of U.S. households",
-    "bars": [
-     [
-      "2011",
-      8.2
-     ],
-     [
-      "2021",
-      4.5
-     ],
-     [
-      "2023",
-      4.2
-     ]
-    ],
-    "unit": "%",
-    "decimals": 1,
-    "highlight": 2,
-    "source": "FDIC National Survey of Unbanked and Underbanked Households (2023)"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "point-left",
-       "at": 1.5,
-       "dur": 2.5
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "That number has been shrinking for years."
-    },
-    {
-     "text": "But two out of three of those households rely entirely on cash.",
-     "source": "FDIC 2023"
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "iris",
-   "camera": {
-    "size": "close",
-    "on": "mortimer",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "For them, midnight didn't change how they pay."
-    },
-    {
-     "text": "It erased how they pay."
-    },
-    {
-     "text": "No card to fall back on. No app. Just a wallet full of paper."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "camera": {
-    "size": "wide",
-    "move": "pan-right"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      560,
-      985
-     ],
-     "actions": [
-      {
-       "do": "point-right",
-       "at": 1.0,
-       "dur": 3.0
-      }
-     ]
-    },
-    {
-     "id": "q",
-     "crowd": {
-      "n": 6,
-      "seed": 21,
-      "area": [
-       1150,
-       760,
-       1950,
-       790
-      ],
-      "queue": true,
-      "fidget": true
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "Opening a bank account sounds easy."
-    },
-    {
-     "text": "But you need an ID, an address, sometimes a deposit... and a branch that's open."
-    },
-    {
-     "text": "And this morning, every branch in the country has the same line."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "ink",
-   "stamp": "HOUR 12",
-   "camera": {
-    "size": "medium",
-    "on": "mortimer",
-    "move": "follow"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      300,
-      985
-     ],
-     "to": 1400,
-     "walk": [
-      0.3,
-      9.0
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "By lunchtime, you start noticing all the machines that only ever wanted coins."
-    },
-    {
-     "text": "Parking meters. Laundromats. Vending machines. The fare box on the bus."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "camera": {
-    "size": "close",
-    "on": "mortimer",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1400,
-      985
-     ],
-     "face": "left"
-    }
-   ],
-   "lines": [
-    {
-     "text": "A big city can switch its parking meters to an app in a week."
-    },
-    {
-     "text": "A laundromat in a small town can't."
-    },
-    {
-     "text": "And the tip jar on the coffee counter just sits there, empty."
-    }
-   ]
-  },
-  {
-   "set": "supermarket",
-   "vo": true,
-   "camera": {
-    "size": "wide",
-    "move": "pan-right"
-   },
-   "actors": [
-    {
-     "id": "gristle",
-     "who": "gristle",
-     "at": [
-      1690,
-      880
-     ],
-     "layer": "behind",
-     "actions": [
-      {
-       "do": "shrug",
-       "at": 4.0,
-       "dur": 2.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "Charities feel it next. The collection tin. The plate at church. The kid selling lemonade on the corner."
-    },
-    {
-     "text": "Small gifts were almost always made in cash, and small gifts don't move to an app overnight."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "iris",
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ],
-     "actions": [
-      {
-       "do": "raise",
-       "at": 5.0,
-       "dur": 1.6
-      }
-     ]
-    },
-    {
-     "id": "c",
-     "crowd": {
-      "n": 5,
-      "seed": 101,
-      "area": [
-       -200,
-       720,
-       2100,
-       950
-      ],
-      "walk": "both",
-      "speed": 120
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "Then there's a quieter loss. Privacy."
-    },
-    {
-     "text": "Cash is the only way most people can pay without leaving a record."
-    },
-    {
-     "text": "With it gone, every coffee and every bus ride sits in somebody's database."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "camera": {
-    "size": "close",
-    "on": "mortimer",
-    "move": "static"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ],
-     "actions": [
-      {
-       "do": "nod",
-       "at": 3.0,
-       "dur": 1.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "For most people, that's fine."
-    },
-    {
-     "text": "For someone hiding a little savings from a controlling partner, it isn't."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "tear",
-   "stamp": "DAY 2",
-   "camera": {
-    "size": "wide",
-    "move": "pan-right"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ]
-    },
-    {
-     "id": "tally",
-     "who": "tally",
-     "at": [
-      1560,
-      300
-     ],
-     "scale": 0.95,
-     "perch": true,
-     "actions": [
-      {
-       "do": "peck",
-       "at": 0,
-       "dur": 9
-      }
-     ]
-    },
-    {
-     "id": "c",
-     "crowd": {
-      "n": 9,
-      "seed": 3,
-      "area": [
-       -200,
-       700,
-       2100,
-       1060
-      ],
-      "walk": "both",
-      "speed": 150
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "By day two, the street is busy, but strangely quiet."
-    },
-    {
-     "text": "People are walking. Nobody is buying."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "camera": {
-    "size": "medium",
-    "on": "mortimer",
-    "move": "follow"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1500,
-      985
-     ],
-     "to": 350,
-     "walk": [
-      0.3,
-      8.5
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "Street vendors. Babysitters. The kid who mows lawns. The flea market."
-    },
-    {
-     "text": "A whole layer of the economy runs on cash, and it just went silent."
-    }
-   ]
-  },
-  {
-   "set": "supermarket",
-   "transition": "ink",
-   "vo": true,
-   "camera": {
-    "size": "medium",
-    "on": "gristle",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "gristle",
-     "who": "gristle",
-     "at": [
-      1690,
-      880
-     ],
-     "layer": "behind",
-     "actions": [
-      {
-       "do": "raise",
-       "at": 2.5,
-       "dur": 1.6
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "So Mrs. Gristle does what shopkeepers have done for centuries."
-    },
-    {
-     "text": "She opens a notebook and starts a tab.",
-     "card": {
-      "big": "IOU",
-      "small": "the oldest payment system"
-     }
-    }
-   ]
-  },
-  {
-   "set": "supermarket",
-   "vo": true,
-   "camera": {
-    "size": "wide",
-    "move": "pull"
-   },
-   "actors": [
-    {
-     "id": "gristle",
-     "who": "gristle",
-     "at": [
-      1690,
-      880
-     ],
-     "layer": "behind",
-     "actions": [
-      {
-       "do": "nod",
-       "at": 1.0,
-       "dur": 1.2
-      }
-     ]
-    },
-    {
-     "id": "q",
-     "crowd": {
-      "n": 5,
-      "seed": 9,
-      "area": [
-       300,
-       990,
-       1200,
-       1030
-      ],
-      "queue": true
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "Pay me back when the money comes back."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "iris",
-   "camera": {
-    "size": "medium",
-    "on": "mortimer",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ],
-     "actions": [
-      {
-       "do": "shrug",
-       "at": 3.5,
-       "dur": 2.0
-      }
-     ]
-    },
-    {
-     "id": "c",
-     "crowd": {
-      "n": 3,
-      "seed": 31,
-      "area": [
-       -200,
-       760,
-       2100,
-       900
-      ],
-      "walk": "both",
-      "speed": 90
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "Across town, people start trading. A haircut for a casserole. Lawn mowing for a ride."
-    },
-    {
-     "text": "Economists call this barter."
-    },
-    {
-     "text": "It's slow, it's awkward, and it only works if you each want what the other one has."
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "transition": "tear",
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "chart": {
-    "title": "India, 8 November 2016",
-    "subtitle": "share of cash in circulation, by value",
-    "bars": [
-     [
-      "Cancelled",
-      86
-     ],
-     [
-      "Still valid",
-      14
-     ]
-    ],
-    "unit": "%",
-    "highlight": 0,
-    "source": "Reserve Bank of India, via CNN Business (2017)"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "point-left",
-       "at": 5.0,
-       "dur": 3.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "This sounds far-fetched. But a version of it has already happened. Twice."
-    },
-    {
-     "text": "On the eighth of November, 2016, India announced that its five hundred and one thousand rupee notes would stop being money at midnight."
-    },
-    {
-     "text": "That was about eighty-six percent of all the cash in the country."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "ink",
-   "stamp": "INDIA, 2016",
-   "vo": true,
-   "camera": {
-    "size": "wide",
-    "move": "pan-right"
-   },
-   "actors": [
-    {
-     "id": "q",
-     "crowd": {
-      "n": 10,
-      "seed": 41,
-      "area": [
-       1150,
-       760,
-       2150,
-       800
-      ],
-      "queue": true,
-      "fidget": true
-     }
-    },
-    {
-     "id": "c",
-     "crowd": {
-      "n": 3,
-      "seed": 42,
-      "area": [
-       -200,
-       900,
-       2100,
-       1050
-      ],
-      "walk": "right",
-      "speed": 120
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "Within the hour, lines formed at cash machines. Many ran out within minutes."
-    },
-    {
-     "text": "And because the new notes were a different size, more than two hundred thousand ATMs had to be refitted before they could pay out."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "vo": true,
-   "camera": {
-    "size": "medium",
-    "on": "q3",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "q",
-     "crowd": {
-      "n": 10,
-      "seed": 41,
-      "area": [
-       1150,
-       760,
-       2150,
-       800
-      ],
-      "queue": true,
-      "fidget": true
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "In a country where most purchases were made in cash, people queued for hours just to buy food."
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "transition": "tear",
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "chart": {
-    "title": "Cancelled notes returned to banks",
-    "subtitle": "India, by mid-2017",
-    "bars": [
-     [
-      "Returned",
-      99
-     ],
-     [
-      "Never returned",
-      1
-     ]
-    ],
-    "unit": "%",
-    "highlight": 0,
-    "source": "Reserve Bank of India annual report, via Business Standard (2017)"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "raise",
-       "at": 1.0,
-       "dur": 1.6
-      },
-      {
-       "do": "point-left",
-       "at": 5.0,
-       "dur": 3.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "Here's the twist."
-    },
-    {
-     "text": "Almost all of that cancelled money, about ninety-nine percent, came back to the banks."
-    },
-    {
-     "text": "The money didn't vanish. It just couldn't move."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "iris",
-   "stamp": "NIGERIA, 2023",
-   "vo": true,
-   "camera": {
-    "size": "wide",
-    "move": "pan-left"
-   },
-   "actors": [
-    {
-     "id": "q",
-     "crowd": {
-      "n": 9,
-      "seed": 51,
-      "area": [
-       1150,
-       760,
-       2150,
-       800
-      ],
-      "queue": true,
-      "fidget": true
-     }
-    },
-    {
-     "id": "c",
-     "crowd": {
-      "n": 4,
-      "seed": 52,
-      "area": [
-       -200,
-       880,
-       2100,
-       1050
-      ],
-      "walk": "both",
-      "speed": 130
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "Seven years later, Nigeria tried something smaller."
-    },
-    {
-     "text": "New naira notes, and a deadline of February tenth, 2023, to stop using the old ones."
-    },
-    {
-     "text": "But the new notes were scarce. Some banks capped cash withdrawals at ten thousand naira, about twenty dollars.",
-     "source": "Cash Essentials (2023)"
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "vo": true,
-   "camera": {
-    "size": "medium",
-    "on": "q2",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "q",
-     "crowd": {
-      "n": 9,
-      "seed": 51,
-      "area": [
-       1150,
-       760,
-       2150,
-       800
-      ],
-      "queue": true,
-      "fidget": true
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "So people paid street agents to get their own money out.",
-     "card": {
-      "big": "10%",
-      "small": "fee to get your own cash"
-     },
-     "source": "Nairametrics, Feb 2023"
-    },
-    {
-     "text": "Some agents were charging as much as ten percent."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "vo": true,
-   "camera": {
-    "size": "wide",
-    "move": "pull"
-   },
-   "actors": [
-    {
-     "id": "c",
-     "crowd": {
-      "n": 10,
-      "seed": 61,
-      "area": [
-       -200,
-       720,
-       2100,
-       1060
-      ],
-      "walk": "both",
-      "speed": 170
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "In some cities, angry customers burned tires and blocked the streets.",
-     "source": "Reuters via Al Arabiya, 15 Feb 2023"
-    },
-    {
-     "text": "In March, the Supreme Court let the old notes stay legal until the end of the year.",
-     "source": "BusinessDay"
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "transition": "tear",
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "chart": {
-    "title": "Paid cash for their last purchase in a shop",
-    "subtitle": "share of people",
-    "bars": [
-     [
-      "Sweden 2023",
-      10
-     ],
-     [
-      "Sweden 2025",
-      5
-     ],
-     [
-      "Norway",
-      2
-     ]
-    ],
-    "unit": "%",
-    "highlight": 1,
-    "source": "Sveriges Riksbank, Payments Reports 2024 to 2026"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "point-left",
-       "at": 3.5,
-       "dur": 3.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "Now compare a country that is going cashless slowly, on purpose."
-    },
-    {
-     "text": "In Sweden, only about five percent of people paid cash for their last purchase in a shop."
-    },
-    {
-     "text": "One in three small businesses there doesn't accept cash at all.",
-     "source": "Riksbank Payments Report 2026"
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "camera": {
-    "size": "medium",
-    "on": "mortimer",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "nod",
-       "at": 4.0,
-       "dur": 1.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "But Sweden didn't wake up cashless. It got there over two decades."
-    },
-    {
-     "text": "And even there, a government inquiry has proposed that people must still be able to pay cash for food and medicine.",
-     "source": "Riksbank Payments Report 2025"
-    },
-    {
-     "text": "Because a card network can go down too."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "ink",
-   "stamp": "DAY 7",
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ]
-    },
-    {
-     "id": "tally",
-     "who": "tally",
-     "at": [
-      1560,
-      300
-     ],
-     "scale": 0.95,
-     "perch": true
-    },
-    {
-     "id": "c",
-     "crowd": {
-      "n": 5,
-      "seed": 71,
-      "area": [
-       -200,
-       720,
-       2100,
-       1000
-      ],
-      "walk": "both",
-      "speed": 120
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "Back in our town, a week in, something stranger happens."
-    },
-    {
-     "text": "The notebooks fill up. The tabs get longer."
-    },
-    {
-     "text": "Trust quietly becomes the currency."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "camera": {
-    "size": "medium",
-    "on": "mortimer",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ],
-     "actions": [
-      {
-       "do": "point-right",
-       "at": 4.0,
-       "dur": 2.5
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "Some neighbours go further and print their own paper notes, good for a loaf of bread at the bakery."
-    },
-    {
-     "text": "It sounds absurd. But during the Great Depression, hundreds of American towns did exactly that.",
-     "card": {
-      "big": "SCRIP",
-      "small": "emergency town money, 1930s"
-     }
-    }
-   ]
-  },
-  {
-   "set": "supermarket",
-   "vo": true,
-   "camera": {
-    "size": "medium",
-    "on": "gristle",
-    "move": "static"
-   },
-   "actors": [
-    {
-     "id": "gristle",
-     "who": "gristle",
-     "at": [
-      1690,
-      880
-     ],
-     "layer": "behind",
-     "actions": [
-      {
-       "do": "shrug",
-       "at": 3.0,
-       "dur": 2.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "Mrs. Gristle knows exactly who pays her back."
-    },
-    {
-     "text": "And she stops lending to the ones who don't."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "iris",
-   "camera": {
-    "size": "wide",
-    "move": "pan-left"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      560,
-      985
-     ]
-    },
-    {
-     "id": "c",
-     "crowd": {
-      "n": 7,
-      "seed": 81,
-      "area": [
-       -200,
-       720,
-       2100,
-       1060
-      ],
-      "walk": "both",
-      "speed": 150
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "People with cards and phones barely notice anymore."
-    },
-    {
-     "text": "People without them are now on a list."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "camera": {
-    "size": "close",
-    "on": "mortimer",
-    "move": "push"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      560,
-      985
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "That's the real catastrophe."
-    },
-    {
-     "text": "Not that money disappeared."
-    },
-    {
-     "text": "But that it disappeared for some people, and not for others."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "tear",
-   "camera": {
-    "size": "medium",
-    "on": "mortimer",
-    "move": "pan-right"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ],
-     "actions": [
-      {
-       "do": "point-right",
-       "at": 3.0,
-       "dur": 2.5
-      }
-     ]
-    },
-    {
-     "id": "tally",
-     "who": "tally",
-     "at": [
-      1560,
-      300
-     ],
-     "scale": 0.95,
-     "perch": true,
-     "actions": [
-      {
-       "do": "peck",
-       "at": 1,
-       "dur": 5
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "So what would actually fix it?"
-    },
-    {
-     "text": "Not printing new money overnight. India showed that a midnight swap just builds queues."
-    }
-   ]
-  },
-  {
-   "set": "desk",
-   "transition": "ink",
-   "camera": {
-    "size": "wide",
-    "move": "push"
-   },
-   "chart": {
-    "title": "Cash payments per person per month",
-    "subtitle": "United States",
-    "bars": [
-     [
-      "2016",
-      14
-     ],
-     [
-      "2025",
-      6
-     ]
-    ],
-    "unit": "",
-    "highlight": 1,
-    "source": "Federal Reserve, Diary of Consumer Payment Choice (2026)"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      1680,
-      1050
-     ],
-     "actions": [
-      {
-       "do": "point-left",
-       "at": 2.5,
-       "dur": 3.0
-      }
-     ]
-    }
-   ],
-   "lines": [
-    {
-     "text": "Cash is already fading on its own."
-    },
-    {
-     "text": "In 2016, Americans made about fourteen cash payments a month. Now it's about six."
-    },
-    {
-     "text": "The question was never whether cash will disappear."
-    },
-    {
-     "text": "It's who gets left holding the paper when it does."
-    }
-   ]
-  },
-  {
-   "set": "street",
-   "transition": "iris",
-   "fadeOut": true,
-   "camera": {
-    "size": "wide",
-    "move": "pull"
-   },
-   "actors": [
-    {
-     "id": "mortimer",
-     "who": "mortimer",
-     "at": [
-      760,
-      985
-     ],
-     "actions": [
-      {
-       "do": "raise",
-       "at": 4.5,
-       "dur": 1.6
-      }
-     ]
-    },
-    {
-     "id": "tally",
-     "who": "tally",
-     "at": [
-      1560,
-      300
-     ],
-     "scale": 0.95,
-     "perch": true
-    },
-    {
-     "id": "c",
-     "crowd": {
-      "n": 4,
-      "seed": 91,
-      "area": [
-       -200,
-       720,
-       2100,
-       950
-      ],
-      "walk": "both",
-      "speed": 110
-     }
-    }
-   ],
-   "lines": [
-    {
-     "text": "If cash vanished tonight, who in your life would be the first to notice?"
-    },
-    {
-     "text": "Tell me in the comments."
-    },
-    {
-     "text": "I'm Mortimer Penny. Mind the small catastrophes."
-    }
-   ]
-  }
- ]
+  "title": "What If Cash Vanished Overnight?",
+  "voice": "bm_george", "speed": 0.95, "fps": 24, "size": [1920, 1080],
+  "plan": [
+    { "segment": "Cold open, Hour 0", "locations": ["street/us night", "insert: notes", "street close"] },
+    { "segment": "So what? (U.S. payment habits)", "locations": ["board: charts"] },
+    { "segment": "Hour 1: night workers, wallets", "locations": ["busstop/us night", "street follow", "insert: wallet"] },
+    { "segment": "Emergency cash at home", "locations": ["home/us night"] },
+    { "segment": "Hour 8: the shop, who uses cash", "locations": ["supermarket", "panels: young vs old", "board: rural chart"] },
+    { "segment": "The unbanked", "locations": ["board: US map", "bank/us", "street close", "bank queue"] },
+    { "segment": "Hour 12: coin machines, charity, privacy", "locations": ["busstop/us day", "laundromat", "insert: tip jar", "market/us", "insert: phone", "home"] },
+    { "segment": "Day 2: silence, tabs, barter", "locations": ["street/us day", "market follow", "supermarket", "insert: ledger", "panels: barter"] },
+    { "segment": "India 2016", "locations": ["board: world map", "hall/in + headline", "board", "street/in", "bank/in", "board"] },
+    { "segment": "Nigeria 2023", "locations": ["market/ng", "bank/ng", "street/ng", "busstop/ng", "hall/ng + headline"] },
+    { "segment": "Sweden", "locations": ["board", "market/se", "hall/se"] },
+    { "segment": "Day 7: trust, scrip, the list", "locations": ["street/us", "insert: scrip", "supermarket", "busstop/us", "street close"] },
+    { "segment": "What would fix it, outro", "locations": ["hall/us", "board", "home", "street/us night"] }
+  ],
+  "shots": [
+    { "set": "street", "stamp": "HOUR 0", "fadeIn": true, "camera": { "size": "wide", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985] },
+                  { "id": "tally", "who": "tally", "at": [1560, 300], "scale": 0.95, "perch": true } ],
+      "lines": [ { "text": "Tonight, at midnight, every coin and every banknote in the country stops working." },
+                 { "text": "Not stolen. Not burned. Just... no longer money." } ] },
+
+    { "set": "table", "insert": { "prop": "notes", "text": ["NOT MONEY ANYMORE"] }, "camera": { "size": "wide", "move": "push" },
+      "lines": [ { "text": "Every note in every wallet is now a nicely printed piece of paper." } ] },
+
+    { "set": "street", "camera": { "size": "close", "on": "mortimer", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985], "actions": [ { "do": "raise", "at": 0.4, "dur": 1.6 } ] } ],
+      "lines": [ { "text": "I'm Mortimer Penny, and this is a small catastrophe." },
+                 { "text": "Let's watch what happens, hour by hour." } ] },
+
+    { "set": "desk", "transition": "tear", "camera": { "size": "wide", "move": "push" },
+      "chart": { "title": "How Americans pay each month", "subtitle": "average payments per person, 2025",
+                 "bars": [ [ "Credit", 16 ], [ "Debit", 15 ], [ "Cash", 6 ] ], "unit": "", "highlight": 2,
+                 "source": "Federal Reserve, Diary of Consumer Payment Choice (2026)" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1680, 1050], "actions": [ { "do": "point-left", "at": 3.0, "dur": 3.5 } ] } ],
+      "lines": [ { "text": "Most people's first reaction is: so what?" },
+                 { "text": "The average American makes about forty-seven payments a month." },
+                 { "text": "Only six of them are cash." } ] },
+
+    { "set": "desk", "camera": { "size": "wide", "move": "static" },
+      "chart": { "title": "How Americans prefer to pay in person", "subtitle": "share of consumers, 2025",
+                 "bars": [ [ "Debit", 40 ], [ "Credit", 38 ], [ "Cash", 16 ] ], "unit": "%", "highlight": 2,
+                 "source": "Federal Reserve, Diary of Consumer Payment Choice (2026)" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1680, 1050], "actions": [ { "do": "shrug", "at": 2.8, "dur": 2.0 } ] } ],
+      "lines": [ { "text": "And only sixteen percent say cash is how they'd rather pay in a shop." },
+                 { "text": "So on paper, this should be a quiet night." } ] },
+
+    { "set": "street", "transition": "ink", "camera": { "size": "medium", "on": "mortimer", "move": "pan-right" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985], "actions": [ { "do": "nod", "at": 1.2, "dur": 1.0 } ] } ],
+      "lines": [ { "text": "Paper, as it turns out, is exactly the problem." } ] },
+
+    { "set": "busstop", "stamp": "HOUR 1", "variant": { "sky": "night" }, "camera": { "size": "wide", "move": "pan-left" },
+      "actors": [ { "id": "w1", "who": "person:211", "at": [1250, 930], "actions": [ { "do": "shrug", "at": 4.5, "dur": 1.8 } ] },
+                  { "id": "w2", "who": "person:212", "at": [1480, 905], "face": "left" },
+                  { "id": "c", "crowd": { "n": 2, "seed": 213, "area": [-200, 800, 2100, 1000], "walk": "both", "speed": 110 } } ],
+      "lines": [ { "text": "The first people to notice are the ones who are still awake." },
+                 { "text": "Night-shift workers. Bartenders. Taxi drivers. Anyone whose tips are sitting in a jar." } ] },
+
+    { "set": "street", "camera": { "size": "medium", "on": "mortimer", "move": "follow" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [250, 985], "to": 1350, "walk": [0.3, 7.0] } ],
+      "lines": [ { "text": "Right now, about three out of four Americans are carrying cash.", "card": { "big": "76%", "small": "carry cash on them" }, "source": "Federal Reserve DCPC 2026" },
+                 { "text": "On average, sixty-nine dollars.", "card": { "big": "$69", "small": "average cash in a wallet" }, "source": "Federal Reserve DCPC 2026" } ] },
+
+    { "set": "table", "insert": { "prop": "wallet" }, "camera": { "size": "wide", "move": "pull" },
+      "lines": [ { "text": "At midnight, that became sixty-nine dollars of nothing.", "source": "Federal Reserve DCPC 2026" } ] },
+
+    { "set": "home", "transition": "iris", "camera": { "size": "wide", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1350, 980], "face": "left", "actions": [ { "do": "point-left", "at": 3.5, "dur": 3.0 } ] } ],
+      "lines": [ { "text": "It gets worse." },
+                 { "text": "Almost half of people keep extra cash tucked away at home, for emergencies.", "card": { "big": "45%", "small": "keep cash stored at home" }, "source": "Federal Reserve DCPC 2026" },
+                 { "text": "Tonight, the emergency fund is the emergency." } ] },
+
+    { "set": "supermarket", "transition": "tear", "stamp": "HOUR 8", "vo": true, "camera": { "size": "wide", "move": "push" },
+      "actors": [ { "id": "gristle", "who": "gristle", "at": [1690, 880], "layer": "behind", "actions": [ { "do": "nod", "at": 2.0, "dur": 1.2 } ] } ],
+      "lines": [ { "text": "At eight in the morning, Mrs. Gristle opens her shop." },
+                 { "text": "Her card terminal works perfectly." } ] },
+
+    { "set": "supermarket", "vo": true, "camera": { "size": "wide", "move": "pan-left" },
+      "actors": [ { "id": "gristle", "who": "gristle", "at": [1690, 880], "layer": "behind", "actions": [ { "do": "shrug", "at": 2.5, "dur": 2.0 } ] },
+                  { "id": "q", "crowd": { "n": 6, "seed": 7, "area": [180, 990, 1150, 1030], "queue": true, "fidget": true } } ],
+      "lines": [ { "text": "Her problem is the people standing in front of it." },
+                 { "text": "Because cash isn't spread evenly. It belongs to particular people." } ] },
+
+    { "set": "street", "reveal": true, "source": "Federal Reserve DCPC 2026: cash payments per month",
+      "panels": [
+        { "set": "busstop", "variant": { "sky": "day" }, "label": "AGE 55+ · 10 a month", "camera": { "size": "medium", "on": "old", "move": "push" },
+          "actors": [ { "id": "old", "who": "person:301", "at": [900, 985], "actions": [ { "do": "nod", "at": 1.5, "dur": 1.2 } ] } ] },
+        { "set": "market", "variant": { "sky": "day" }, "label": "AGE 18–24 · 2 a month", "at": 4.0, "camera": { "size": "medium", "on": "young", "move": "push" },
+          "actors": [ { "id": "young", "who": "person:318", "at": [960, 985], "actions": [ { "do": "shrug", "at": 1.0, "dur": 1.6 } ] } ] } ],
+      "lines": [ { "text": "People over fifty-five pay with cash about ten times a month." },
+                 { "text": "People under twenty-five? About twice." } ] },
+
+    { "set": "desk", "transition": "ink", "camera": { "size": "wide", "move": "push" },
+      "chart": { "title": "Cash payments per month, by place", "subtitle": "U.S. consumers, 2025",
+                 "bars": [ [ "Rural", 9 ], [ "Urban and suburban", 6 ] ], "unit": "", "highlight": 0,
+                 "source": "Federal Reserve, Diary of Consumer Payment Choice (2026)" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1680, 1050], "actions": [ { "do": "nod", "at": 2.5, "dur": 1.0 } ] } ],
+      "lines": [ { "text": "And people in the countryside use cash more than people in cities." } ] },
+
+    { "set": "supermarket", "transition": "iris", "vo": true, "camera": { "size": "medium", "on": "gristle", "move": "push" },
+      "actors": [ { "id": "gristle", "who": "gristle", "at": [1690, 880], "layer": "behind", "actions": [ { "do": "shrug", "at": 1.0, "dur": 2.0 } ] },
+                  { "id": "q", "crowd": { "n": 4, "seed": 8, "area": [700, 990, 1250, 1030], "queue": true, "fidget": true } } ],
+      "lines": [ { "text": "So the first customers she has to turn away are her regulars." },
+                 { "text": "The older ones. The ones who drove in from out of town." } ] },
+
+    { "set": "desk", "transition": "tear", "camera": { "size": "wide", "move": "push" },
+      "map": { "title": "Households with no bank account", "dots": { "n": 112, "seed": 4, "counter": 5600000, "label": "households" },
+               "source": "FDIC 2023 · 1 dot ≈ 50,000 households · placement illustrative" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1680, 1050], "actions": [ { "do": "point-left", "at": 4.0, "dur": 3.0 } ] } ],
+      "lines": [ { "text": "Then there are people for whom cash isn't a habit. It's the whole system." },
+                 { "text": "About five point six million American households have no bank account at all." } ] },
+
+    { "set": "bank", "transition": "ink", "camera": { "size": "wide", "move": "pan-right" },
+      "actors": [ { "id": "teller", "who": "person:401", "at": [1180, 880], "layer": "behind" },
+                  { "id": "mortimer", "who": "mortimer", "at": [560, 985], "actions": [ { "do": "point-right", "at": 3.0, "dur": 2.5 } ] } ],
+      "lines": [ { "text": "That number has been shrinking for years.", "source": "FDIC 2023" },
+                 { "text": "But two out of three of those households rely entirely on cash.", "card": { "big": "2 in 3", "small": "unbanked rely only on cash" }, "source": "FDIC 2023" } ] },
+
+    { "set": "street", "camera": { "size": "close", "on": "mortimer", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985] } ],
+      "lines": [ { "text": "For them, midnight didn't change how they pay." },
+                 { "text": "It erased how they pay." },
+                 { "text": "No card to fall back on. No app. Just a wallet full of paper." } ] },
+
+    { "set": "bank", "transition": "iris", "camera": { "size": "wide", "move": "pan-left" },
+      "actors": [ { "id": "teller", "who": "person:401", "at": [1180, 880], "layer": "behind", "actions": [ { "do": "shrug", "at": 6.0, "dur": 2.0 } ] },
+                  { "id": "q", "crowd": { "n": 7, "seed": 21, "area": [-60, 1000, 1050, 1030], "queue": true, "fidget": true } } ],
+      "lines": [ { "text": "Opening a bank account sounds easy." },
+                 { "text": "But you need an ID, an address, sometimes a deposit... and a branch that's open." },
+                 { "text": "And this morning, every branch in the country has the same line." } ] },
+
+    { "set": "busstop", "transition": "tear", "stamp": "HOUR 12", "variant": { "sky": "day" }, "camera": { "size": "medium", "on": "mortimer", "move": "follow" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [100, 985], "to": 1200, "walk": [0.3, 9.0] } ],
+      "lines": [ { "text": "By lunchtime, you start noticing all the machines that only ever wanted coins." },
+                 { "text": "Parking meters. Laundromats. Vending machines. The fare box on the bus." } ] },
+
+    { "set": "laundromat", "transition": "ink", "camera": { "size": "wide", "move": "pan-right" },
+      "actors": [ { "id": "l1", "who": "person:501", "at": [700, 930], "actions": [ { "do": "shrug", "at": 3.5, "dur": 2.0 } ] },
+                  { "id": "l2", "who": "person:502", "at": [1300, 960], "face": "left" } ],
+      "lines": [ { "text": "A big city can switch its parking meters to an app in a week." },
+                 { "text": "A laundromat in a small town can't." } ] },
+
+    { "set": "table", "insert": { "prop": "tipjar", "text": ["TIPS"] }, "camera": { "size": "wide", "move": "push" },
+      "lines": [ { "text": "And the tip jar on the coffee counter just sits there, empty." } ] },
+
+    { "set": "market", "transition": "iris", "vo": true, "variant": { "sky": "day" }, "camera": { "size": "wide", "move": "pan-right" },
+      "actors": [ { "id": "c", "crowd": { "n": 4, "seed": 601, "area": [-200, 760, 2100, 1000], "walk": "both", "speed": 90 } } ],
+      "lines": [ { "text": "Charities feel it next. The collection tin. The plate at church. The kid selling lemonade on the corner." },
+                 { "text": "Small gifts were almost always made in cash, and small gifts don't move to an app overnight." } ] },
+
+    { "set": "street", "transition": "tear", "variant": { "sky": "dusk" }, "camera": { "size": "wide", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985], "actions": [ { "do": "raise", "at": 3.0, "dur": 1.6 } ] },
+                  { "id": "c", "crowd": { "n": 4, "seed": 101, "area": [-200, 720, 2100, 950], "walk": "both", "speed": 120 } } ],
+      "lines": [ { "text": "Then there's a quieter loss. Privacy." },
+                 { "text": "Cash is the only way most people can pay without leaving a record." } ] },
+
+    { "set": "table", "insert": { "prop": "phone", "text": ["PAYMENT LOG", "Coffee  4.20", "Bus fare  2.75", "Pharmacy  18.40", "Bar tab  31.00"] }, "camera": { "size": "wide", "move": "push" },
+      "lines": [ { "text": "With it gone, every coffee and every bus ride sits in somebody's database." } ] },
+
+    { "set": "home", "camera": { "size": "medium", "on": "mortimer", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1350, 980], "face": "left", "actions": [ { "do": "nod", "at": 3.0, "dur": 1.0 } ] } ],
+      "lines": [ { "text": "For most people, that's fine." },
+                 { "text": "For someone hiding a little savings from a controlling partner, it isn't." } ] },
+
+    { "set": "street", "transition": "ink", "stamp": "DAY 2", "variant": { "sky": "day" }, "camera": { "size": "wide", "move": "pan-right" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985] },
+                  { "id": "tally", "who": "tally", "at": [1560, 300], "scale": 0.95, "perch": true, "actions": [ { "do": "peck", "at": 0, "dur": 9 } ] },
+                  { "id": "c", "crowd": { "n": 8, "seed": 3, "area": [-200, 700, 2100, 1060], "walk": "both", "speed": 150 } } ],
+      "lines": [ { "text": "By day two, the street is busy, but strangely quiet." },
+                 { "text": "People are walking. Nobody is buying." } ] },
+
+    { "set": "market", "variant": { "sky": "day" }, "camera": { "size": "medium", "on": "mortimer", "move": "follow" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1600, 985], "to": 450, "walk": [0.3, 8.5] } ],
+      "lines": [ { "text": "Street vendors. Babysitters. The kid who mows lawns. The flea market." },
+                 { "text": "A whole layer of the economy runs on cash, and it just went silent." } ] },
+
+    { "set": "supermarket", "transition": "iris", "vo": true, "camera": { "size": "medium", "on": "gristle", "move": "push" },
+      "actors": [ { "id": "gristle", "who": "gristle", "at": [1690, 880], "layer": "behind", "actions": [ { "do": "raise", "at": 2.5, "dur": 1.6 } ] } ],
+      "lines": [ { "text": "So Mrs. Gristle does what shopkeepers have done for centuries." },
+                 { "text": "She opens a notebook and starts a tab.", "card": { "big": "IOU", "small": "the oldest payment system" } } ] },
+
+    { "set": "table", "insert": { "prop": "ledger", "text": ["Mr. Fenn: bread 3.00", "Mrs. Oakes: milk 1.80", "Pike boy: eggs 2.40", "M. Penny: tea 0.90", "Widow Lark: soap 1.10", "The vicar: jam 2.20"] }, "camera": { "size": "wide", "move": "pan-right" },
+      "lines": [ { "text": "Pay me back when the money comes back." } ] },
+
+    { "set": "street", "transition": "tear", "reveal": true,
+      "panels": [
+        { "set": "street", "variant": { "sky": "day" }, "label": "HAIRCUT", "camera": { "size": "medium", "on": [880, 540], "move": "static" },
+          "actors": [ { "id": "a", "who": "person:701", "at": [760, 985], "actions": [ { "do": "point-right", "at": 1.0, "dur": 2.0 } ] }, { "id": "b", "who": "person:702", "at": [1000, 985], "face": "left" } ] },
+        { "set": "market", "variant": { "sky": "day" }, "label": "CASSEROLE", "at": 1.8, "camera": { "size": "medium", "on": [880, 540], "move": "static" },
+          "actors": [ { "id": "a", "who": "person:703", "at": [760, 985] }, { "id": "b", "who": "person:704", "at": [1000, 985], "face": "left", "actions": [ { "do": "nod", "at": 2.5, "dur": 1.2 } ] } ] },
+        { "set": "busstop", "variant": { "sky": "day" }, "label": "A RIDE?", "at": 3.6, "camera": { "size": "medium", "on": [880, 540], "move": "static" },
+          "actors": [ { "id": "a", "who": "person:705", "at": [760, 985], "actions": [ { "do": "shrug", "at": 4.5, "dur": 2.0 } ] }, { "id": "b", "who": "person:706", "at": [1000, 985], "face": "left" } ] } ],
+      "lines": [ { "text": "Across town, people start trading. A haircut for a casserole. Lawn mowing for a ride." },
+                 { "text": "Economists call this barter." } ] },
+
+    { "set": "street", "variant": { "sky": "day" }, "camera": { "size": "medium", "on": "mortimer", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985], "actions": [ { "do": "shrug", "at": 1.5, "dur": 2.0 } ] } ],
+      "lines": [ { "text": "It's slow, it's awkward, and it only works if you each want what the other one has." } ] },
+
+    { "set": "desk", "transition": "ink", "camera": { "size": "wide", "move": "push" },
+      "map": { "region": "world", "title": "It has already happened", "source": "Natural Earth outlines",
+               "highlight": [ { "name": "India", "label": "India 2016", "at": 1.8, "offset": [60, -150] }, { "name": "Nigeria", "label": "Nigeria 2023", "at": 3.6, "offset": [-180, -120] } ] },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1680, 1050], "actions": [ { "do": "point-left", "at": 2.0, "dur": 3.0 } ] } ],
+      "lines": [ { "text": "This sounds far-fetched. But a version of it has already happened. Twice." } ] },
+
+    { "set": "hall", "variant": { "locale": "in" }, "vo": true, "camera": { "size": "wide", "move": "push" },
+      "headline": { "paper": "THE EVENING COURIER", "date": "8 November 2016", "text": "500 AND 1,000 RUPEE NOTES SCRAPPED", "sub": "Old notes stop being legal tender at midnight", "source": "Illustration of the announcement · CNN, Al Jazeera reporting" },
+      "lines": [ { "text": "On the eighth of November, 2016, India announced that its five hundred and one thousand rupee notes would stop being money at midnight." } ] },
+
+    { "set": "desk", "camera": { "size": "wide", "move": "push" },
+      "chart": { "title": "India, 8 November 2016", "subtitle": "share of cash in circulation, by value",
+                 "bars": [ [ "Cancelled", 86 ], [ "Still valid", 14 ] ], "unit": "%", "highlight": 0,
+                 "source": "Reserve Bank of India, via CNN Business (2017)" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1680, 1050], "actions": [ { "do": "point-left", "at": 1.5, "dur": 3.0 } ] } ],
+      "lines": [ { "text": "That was about eighty-six percent of all the cash in the country." } ] },
+
+    { "set": "street", "transition": "tear", "stamp": "INDIA, 2016", "vo": true, "variant": { "locale": "in", "noCart": true }, "camera": { "size": "wide", "move": "pan-right" },
+      "actors": [ { "id": "q", "crowd": { "n": 9, "seed": 41, "area": [1150, 760, 2150, 800], "queue": true, "fidget": true } },
+                  { "id": "c", "crowd": { "n": 3, "seed": 42, "area": [-200, 900, 2100, 1050], "walk": "right", "speed": 120 } } ],
+      "lines": [ { "text": "Within the hour, lines formed at cash machines. Many ran out within minutes." },
+                 { "text": "And because the new notes were a different size, more than two hundred thousand ATMs had to be refitted.", "source": "CNN Business, Jan 2017" } ] },
+
+    { "set": "bank", "transition": "iris", "vo": true, "variant": { "locale": "in" }, "camera": { "size": "wide", "move": "pan-left" },
+      "actors": [ { "id": "teller", "who": "person:801", "at": [1180, 880], "layer": "behind" }, { "id": "teller2", "who": "person:802", "at": [1560, 880], "layer": "behind" },
+                  { "id": "q", "crowd": { "n": 8, "seed": 43, "area": [-60, 1000, 1050, 1030], "queue": true, "fidget": true } } ],
+      "lines": [ { "text": "In a country where most purchases were made in cash, people queued for hours just to buy food.", "source": "Google India & BCG via CBS News: 78% of transactions in cash" } ] },
+
+    { "set": "desk", "transition": "tear", "camera": { "size": "wide", "move": "push" },
+      "chart": { "title": "Cancelled notes returned to banks", "subtitle": "India, by mid-2017",
+                 "bars": [ [ "Returned", 99 ], [ "Never returned", 1 ] ], "unit": "%", "highlight": 0,
+                 "source": "Reserve Bank of India annual report, via Business Standard (2017)" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1680, 1050], "actions": [ { "do": "raise", "at": 1.0, "dur": 1.6 }, { "do": "point-left", "at": 5.0, "dur": 3.0 } ] } ],
+      "lines": [ { "text": "Here's the twist." },
+                 { "text": "Almost all of that cancelled money, about ninety-nine percent, came back to the banks." },
+                 { "text": "The money didn't vanish. It just couldn't move." } ] },
+
+    { "set": "market", "transition": "ink", "stamp": "NIGERIA, 2023", "vo": true, "variant": { "locale": "ng" }, "camera": { "size": "wide", "move": "pan-left" },
+      "actors": [ { "id": "c", "crowd": { "n": 7, "seed": 52, "area": [-200, 760, 2100, 1050], "walk": "both", "speed": 110 } } ],
+      "lines": [ { "text": "Seven years later, Nigeria tried something smaller." },
+                 { "text": "New naira notes, and a deadline of February tenth, 2023, to stop using the old ones.", "source": "OkayAfrica, Legit.ng (CBN deadline)" } ] },
+
+    { "set": "bank", "vo": true, "variant": { "locale": "ng" }, "camera": { "size": "wide", "move": "push" },
+      "actors": [ { "id": "teller", "who": "person:901", "at": [1180, 880], "layer": "behind", "actions": [ { "do": "shrug", "at": 2.0, "dur": 2.0 } ] },
+                  { "id": "q", "crowd": { "n": 8, "seed": 51, "area": [-60, 1000, 1050, 1030], "queue": true, "fidget": true } } ],
+      "lines": [ { "text": "But the new notes were scarce. Some banks capped cash withdrawals at ten thousand naira, about twenty dollars.", "source": "Cash Essentials (2023)" } ] },
+
+    { "set": "street", "vo": true, "variant": { "locale": "ng", "noCart": true }, "camera": { "size": "medium", "on": "agent", "move": "push" },
+      "actors": [ { "id": "agent", "who": "person:911", "at": [1150, 900], "face": "left", "actions": [ { "do": "raise", "at": 2.0, "dur": 1.6 } ] },
+                  { "id": "cust", "who": "person:912", "at": [880, 930], "actions": [ { "do": "shrug", "at": 4.0, "dur": 2.0 } ] } ],
+      "lines": [ { "text": "So people paid street agents to get their own money out.", "card": { "big": "10%", "small": "fee to get your own cash" }, "source": "Nairametrics, Feb 2023" },
+                 { "text": "Some agents were charging as much as ten percent.", "source": "Nairametrics, Feb 2023" } ] },
+
+    { "set": "busstop", "transition": "tear", "vo": true, "variant": { "locale": "ng" }, "camera": { "size": "wide", "move": "pull" },
+      "actors": [ { "id": "c", "crowd": { "n": 9, "seed": 61, "area": [-200, 760, 2100, 1060], "walk": "both", "speed": 180 } } ],
+      "lines": [ { "text": "In some cities, angry customers burned tires and blocked the streets.", "source": "Reuters via Al Arabiya, 15 Feb 2023" } ] },
+
+    { "set": "hall", "vo": true, "variant": { "locale": "ng" }, "camera": { "size": "wide", "move": "push" },
+      "headline": { "paper": "THE LAGOS LEDGER", "date": "3 March 2023", "text": "OLD NAIRA NOTES STAY LEGAL", "sub": "Court extends old notes to 31 December", "source": "Illustration · BusinessDay reporting" },
+      "lines": [ { "text": "In March, the Supreme Court let the old notes stay legal until the end of the year.", "source": "BusinessDay" } ] },
+
+    { "set": "desk", "transition": "ink", "camera": { "size": "wide", "move": "push" },
+      "chart": { "title": "Paid cash for their last purchase in a shop", "subtitle": "share of people",
+                 "bars": [ [ "Sweden 2023", 10 ], [ "Sweden 2025", 5 ], [ "Norway", 2 ] ], "unit": "%", "highlight": 1,
+                 "source": "Sveriges Riksbank, Payments Reports 2024 to 2026" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1680, 1050], "actions": [ { "do": "point-left", "at": 3.5, "dur": 3.0 } ] } ],
+      "lines": [ { "text": "Now compare a country that is going cashless slowly, on purpose." },
+                 { "text": "In Sweden, only about five percent of people paid cash for their last purchase in a shop." } ] },
+
+    { "set": "market", "variant": { "locale": "se" }, "camera": { "size": "wide", "move": "pan-right" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [700, 985] },
+                  { "id": "c", "crowd": { "n": 3, "seed": 1001, "area": [-200, 760, 2100, 950], "walk": "both", "speed": 90 } } ],
+      "lines": [ { "text": "One in three small businesses there doesn't accept cash at all.", "card": { "big": "1 in 3", "small": "small firms refuse cash" }, "source": "Riksbank Payments Report 2026" },
+                 { "text": "But Sweden didn't wake up cashless. It got there over two decades.", "source": "Riksbank Payments Report 2025 (decline since 2010)" } ] },
+
+    { "set": "hall", "variant": { "locale": "se" }, "camera": { "size": "medium", "on": "mortimer", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [960, 985], "actions": [ { "do": "nod", "at": 6.0, "dur": 1.0 } ] } ],
+      "lines": [ { "text": "And even there, a government inquiry has proposed that people must still be able to pay cash for food and medicine.", "source": "Riksbank Payments Report 2025" },
+                 { "text": "Because a card network can go down too." } ] },
+
+    { "set": "street", "transition": "iris", "stamp": "DAY 7", "camera": { "size": "wide", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985] },
+                  { "id": "tally", "who": "tally", "at": [1560, 300], "scale": 0.95, "perch": true },
+                  { "id": "c", "crowd": { "n": 4, "seed": 71, "area": [-200, 720, 2100, 1000], "walk": "both", "speed": 120 } } ],
+      "lines": [ { "text": "Back in our town, a week in, something stranger happens." },
+                 { "text": "The notebooks fill up. The tabs get longer." },
+                 { "text": "Trust quietly becomes the currency." } ] },
+
+    { "set": "table", "insert": { "prop": "scrip", "text": ["GOOD FOR ONE LOAF OF BREAD"] }, "camera": { "size": "wide", "move": "push" },
+      "lines": [ { "text": "Some neighbours go further and print their own paper notes, good for a loaf of bread at the bakery." },
+                 { "text": "It sounds absurd. But in the early 1930s, hundreds of American communities did exactly that.", "source": "Gatch (2011), Cleveland Fed (2008): Depression-era scrip" } ] },
+
+    { "set": "supermarket", "transition": "tear", "vo": true, "camera": { "size": "medium", "on": "gristle", "move": "static" },
+      "actors": [ { "id": "gristle", "who": "gristle", "at": [1690, 880], "layer": "behind", "actions": [ { "do": "shrug", "at": 3.0, "dur": 2.0 } ] } ],
+      "lines": [ { "text": "Mrs. Gristle knows exactly who pays her back." },
+                 { "text": "And she stops lending to the ones who don't." } ] },
+
+    { "set": "busstop", "transition": "ink", "variant": { "sky": "dusk" }, "camera": { "size": "wide", "move": "pan-left" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [560, 985] },
+                  { "id": "c", "crowd": { "n": 6, "seed": 81, "area": [-200, 760, 2100, 1060], "walk": "both", "speed": 150 } } ],
+      "lines": [ { "text": "People with cards and phones barely notice anymore." },
+                 { "text": "People without them are now on a list." } ] },
+
+    { "set": "street", "variant": { "sky": "dusk" }, "camera": { "size": "close", "on": "mortimer", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [560, 985] } ],
+      "lines": [ { "text": "That's the real catastrophe." },
+                 { "text": "Not that money disappeared." },
+                 { "text": "But that it disappeared for some people, and not for others." } ] },
+
+    { "set": "hall", "transition": "tear", "camera": { "size": "medium", "on": "mortimer", "move": "pan-right" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985], "actions": [ { "do": "point-right", "at": 3.0, "dur": 2.5 } ] } ],
+      "lines": [ { "text": "So what would actually fix it?" },
+                 { "text": "Not printing new money overnight. India showed that a midnight swap just builds queues." } ] },
+
+    { "set": "desk", "transition": "ink", "camera": { "size": "wide", "move": "push" },
+      "chart": { "title": "Cash payments per person per month", "subtitle": "United States",
+                 "bars": [ [ "2016", 14 ], [ "2025", 6 ] ], "unit": "", "highlight": 1,
+                 "source": "Federal Reserve, Diary of Consumer Payment Choice (2026)" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1680, 1050], "actions": [ { "do": "point-left", "at": 2.5, "dur": 3.0 } ] } ],
+      "lines": [ { "text": "Cash is already fading on its own." },
+                 { "text": "In 2016, Americans made about fourteen cash payments a month. Now it's about six." } ] },
+
+    { "set": "home", "transition": "iris", "variant": { "jarEmpty": true }, "camera": { "size": "medium", "on": "mortimer", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1250, 980], "face": "left" } ],
+      "lines": [ { "text": "The question was never whether cash will disappear." },
+                 { "text": "It's who gets left holding the paper when it does." } ] },
+
+    { "set": "street", "transition": "iris", "fadeOut": true, "camera": { "size": "wide", "move": "pull" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985], "actions": [ { "do": "raise", "at": 4.5, "dur": 1.6 } ] },
+                  { "id": "tally", "who": "tally", "at": [1560, 300], "scale": 0.95, "perch": true },
+                  { "id": "c", "crowd": { "n": 3, "seed": 91, "area": [-200, 720, 2100, 950], "walk": "both", "speed": 110 } } ],
+      "lines": [ { "text": "If cash vanished tonight, who in your life would be the first to notice?" },
+                 { "text": "Tell me in the comments." },
+                 { "text": "I'm Mortimer Penny. Mind the small catastrophes." } ] }
+  ]
 }

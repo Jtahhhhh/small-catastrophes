@@ -2,6 +2,19 @@
 // then applies the camera and calls draw() (behind actors) and front() (in front of actors).
 import { PAL, ink, shape, ellipse, handText } from './ink.js';
 import { storefront, lamp, atm, bill, cart } from './cast.js';
+import { sky, rooftops, meter, shelter, stall, crate, column, washer, tellerWindow, vault, windowNight, jar, tableTop } from './props.js';
+
+// Per-shot variant (locale, signs, sky). The player calls applyVariant(shot) before drawing a shot's layers,
+// so one set can play a U.S. street at night, an Indian street at dusk or a Nigerian market by day.
+export const LOCALES = {
+  us: { cur: '$', sign: 'CARD ONLY', atm: 'NO CASH', sky: 'night', shopSign: 'CARD ONLY', bankSign: 'CASH LIMIT', laundrySign: 'QUARTERS ONLY', hallSign: 'CITY HALL', busSign: 'BUS' },
+  in: { cur: '₹', sign: 'NO CHANGE', atm: 'NO CASH', sky: 'dusk', shopSign: 'NO CHANGE', bankSign: 'OUT OF CASH', hallSign: 'RESERVE BANK', busSign: 'BUS' },
+  ng: { cur: '₦', sign: 'POS HERE', atm: 'OUT OF CASH', sky: 'day', shopSign: 'POS HERE', bankSign: 'MAX ₦10,000', hallSign: 'SUPREME COURT', busSign: 'BUS' },
+  se: { cur: 'kr', sign: 'KORT', atm: 'KORT', sky: 'day', shopSign: 'CARD ONLY', bankSign: 'NO CASH HANDLED', hallSign: 'RIKSBANK', busSign: 'BUSS' },
+};
+export const V = { ...LOCALES.us, locale: 'us' };
+export function applyVariant(sh) { const v = sh.variant || {}; const loc = v.locale || 'us';
+  for (const k of Object.keys(V)) delete V[k]; Object.assign(V, LOCALES[loc] || LOCALES.us, { locale: loc }, v); }
 
 function ground(ctx, horizon = 600, color = '#8f7b58', noSky = false) {
   const W = 1920, H = 1080;
@@ -32,20 +45,12 @@ export const SETS = {
     paper: '#b7a682',
     depth: y => 1.15 * (y - 521) / (985 - 521),
     anchors: { atm: [1080, 560], lamp: [1560, 300] },
-    far(ctx) {   // distant rooftops: moves slower than the street when the camera pans (parallax)
-      const g = ctx.createLinearGradient(0, -200, 0, 600); g.addColorStop(0, 'rgba(40,32,30,0.55)'); g.addColorStop(1, 'rgba(40,32,30,0)');
-      ctx.fillStyle = g; ctx.fillRect(-900, -400, 3700, 1000);
-      let x = -800, k = 5;
-      while (x < 2800) { k = (k * 9301 + 49297) % 233280; const w = 120 + k % 140, h = 140 + (k >> 3) % 220;
-        shape(ctx, [[x, 600], [x + w, 600], [x + w, 600 - h], [x + w * 0.5, 600 - h - 40], [x, 600 - h]], { fill: 'rgba(110,96,76,0.45)', outline: 3, inkColor: 'rgba(34,28,22,0.45)', hatch: 0.12, gap: 14 });
-        for (let wy = 600 - h + 30; wy < 560; wy += 50) for (let wx = x + 18; wx < x + w - 30; wx += 44) if ((wx * 7 + wy) % 7 < 2) shape(ctx, [[wx, wy], [wx + 16, wy], [wx + 16, wy + 20], [wx, wy + 20]], { fill: 'rgba(217,184,102,0.55)', outline: 0, jit: 1 });
-        x += w + 10; }
-    },
+    far(ctx) { sky(ctx, V.sky); rooftops(ctx, V.sky); },   // moves slower than the street when the camera pans (parallax)
     draw(ctx) {
       ground(ctx, 600, '#8f7b58', true);
-      storefront(ctx, 430, 650, 1.05); atm(ctx, 1080, 660, 0.9); lamp(ctx, 1500, 690, 1.25);
-      cart(ctx, 1290, 900, 1.0);
-      bill(ctx, 1000, 975, 0.9, 0.3); bill(ctx, 1700, 1010, 0.8, -0.4);
+      storefront(ctx, 430, 650, 1.05, V.sign); atm(ctx, 1080, 660, 0.9, V.atm); lamp(ctx, 1500, 690, 1.25);
+      if (!V.noCart) cart(ctx, 1290, 900, 1.0);
+      bill(ctx, 1000, 975, 0.9, 0.3, V.cur); bill(ctx, 1700, 1010, 0.8, -0.4, V.cur);
     },
   },
   supermarket: {
@@ -61,7 +66,7 @@ export const SETS = {
       // hanging sign
       ink(ctx, [[1380, -200], [1380, 120]], { size: 3 }); ink(ctx, [[1760, -200], [1760, 120]], { size: 3 });
       shape(ctx, [[1340, 110], [1800, 100], [1806, 210], [1346, 220]], { fill: PAL.cream, outline: 7 });
-      handText(ctx, 'CARD ONLY', 1572, 160, { size: 70, color: PAL.red });
+      handText(ctx, V.shopSign, 1572, 160, { size: Math.min(70, 400 / (V.shopSign.length * 0.62)), color: PAL.red });
       // light strips
       for (const x of [200, 700, 1200]) shape(ctx, [[x, -60], [x + 260, -60], [x + 260, -44], [x, -44]], { fill: '#f3e9c8', outline: 3 });
     },
@@ -74,6 +79,107 @@ export const SETS = {
       shape(ctx, [[1490, 670], [1532, 669], [1532, 692], [1490, 693]], { fill: '#6fd08f', outline: 2 });
     },
   },
+  bank: {   // branch interior: teller windows on a long counter, vault behind, queue in front
+    paper: '#bfb08c',
+    depth: y => 1.05 * (y - 370) / (1000 - 370),
+    anchors: { teller: [1180, 880], teller2: [1560, 880] },
+    draw(ctx) {
+      shape(ctx, [[-400, -400], [2320, -400], [2320, 620], [-400, 620]], { fill: '#cfc2a0', outline: 0, hatch: 0.06, hatchAngle: 90, gap: 60 });
+      for (const x of [120, 560]) column(ctx, x, 620, 1.0, 560);
+      vault(ctx, 330, 360, 0.75);
+      shape(ctx, [[-400, 620], [2320, 610], [2320, 1500], [-400, 1500]], { fill: '#9c8a68', outline: 6 });
+      for (let k = 0; k < 9; k++) { const x = -300 + k * 300; ink(ctx, [[x, 620], [x - 260 + k * 40, 1500]], { size: 2.5, color: 'rgba(34,28,22,0.3)' }); }
+      for (let k = 0; k < 6; k++) { const yy = 640 + Math.pow(k / 5, 1.6) * 440; ink(ctx, [[-300, yy], [2300, yy - 4]], { size: 2 + k * 0.3, color: 'rgba(34,28,22,0.3)' }); }
+      ink(ctx, [[1370, -200], [1370, 70]], { size: 3 }); ink(ctx, [[1730, -200], [1730, 70]], { size: 3 });
+      shape(ctx, [[1330, 60], [1770, 52], [1776, 150], [1336, 158]], { fill: PAL.cream, outline: 7 });
+      handText(ctx, V.bankSign, 1553, 105, { size: Math.min(60, 400 / (V.bankSign.length * 0.62)), color: PAL.red });
+    },
+    front(ctx) {
+      shape(ctx, [[900, 745], [1960, 737], [1970, 910], [890, 915]], { fill: PAL.wood, outline: 7, hatch: 0.3, hatchAngle: 80 });
+      shape(ctx, [[880, 722], [1980, 714], [1982, 752], [878, 760]], { fill: '#3b2a1b', outline: 5 });
+      tellerWindow(ctx, 1180, 722, 1.0, ''); tellerWindow(ctx, 1560, 718, 1.0, '');
+    },
+  },
+  home: {   // kitchen at night: window, shelf with the savings jar, table
+    paper: '#a89874',
+    depth: y => 1.05 * (y - 370) / (1000 - 370),
+    anchors: { jar: [1000, 410], table: [1450, 820] },
+    draw(ctx) {
+      shape(ctx, [[-400, -400], [2320, -400], [2320, 640], [-400, 640]], { fill: '#b9a57e', outline: 0, hatch: 0.1, hatchAngle: 60, gap: 34 });
+      windowNight(ctx, 180, 150, 380, 320, V.sky === 'day' ? 'day' : 'night');
+      shape(ctx, [[640, 420], [1120, 414], [1122, 440], [642, 446]], { fill: PAL.wood, outline: 5 });     // shelf
+      jar(ctx, 1000, 420, 1.1, V.cur, !V.jarEmpty); jar(ctx, 760, 420, 0.7, '', false);
+      ink(ctx, [[960, -200], [960, 80]], { size: 3 });
+      shape(ctx, [[900, 80], [1020, 80], [1050, 140], [870, 140]], { fill: '#f0c96a', outline: 5 });            // hanging lamp
+      shape(ctx, [[-400, 640], [2320, 630], [2320, 1500], [-400, 1500]], { fill: '#7d6648', outline: 6, hatch: 0.12, hatchAngle: 2, gap: 40 });
+      shape(ctx, [[1150, 640], [1760, 632], [1780, 680], [1130, 690]], { fill: PAL.wood, outline: 6, hatch: 0.2 });   // table top
+      for (const x of [1170, 1730]) shape(ctx, [[x - 10, 688], [x + 10, 686], [x + 10, 830], [x - 10, 832]], { fill: PAL.brown, outline: 4 });
+      shape(ctx, ellipse(1300, 630, 46, 14, 14, 0.1, 931), { fill: '#e8dcc0', outline: 4 });                    // plate
+    },
+  },
+  busstop: {   // outdoor: shelter, parking meter, road
+    paper: '#bdae8a',
+    depth: y => 1.15 * (y - 521) / (985 - 521),
+    anchors: { meter: [430, 520], shelter: [1350, 700] },
+    far(ctx) { sky(ctx, V.sky); rooftops(ctx, V.sky, 600, 9); },
+    draw(ctx) {
+      ground(ctx, 600, '#8a7a5c', true);
+      shape(ctx, [[-1200, 690], [3100, 680], [3100, 720], [-1200, 730]], { fill: '#6d6150', outline: 5 });     // curb
+      shelter(ctx, 1350, 700, 1.0, V.busSign);
+      meter(ctx, 430, 780, 1.1, 'COINS'); meter(ctx, 200, 790, 1.1, 'COINS');
+      bill(ctx, 760, 990, 0.8, 0.5, V.cur);
+    },
+  },
+  laundromat: {
+    paper: '#c7b993',
+    depth: y => 1.05 * (y - 370) / (1000 - 370),
+    anchors: {},
+    draw(ctx) {
+      shape(ctx, [[-400, -400], [2320, -400], [2320, 650], [-400, 650]], { fill: '#d8ccaa', outline: 0, hatch: 0.08, hatchAngle: 0, gap: 50 });
+      for (let n = 0; n < 9; n++) washer(ctx, -100 + n * 240, 650, 1.05, n);
+      shape(ctx, [[-400, 650], [2320, 640], [2320, 1500], [-400, 1500]], { fill: '#a49674', outline: 6 });
+      for (let x = -300; x < 2300; x += 120) ink(ctx, [[x, 650], [x - 400 + x * 0.2, 1500]], { size: 2, color: 'rgba(34,28,22,0.22)' });
+      const t = V.laundrySign || 'QUARTERS ONLY';
+      ink(ctx, [[700, -200], [700, 110]], { size: 3 }); ink(ctx, [[1220, -200], [1220, 110]], { size: 3 });
+      shape(ctx, [[660, 100], [1260, 92], [1266, 200], [666, 208]], { fill: PAL.cream, outline: 7 });
+      handText(ctx, t, 963, 150, { size: Math.min(64, 540 / (t.length * 0.62)), color: PAL.red });
+    },
+  },
+  market: {   // open-air market: striped stalls across the back, crates in front
+    paper: '#c4b28a',
+    depth: y => 1.15 * (y - 521) / (985 - 521),
+    anchors: {},
+    far(ctx) { sky(ctx, V.sky); rooftops(ctx, V.sky, 600, 13); },
+    draw(ctx) {
+      ground(ctx, 610, '#9a8258', true);
+      const cols = [PAL.red, PAL.mustard, PAL.moss, '#3f5560', PAL.red];
+      [-150, 300, 750, 1200, 1650, 2100].forEach((x, n) => stall(ctx, x, 700, 0.95, cols[n % cols.length], n + 1, n % 2 ? 'goods' : 'fruit'));
+      bill(ctx, 980, 1000, 0.8, -0.3, V.cur);
+    },
+    front(ctx) { crate(ctx, 120, 1100, 1.3, 1); crate(ctx, 1840, 1110, 1.4, 2); },
+  },
+  hall: {   // civic building: steps, columns, banner (city hall, central bank, supreme court)
+    paper: '#c2b48f',
+    depth: y => 1.15 * (y - 521) / (985 - 521),
+    anchors: {},
+    far(ctx) { sky(ctx, V.sky); },
+    draw(ctx) {
+      shape(ctx, [[260, 120], [1660, 110], [1660, 620], [260, 630]], { fill: '#d6cbb0', outline: 7, hatch: 0.06, hatchAngle: 90, gap: 40 });
+      shape(ctx, [[220, 130], [960, -60], [1700, 120]], { fill: '#cfc3a5', outline: 8, smooth: false });
+      for (let x = 360; x <= 1560; x += 200) column(ctx, x, 620, 0.9, 470);
+      shape(ctx, [[560, 90], [1360, 82], [1366, 150], [566, 158]], { fill: PAL.cream, outline: 6 });
+      handText(ctx, V.hallSign, 963, 120, { size: Math.min(56, 760 / (V.hallSign.length * 0.62)), color: PAL.ink });
+      for (let k = 0; k < 4; k++) shape(ctx, [[160 - k * 40, 620 + k * 26], [1760 + k * 40, 616 + k * 26], [1760 + k * 40, 646 + k * 26], [160 - k * 40, 650 + k * 26]], { fill: '#cbbf9f', outline: 4 });
+      ground(ctx, 724, '#8f7b58', true);
+    },
+  },
+  table: {   // insert shots: a tabletop seen from above, hero prop drawn by the player
+    paper: '#5a4330',
+    depth: () => 1,
+    anchors: {},
+    draw(ctx) { tableTop(ctx, -300, -200, 2220, 1280); },
+  },
+
   desk: {   // chart inserts: a big sheet pinned to a dark wall, presenter stands to the right
     paper: '#3a2e25',
     depth: y => 1.0 * (y - 300) / (1050 - 300),

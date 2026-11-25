@@ -24,12 +24,35 @@ Needs Node 18+, Python 3.10+, ffmpeg and Google Chrome.
 ## Make a video
 
 ```bash
-python3 scripts/tts.py episodes/demo-day1/script.json
+python3 scripts/lint.py episodes/demo-day1/script.json       # location / pacing rules (before any voice or render)
+python3 scripts/tts.py episodes/demo-day1/script.json        # per-line cache in build/tts-cache: only changed lines are re-voiced
 node scripts/render.mjs episodes/demo-day1 --frames 40,250   # stills to review first
 node scripts/render.mjs episodes/demo-day1                   # full video
 ```
 
 Render speed on 2 CPU cores: ~1.6 s of render per 1 s of video (19 s demo in 31 s).
+
+## Writing an episode (v0.4 rules)
+
+1. **Location plan first.** Split the episode into segments and give each a place before writing lines (`"plan"` in the script).
+2. **Variety is checked, not hoped for.** `lint.py` fails the script when one place runs more than 2 shots or 30 s in a row,
+   when the board (charts/maps) passes 25 % of runtime, or when the episode has fewer than 6 locations; it warns on shots over
+   12.5 s and on numbers without a `source`.
+3. A place is set + locale: the U.S. street and the Indian street count as different places.
+
+## v0.4 additions
+
+| Key | What |
+|---|---|
+| sets | `street`, `supermarket`, `desk`, **`bank`, `home`, `busstop`, `laundromat`, `market`, `hall`, `table`** |
+| `variant` | `{locale: us/in/ng/se, sky: night/dusk/day, sign, atm, shopSign, bankSign, hallSign, cur, noCart, jarEmpty}` — signs, currency, sky and crowd skin tones follow the locale |
+| `insert` | `{prop: notes/wallet/ledger/phone/atmScreen/tipjar/scrip, text: [...], scale, tilt}` on `set: "table"` — close-up of an object |
+| `headline` | `{paper, date, text, sub, source}` — a newspaper spins in over the shot |
+| `panels` | 2–3 sub-shots side by side (`set`, `variant`, `actors`, `camera`, `label`, `at`); `reveal: true` brings them in one by one |
+| `map.region: "world"` | world map; `highlight: [{name, label, at, offset}]` lights up countries with labels |
+| townsfolk | six skin tones mixed per locale, eye whites, hair colours |
+| captions | break at punctuation, never end a chunk on a joining word |
+| audio | narration normalised to −16 LUFS at mux |
 
 ## v0.3 additions
 

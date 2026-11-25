@@ -14,7 +14,7 @@ const ep = path.basename(process.argv[2]);
 const arg = k => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : null; };
 const build = path.join(ROOT, 'build', ep);
 const timeline = JSON.parse(fs.readFileSync(path.join(build, 'timeline.json')));
-const mapData = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets/data/us_lower48.json')));
+const mapData = { us: JSON.parse(fs.readFileSync(path.join(ROOT, 'assets/data/us_lower48.json'))), world: JSON.parse(fs.readFileSync(path.join(ROOT, 'assets/data/world110.json'))) };
 const chrome = process.env.CHROME || '/usr/bin/google-chrome';
 const N = Math.round(timeline.duration * timeline.fps);
 
@@ -55,7 +55,7 @@ if (arg('--frames')) {
   const list = path.join(build, 'parts.txt'); fs.writeFileSync(list, parts.map(p => `file '${p[2]}'`).join('\n'));
   const out = path.join(build, 'video.mp4');
   const r = spawnSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', list, '-i', path.join(build, 'narration.wav'),
-    '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', out + '.tmp.mp4'], { stdio: 'inherit' });
+    '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-af', 'loudnorm=I=-16:TP=-1.5:LRA=11', '-ar', '48000', '-c:a', 'aac', '-b:a', '160k', '-shortest', out + '.tmp.mp4'], { stdio: 'inherit' });
   if (r.status !== 0) { console.error('join failed'); process.exit(1); }
   fs.renameSync(out + '.tmp.mp4', out); parts.forEach(p => fs.rmSync(p[2])); fs.rmSync(list);
   console.log(`done: ${out} (${N} frames, ${workers} workers, ${((Date.now() - t0) / 1000).toFixed(0)}s)`);
