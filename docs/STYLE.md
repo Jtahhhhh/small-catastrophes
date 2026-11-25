@@ -11,3 +11,4 @@
 - **Data:** every on-screen number sits on a cream card and has a source in the script.
 - **Voice:** Kokoro `bm_george`, speed 0.95.
 - **Never:** Don't Starve characters, names, fonts or assets; photoreal AI footage.
+- **Size rule:** characters are never scaled by hand. Each set has a `depth(y)` rule: scale comes from where the feet touch the ground, so nearer = bigger. Street: a person at the shop door (y≈650) fits the door; Mortimer at the front (y≈985) fills ~65% of frame height. Only perched actors (Tally on the lamp) keep a fixed scale. Presenter next to a chart board stands at full height beside it.

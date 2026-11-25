@@ -15,6 +15,9 @@ const ease = t => { t = Math.min(Math.max(t, 0), 1); return t * t * (3 - 2 * t);
 const RIGS = { mortimer: MORTIMER, gristle: GRISTLE, tally: TALLY };
 const rigFor = who => RIGS[who] || makePerson(Number(String(who).split(':')[1] || 1));
 const HEAD_H = { mortimer: 480, gristle: 320, tally: 110 };          // height of the face above the feet (world px at scale 1)
+// One rule for size: standing actors get their scale from where their feet are (set.depth). Only perched
+// actors (the crow on the lamp) keep a fixed scale. `size` tweaks a person relative to the rule (e.g. a child 0.7).
+function actorScale(sh, a) { const set = SETS[sh.set]; if (a.perch || !set.depth) return a.scale || 1; return set.depth(a.at[1]) * (a.size || 1); }
 
 // ---------- camera ----------
 const SIZES = { wide: 1, medium: 1.65, close: 2.6 };
@@ -22,7 +25,7 @@ function baseCamera(sh) {
   const cam = sh.camera || {}; const z = SIZES[cam.size || 'wide'];
   let c = [W / 2, H / 2];
   if (Array.isArray(cam.on)) c = cam.on;
-  else if (cam.on) { const a = sh.actors.find(x => x.id === cam.on); const s = a.scale || 1;
+  else if (cam.on) { const a = sh.actors.find(x => x.id === cam.on); const s = actorScale(sh, a);
     const hh = (HEAD_H[a.who] || 440) * s; c = [a.at[0], a.at[1] - (cam.size === 'close' ? hh * 0.92 : hh * 0.6)]; }
   // keep the frame inside a generous stage
   return { z, cx: c[0], cy: c[1] };
@@ -54,11 +57,11 @@ function buildTimeline() {
 let GTL = null;
 
 // ---------- chart insert ----------
-function chart(ctx, spec, k) {
+function chart(ctx, spec, k, box) {
   const rc = rough.canvas(ctx.canvas);
-  handText(ctx, spec.title, 960, 210, { size: 54 });
-  if (spec.subtitle) handText(ctx, spec.subtitle, 960, 268, { size: 30, weight: 'normal' });
-  const bars = spec.bars, n = bars.length, x0 = 420, x1 = 1500, base = 790, maxH = 420;
+  handText(ctx, spec.title, box.cx, box.top + 60, { size: 52 });
+  if (spec.subtitle) handText(ctx, spec.subtitle, box.cx, box.top + 116, { size: 30, weight: 'normal' });
+  const bars = spec.bars, n = bars.length, x0 = box.x0, x1 = box.x1, base = box.base, maxH = 420;
   const max = Math.max(...bars.map(b => b[1])) * 1.1, bw = (x1 - x0) / n * 0.55;
   bars.forEach(([label, v, col], i) => {
     const kk = ease((k - i * 0.25) / 0.9), bx = x0 + (i + 0.5) * (x1 - x0) / n - bw / 2, bh = maxH * v / max * kk;
@@ -69,7 +72,7 @@ function chart(ctx, spec, k) {
     handText(ctx, label, bx + bw / 2, base + 40, { size: 32 });
   });
   ink(ctx, [[x0 - 40, base], [x1 + 40, base + 4]], { size: 5 });
-  if (spec.source) handText(ctx, 'Source: ' + spec.source, 960, 880, { size: 22, weight: 'normal', color: '#5a4a3a' });
+  if (spec.source) handText(ctx, 'Source: ' + spec.source, box.cx, box.source, { size: 22, weight: 'normal', color: '#5a4a3a' });
 }
 
 // ---------- one shot at time t ----------
@@ -103,13 +106,13 @@ function renderShot(sh, t, i) {
     const pose = mergePoses(idlePose(t, a.at[0] * 0.01), wAmt > 0 ? walkPose(phase, wAmt) : null, ...acts);
     if (a.id === speaker) { POSE.mouth = amp; pose.rot.head = (pose.rot.head || 0) + amp * 0.05; }
     POSE.blink = ((t + a.at[0] * 0.003) % 3.4) < 0.12 ? 1 : 0;
-    const s = a.scale || 1;
+    const s = actorScale(sh, a);
     if (a.who !== 'tally') shape(ctx, ellipse(x, a.at[1], 95 * s, 18 * s, 14, 0.1, 300), { fill: 'rgba(34,28,22,0.22)', outline: 0 });
     drawCast(ctx, rigFor(a.who), x, a.at[1] + pose.dy * s, s, { rot: pose.rot, flip: a.flip ?? (dirLeft && a.who !== 'tally') });
     POSE.mouth = 0; POSE.blink = 0;
   }
   if (!frontDrawn) { ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.drawImage(bg.front, 0, 0); applyCam(ctx, cam); }
-  if (sh.chart) chart(ctx, sh.chart, lt);
+  if (sh.chart) chart(ctx, sh.chart, lt, SETS[sh.set].chartBox);
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   // camera move inside the shot (applied to the composed frame)
   const mv = (sh.camera || {}).move || 'push'; const k = ease(lt / dur);
