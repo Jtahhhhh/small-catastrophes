@@ -25,8 +25,13 @@ export const MORTIMER = [
       shape(c, P([[-22, -170], [-8, -170], [-12, -8], [-20, -8]]), { fill: PAL.night, outline: 4 });
       shape(c, ellipse(-24, -6, 22, 9, 14, 0.1, 22), { fill: PAL.ink, outline: 3 }); } },
   { name: 'arm_back', pivot: [48, -372], draw: c => {
-      shape(c, P([[40, -378], [62, -372], [74, -230], [58, -222]]), { fill: '#41474b', hatch: 0.35, outline: 5 });
-      shape(c, ellipse(68, -214, 11, 14, 12, 0.15, 31), { fill: PAL.skin, outline: 3 }); } },
+      shape(c, P([[40, -378], [62, -372], [86, -236], [68, -228]]), { fill: '#41474b', hatch: 0.35, outline: 5 });
+      shape(c, P([[66, -226], [118, -232], [126, -146], [72, -140]]), { fill: PAL.brown, outline: 5, hatch: 0.15 }); // ledger, hanging at his side
+      ink(c, P([[76, -214], [114, -218]]), { size: 2.5 }); ink(c, P([[78, -198], [116, -202]]), { size: 2.5 });
+      handText(c, '$', 99, -170, { size: 24, color: PAL.mustard });
+      shape(c, ellipse(80, -228, 13, 11, 12, 0.15, 31), { fill: PAL.skin, outline: 3 });                         // fist on the top edge
+      ink(c, P([[72, -226], [88, -232], [94, -222]]), { size: 3 });                                                  // thumb over the cover
+    } },
   { name: 'coat', pivot: [0, -300], draw: c => {
       shape(c, P([[-52, -384], [-20, -398], [22, -398], [54, -382], [66, -250], [82, -150], [40, -158], [-6, -150], [-50, -160], [-80, -148], [-64, -260]]),
         { fill: PAL.coat, hatch: 0.28, hatchAngle: -50, outline: 7 });
@@ -56,11 +61,9 @@ export const MORTIMER = [
       ink(c, P([[-2, -551], [0, -580]]), { size: 3.5 });
     } },
   { name: 'arm_front', pivot: [-46, -372], draw: c => {
-      shape(c, P([[-56, -376], [-34, -380], [-22, -270], [-40, -262]]), { fill: '#41474b', hatch: 0.3, outline: 5 });
-      shape(c, P([[-70, -300], [-8, -312], [-2, -246], [-64, -236]]), { fill: PAL.brown, outline: 5, hatch: 0.15 }); // ledger book
-      ink(c, P([[-60, -290], [-16, -298]]), { size: 2.5 }); ink(c, P([[-58, -276], [-14, -284]]), { size: 2.5 });
-      handText(c, '$', -36, -258, { size: 22, color: PAL.mustard });
-      shape(c, ellipse(-22, -262, 11, 13, 12, 0.15, 51), { fill: PAL.skin, outline: 3 });
+      shape(c, P([[-56, -376], [-34, -380], [-24, -262], [-42, -256]]), { fill: '#41474b', hatch: 0.3, outline: 5 });
+      shape(c, ellipse(-32, -246, 12, 14, 12, 0.15, 51), { fill: PAL.skin, outline: 3 });                        // open hand
+      ink(c, P([[-22, -252], [-14, -244]]), { size: 3 });                                                            // thumb
     } },
 ];
 
@@ -76,11 +79,12 @@ export const GRISTLE = [
       shape(c, P([[-52, -200], [52, -200], [62, -70], [-60, -72]]), { fill: PAL.cream, outline: 5, hatch: 0.1 });   // apron
       ink(c, P([[-30, -120], [28, -118]]), { size: 3 });
     } },
-  { name: 'arms', pivot: [0, -190], draw: c => {
-      shape(c, P([[-92, -206], [88, -214], [94, -170], [-90, -164]]), { fill: '#9a7029', hatch: 0.3, outline: 6 });
-      shape(c, ellipse(-40, -186, 16, 14, 12, 0.15, 64), { fill: PAL.skin, outline: 3 });
-      shape(c, ellipse(44, -192, 16, 14, 12, 0.15, 65), { fill: PAL.skin, outline: 3 });
-    } },
+  { name: 'arm_l', pivot: [-70, -226], draw: c => {
+      shape(c, P([[-86, -232], [-58, -236], [-66, -150], [-92, -146]]), { fill: '#9a7029', hatch: 0.3, outline: 6 });
+      shape(c, ellipse(-80, -136, 16, 14, 12, 0.15, 64), { fill: PAL.skin, outline: 3 }); } },
+  { name: 'arm_r', pivot: [70, -226], draw: c => {
+      shape(c, P([[58, -236], [86, -232], [94, -146], [66, -150]]), { fill: '#9a7029', hatch: 0.3, outline: 6 });
+      shape(c, ellipse(80, -136, 16, 14, 12, 0.15, 65), { fill: PAL.skin, outline: 3 }); } },
   { name: 'head', pivot: [0, -262], draw: c => {
       shape(c, ellipse(0, -318, 56, 52, 22, 0.08, 66), { fill: PAL.skin, outline: 7 });
       shape(c, ellipse(0, -384, 30, 24, 14, 0.12, 67), { fill: PAL.brown, outline: 5, hatch: 0.4 });          // bun
