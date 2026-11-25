@@ -1,0 +1,16 @@
+{
+  "name": "small-catastrophes",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Hand-drawn gothic explainer video pipeline for the Small Catastrophes channel",
+  "scripts": {
+    "tts": "python3 scripts/tts.py",
+    "render": "node scripts/render.mjs"
+  },
+  "dependencies": {
+    "perfect-freehand": "^1.2.3",
+    "puppeteer-core": "^24.0.0",
+    "roughjs": "^4.6.6"
+  }
+}

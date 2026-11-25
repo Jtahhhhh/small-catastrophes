@@ -1,0 +1,25 @@
+{
+  "title": "What If Cash Vanished — Day 1 (pipeline test)",
+  "voice": "bm_george",
+  "speed": 0.95,
+  "fps": 24,
+  "size": [1920, 1080],
+  "scenes": [
+    {
+      "set": "street",
+      "stamp": "DAY 1",
+      "camera": { "push": 0.07 },
+      "lines": [
+        { "text": "Tonight, every dollar bill in America vanishes." },
+        { "text": "At first? Nobody panics." },
+        { "text": "Only sixteen percent of Americans prefer to pay in cash.",
+          "card": { "big": "16%", "small": "prefer to pay in cash" },
+          "source": "Federal Reserve, Diary of Consumer Payment Choice (2026)" },
+        { "text": "But for five point six million households with no bank account, day one is when the trouble starts.",
+          "card": { "big": "5.6M", "small": "U.S. households, no bank account" },
+          "gesture": "raise",
+          "source": "FDIC National Survey of Unbanked and Underbanked Households (2023)" }
+      ]
+    }
+  ]
+}
