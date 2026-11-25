@@ -87,9 +87,9 @@
     { "set": "street", "reveal": true, "source": "Federal Reserve DCPC 2026: cash payments per month",
       "panels": [
         { "set": "busstop", "variant": { "sky": "day" }, "label": "AGE 55+ · 10 a month", "camera": { "size": "medium", "on": "old", "move": "push" },
-          "actors": [ { "id": "old", "who": "person:301", "at": [900, 985], "actions": [ { "do": "nod", "at": 1.5, "dur": 1.2 } ] } ] },
+          "actors": [ { "id": "old", "who": "person:301", "age": "old", "at": [900, 985], "actions": [ { "do": "nod", "at": 1.5, "dur": 1.2 } ] } ] },
         { "set": "market", "variant": { "sky": "day" }, "label": "AGE 18–24 · 2 a month", "at": 4.0, "camera": { "size": "medium", "on": "young", "move": "push" },
-          "actors": [ { "id": "young", "who": "person:318", "at": [960, 985], "actions": [ { "do": "shrug", "at": 1.0, "dur": 1.6 } ] } ] } ],
+          "actors": [ { "id": "young", "who": "person:318", "age": "young", "at": [960, 985], "actions": [ { "do": "shrug", "at": 1.0, "dur": 1.6 } ] } ] } ],
       "lines": [ { "text": "People over fifty-five pay with cash about ten times a month." },
                  { "text": "People under twenty-five? About twice." } ] },
 
@@ -102,7 +102,7 @@
 
     { "set": "supermarket", "transition": "iris", "vo": true, "camera": { "size": "medium", "on": "gristle", "move": "push" },
       "actors": [ { "id": "gristle", "who": "gristle", "at": [1690, 880], "layer": "behind", "actions": [ { "do": "shrug", "at": 1.0, "dur": 2.0 } ] },
-                  { "id": "q", "crowd": { "n": 4, "seed": 8, "area": [700, 990, 1250, 1030], "queue": true, "fidget": true } } ],
+                  { "id": "q", "crowd": { "n": 4, "seed": 8, "area": [700, 990, 1250, 1030], "queue": true, "fidget": true, "age": "old" } } ],
       "lines": [ { "text": "So the first customers she has to turn away are her regulars." },
                  { "text": "The older ones. The ones who drove in from out of town." } ] },
 
@@ -299,7 +299,7 @@
 
     { "set": "busstop", "transition": "ink", "variant": { "sky": "dusk" }, "camera": { "size": "wide", "move": "pan-left" },
       "actors": [ { "id": "mortimer", "who": "mortimer", "at": [560, 985] },
-                  { "id": "c", "crowd": { "n": 6, "seed": 81, "area": [-200, 760, 2100, 1060], "walk": "both", "speed": 150 } } ],
+                  { "id": "c", "crowd": { "n": 6, "seed": 81, "area": [-200, 760, 2100, 1060], "walk": "both", "speed": 150, "age": ["young", "adult", "old"] } } ],
       "lines": [ { "text": "People with cards and phones barely notice anymore." },
                  { "text": "People without them are now on a list." } ] },
 

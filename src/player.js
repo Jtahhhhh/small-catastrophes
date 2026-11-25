@@ -16,7 +16,7 @@ let TL, W, H, FPS, GTL, US = null, WORLD = null; const SUBS = []; const CACHE = 
 const cv = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; };
 const ease = t => { t = Math.min(Math.max(t, 0), 1); return t * t * (3 - 2 * t); };
 const RIGS = { mortimer: MORTIMER, gristle: GRISTLE, tally: TALLY };
-const rigFor = (who, locale) => RIGS[who] || makePerson(Number(String(who).split(':')[1] || 1), locale || V.locale);
+const rigFor = (who, locale, age) => RIGS[who] || makePerson(Number(String(who).split(':')[1] || 1), locale || V.locale, age);
 const HEAD_H = { mortimer: 480, gristle: 320, tally: 110 };
 // Rig normalisation so every adult follows the same body spec (heights to top of head, at scale 1):
 // Mortimer 552 (tall), townsfolk 510–600, Mrs. Gristle 370 in her rig → ×1.2 ≈ 445 (short and stout).
@@ -66,7 +66,7 @@ function expandCrowds(sh) {
     const c = a.crowd, r = rng(c.seed || 1), [x0, y0, x1, y1] = c.area;
     for (let n = 0; n < c.n; n++) {
       const y = y0 + r() * (y1 - y0), x = x0 + r() * (x1 - x0), who = `person:${(c.seed || 1) * 100 + n}`;
-      const p = { id: `${a.id || 'crowd'}${n}`, who, at: [x, y], crowd: true };
+      const p = { id: `${a.id || 'crowd'}${n}`, who, at: [x, y], crowd: true, age: Array.isArray(c.age) ? c.age[n % c.age.length] : c.age };
       if (c.walk) { const dir = c.walk === 'left' ? -1 : c.walk === 'right' ? 1 : (r() < 0.5 ? -1 : 1); const speed = (c.speed || 140) * (0.8 + r() * 0.5);
         const dur = sh.end - sh.start; p.to = x + dir * speed * dur; p.walk = [0, dur]; }
       if (c.queue) p.at = [x0 + n * (x1 - x0) / Math.max(1, c.n - 1) + (r() - 0.5) * 30, y0 + (r() - 0.5) * (y1 - y0)];
@@ -154,7 +154,7 @@ function drawActors(ctx, sh, t, i, which) {
     const s = actorScale(sh, a), flip = a.flip ?? (dirLeft && a.who !== 'tally');
     const lean = wAmt * 0.06 * (flip ? -1 : 1);
     if (a.who !== 'tally') shape(ctx, ellipse(x, a.at[1], 95 * s, 18 * s, 14, 0.1, 300), { fill: 'rgba(34,28,22,0.22)', outline: 0 });
-    drawCast(ctx, rigFor(a.who, a.locale), x, a.at[1] + pose.dy * s, s, { rot: pose.rot, flip, lean });
+    drawCast(ctx, rigFor(a.who, a.locale, a.age), x, a.at[1] + pose.dy * s, s, { rot: pose.rot, flip, lean });
     POSE.mouth = 0; POSE.viseme = 0; POSE.blink = 0; POSE.look = 0;
   }
 }

@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 // usage: node scripts/render.mjs episodes/<name> [--workers 2]   → build/<name>/video.mp4
 //        node scripts/render.mjs episodes/<name> --frames 30,200 → still frames for review
 // Parallel mode splits the frame range across N headless browsers, encodes one segment each,
@@ -54,9 +55,13 @@ if (arg('--frames')) {
   const t0 = Date.now(), fps = timeline.fps, chunks = []; let a = 0;
   for (const sh of timeline.shots) { const end = Math.min(N, Math.round(sh.end * fps)); if (end - a >= fps * 40 || sh === timeline.shots.at(-1)) { if (end > a) chunks.push([a, end]); a = end; } }
   if (a < N) chunks.push([a, N]);
-  const sig = `${N}:${chunks.length}:${fs.statSync(path.join(build, 'timeline.json')).mtimeMs}`, sigFile = path.join(build, 'chunks.sig');
-  if (!fs.existsSync(sigFile) || fs.readFileSync(sigFile, 'utf8') !== sig) { fs.readdirSync(build).filter(f => /^chunk\d+\.mp4/.test(f)).forEach(f => fs.rmSync(path.join(build, f))); fs.writeFileSync(sigFile, sig); }
-  const files = chunks.map((_, k) => path.join(build, `chunk${String(k).padStart(3, '0')}.mp4`));
+  // Each chunk file is named by a hash of the shots it covers (content + timing), so editing one shot re-renders only
+  // the chunks that contain it. After changing drawing code, pass --fresh to re-render everything.
+  if (process.argv.includes('--fresh')) fs.readdirSync(build).filter(f => /^chunk/.test(f)).forEach(f => fs.rmSync(path.join(build, f)));
+  const hash = (a, b) => crypto.createHash('sha1').update(JSON.stringify([a, b, timeline.shots.filter(sh => sh.end * fps > a && sh.start * fps < b), timeline.size, fps])).digest('hex').slice(0, 10);
+  const files = chunks.map(([a, b], k) => path.join(build, `chunk${String(k).padStart(3, '0')}-${hash(a, b)}.mp4`));
+  const keep = new Set(files.map(f => path.basename(f)));
+  fs.readdirSync(build).filter(f => /^chunk.*\.mp4$/.test(f) && !keep.has(f)).forEach(f => fs.rmSync(path.join(build, f)));
   const todo = chunks.map((c, k) => [...c, files[k]]).filter(([, , f]) => !fs.existsSync(f));
   console.log(`${chunks.length} chunks, ${chunks.length - todo.length} already done, ${workers} workers`);
   await Promise.all(Array.from({ length: workers }, async () => { while (todo.length) { const [a, b, f] = todo.shift(); await renderRange(a, b, f); } }));

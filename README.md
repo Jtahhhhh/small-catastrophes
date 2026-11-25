@@ -50,7 +50,8 @@ Render speed on 2 CPU cores: ~1.6 s of render per 1 s of video (19 s demo in 31 
 | `headline` | `{paper, date, text, sub, source}` — a newspaper spins in over the shot |
 | `panels` | 2–3 sub-shots side by side (`set`, `variant`, `actors`, `camera`, `label`, `at`); `reveal: true` brings them in one by one |
 | `map.region: "world"` | world map; `highlight: [{name, label, at, offset}]` lights up countries with labels |
-| townsfolk | six skin tones mixed per locale, eye whites, hair colours |
+| townsfolk | six skin tones mixed per locale, eye whites, hair colours; `age: old/adult/young` on an actor or a crowd (crowd may give a list to mix) — old: grey hair, lines, glasses, stoop, cane; young: hoodie, bright colours, phone |
+| render chunks | named by a hash of the shots they cover: editing a shot re-renders only its chunk; `--fresh` after changing drawing code |
 | captions | break at punctuation, never end a chunk on a joining word |
 | audio | narration normalised to −16 LUFS at mux |
 
