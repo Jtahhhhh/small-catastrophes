@@ -1,0 +1,37 @@
+{
+  "title": "v0.3 motion test — crowds, parallax, follow camera, map, mouth shapes",
+  "voice": "bm_george", "speed": 0.95, "fps": 24, "size": [1920, 1080],
+  "shots": [
+    { "set": "street", "stamp": "DAY 2", "fadeIn": true, "camera": { "size": "wide", "move": "pan-right" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985] },
+                  { "id": "tally", "who": "tally", "at": [1560, 300], "scale": 0.95, "perch": true, "actions": [ { "do": "peck", "at": 0, "dur": 9 } ] },
+                  { "id": "c", "crowd": { "n": 9, "seed": 3, "area": [-200, 700, 2100, 1060], "walk": "both", "speed": 150 } } ],
+      "lines": [ { "text": "By day two, the street looks busy." }, { "text": "But nobody is buying anything." } ] },
+
+    { "set": "street", "camera": { "size": "close", "on": "mortimer", "move": "push" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985], "actions": [ { "do": "nod", "at": 3.0, "dur": 1.0 } ] } ],
+      "lines": [ { "text": "Every shop that only takes cash now has two choices." },
+                 { "text": "Close the doors, or start writing debts on paper." } ] },
+
+    { "set": "street", "camera": { "size": "medium", "on": "mortimer", "move": "follow" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [300, 985], "to": 1450, "walk": [0.3, 6.2] } ],
+      "lines": [ { "text": "So neighbours start keeping tabs," }, { "text": "the same way their great-grandparents did." } ] },
+
+    { "set": "desk", "transition": "tear", "camera": { "size": "wide", "move": "push" },
+      "map": { "title": "Where the unbanked live", "dots": { "n": 112, "seed": 4, "counter": 5600000, "label": "households" },
+               "source": "FDIC 2023 · 1 dot ≈ 50,000 households · placement illustrative" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [1680, 1050], "actions": [ { "do": "point-left", "at": 3.2, "dur": 3.0 } ] } ],
+      "lines": [ { "text": "About five point six million American households have no bank account." },
+                 { "text": "And they live in every corner of the country." } ] },
+
+    { "set": "supermarket", "transition": "ink", "vo": true, "camera": { "size": "wide", "move": "pan-left" },
+      "actors": [ { "id": "gristle", "who": "gristle", "at": [1690, 880], "layer": "behind", "actions": [ { "do": "shrug", "at": 2.5, "dur": 2.0 } ] },
+                  { "id": "q", "crowd": { "n": 9, "seed": 7, "area": [80, 990, 1180, 1030], "queue": true, "fidget": true } } ],
+      "lines": [ { "text": "Meanwhile, the line at Mrs. Gristle's shop keeps getting longer." } ] },
+
+    { "set": "street", "transition": "iris", "fadeOut": true, "camera": { "size": "wide", "move": "pull" },
+      "actors": [ { "id": "mortimer", "who": "mortimer", "at": [760, 985], "actions": [ { "do": "shrug", "at": 1.0, "dur": 2.0 } ] },
+                  { "id": "c2", "crowd": { "n": 6, "seed": 9, "area": [-200, 720, 2100, 1050], "walk": "both", "speed": 120 } } ],
+      "lines": [ { "text": "Tomorrow, the people who can still pay start helping the people who can't." } ] }
+  ]
+}

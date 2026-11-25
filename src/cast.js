@@ -3,7 +3,18 @@
 import { PAL, ellipse, ink, shape, dot, handText } from './ink.js';
 
 const P = (pts) => pts.map(([x, y]) => [x, y]);
-export const POSE = { mouth: 0, blink: 0, look: 0, crack: false };
+export const POSE = { mouth: 0, viseme: 0, blink: 0, look: 0, crack: false };
+
+// Mouth shapes driven by the narration: 0 closed, 1 open (A), 2 round (O/U), 3 wide (E/S)
+export function drawMouth(c, x, y, k = 1) {
+  const a = POSE.mouth, v = POSE.viseme;
+  if (a <= 0.15 || v === 0) { ink(c, [[x - 12 * k, y], [x, y + 3 * k], [x + 14 * k, y - 2 * k]], { size: 3.5 * k }); return; }
+  const dark = '#3a1f1a';
+  if (v === 2) shape(c, ellipse(x, y, (6 + a * 3) * k, (8 + a * 7) * k, 12, 0.1, 49), { fill: dark, outline: 3 * k });
+  else if (v === 3) { shape(c, ellipse(x, y, (14 + a * 4) * k, (3 + a * 4) * k, 12, 0.08, 48), { fill: dark, outline: 3 * k });
+    ink(c, [[x - 10 * k, y - 1 * k], [x + 10 * k, y - 1 * k]], { size: 2 * k, color: '#f1ead8' }); }
+  else shape(c, ellipse(x, y, (9 + a * 4) * k, (3 + a * 11) * k, 12, 0.1, 47), { fill: dark, outline: 3 * k });
+}
 
 // ---------------- MORTIMER PENNY: gaunt bookkeeper, narrator ----------------
 export const MORTIMER = [
@@ -39,8 +50,7 @@ export const MORTIMER = [
         else dot(c, sx * 27 + 4 + POSE.look * 8, -480, 5.5);
       }
       ink(c, P([[-4, -484], [4, -484]]), { size: 4 });
-      if (POSE.mouth > 0.15) shape(c, ellipse(1, -428, 9 + POSE.mouth * 4, 3 + POSE.mouth * 11, 12, 0.1, 49), { fill: '#3a1f1a', outline: 3 });
-      else ink(c, P([[-12, -428], [0, -425], [14, -430]]), { size: 3.5 });                // mouth
+      drawMouth(c, 1, -428);                                                              // mouth (visemes)
       ink(c, P([[-6, -548], [-14, -572], [-4, -590]]), { size: 4 });                      // hair tuft
       ink(c, P([[4, -550], [10, -578], [24, -586]]), { size: 4 });
       ink(c, P([[-2, -551], [0, -580]]), { size: 3.5 });
@@ -75,7 +85,7 @@ export const GRISTLE = [
       shape(c, ellipse(0, -318, 56, 52, 22, 0.08, 66), { fill: PAL.skin, outline: 7 });
       shape(c, ellipse(0, -384, 30, 24, 14, 0.12, 67), { fill: PAL.brown, outline: 5, hatch: 0.4 });          // bun
       shape(c, P([[-56, -340], [-20, -372], [24, -372], [56, -340], [40, -352], [-40, -352]]), { fill: PAL.brown, outline: 5, hatch: 0.4 });
-      dot(c, -20, -322, 5); dot(c, 22, -322, 5);
+      dot(c, -20 + POSE.look * 5, -322, 5); dot(c, 22 + POSE.look * 5, -322, 5);
       ink(c, P([[-34, -338], [-8, -332]]), { size: 6 }); ink(c, P([[8, -332], [34, -340]]), { size: 6 });     // stern brows
       ink(c, P([[0, -318], [-6, -300], [4, -300]]), { size: 3 });
       ink(c, P([[-14, -286], [0, -290], [14, -284]]), { size: 3.5 });
@@ -96,8 +106,8 @@ export const TALLY = [
     } },
 ];
 
-export function drawCast(ctx, parts, x, y, s = 1, { explode = 0, pivots = false, rot = {}, flip = false } = {}) {
-  ctx.save(); ctx.translate(x, y); ctx.scale(flip ? -s : s, s);
+export function drawCast(ctx, parts, x, y, s = 1, { explode = 0, pivots = false, rot = {}, flip = false, lean = 0 } = {}) {
+  ctx.save(); ctx.translate(x, y); if (lean) ctx.rotate(lean); ctx.scale(flip ? -s : s, s);
   parts.forEach((p, i) => {
     ctx.save();
     const a = rot[p.name]; if (a) { ctx.translate(p.pivot[0], p.pivot[1]); ctx.rotate(a); ctx.translate(-p.pivot[0], -p.pivot[1]); }

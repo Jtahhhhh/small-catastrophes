@@ -31,6 +31,18 @@ node scripts/render.mjs episodes/demo-day1                   # full video
 
 Render speed on 2 CPU cores: ~1.6 s of render per 1 s of video (19 s demo in 31 s).
 
+## v0.3 additions
+
+| Key | What |
+|---|---|
+| `camera.move: "follow"` | camera tracks a walking actor (`camera.on`) |
+| parallax | sets can define `far()` (moves at 0.35× on pans) and `front()` (1.15×) |
+| `{"crowd": {n, seed, area: [x0,y0,x1,y1], walk: "left"/"right"/"both", speed, queue, fidget}}` | expands into generated townsfolk; size follows the set's depth rule |
+| `map` | `{title, dots: {n, seed, counter, label}, source}` — US map draws itself in, then dots and a counter |
+| mouth shapes | `tts.py` writes a mouth shape per frame (closed / open / round / wide) from the narration's spectrum |
+| walking | eyes look along the path and the body leans into the walk |
+| `--workers N` | `render.mjs` splits frames across N browsers and joins the parts without re-encoding |
+
 ## Shot list format (v0.2)
 
 `episodes/v02-test/script.json` is the reference. Each shot:

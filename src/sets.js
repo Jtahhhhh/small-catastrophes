@@ -3,12 +3,12 @@
 import { PAL, ink, shape, ellipse, handText } from './ink.js';
 import { storefront, lamp, atm, bill, cart } from './cast.js';
 
-function ground(ctx, horizon = 600, color = '#8f7b58') {
+function ground(ctx, horizon = 600, color = '#8f7b58', noSky = false) {
   const W = 1920, H = 1080;
-  const g = ctx.createLinearGradient(0, -200, 0, horizon); g.addColorStop(0, 'rgba(40,32,30,0.55)'); g.addColorStop(1, 'rgba(40,32,30,0)');
-  ctx.fillStyle = g; ctx.fillRect(-400, -400, W + 800, horizon + 400);
-  shape(ctx, [[-400, horizon], [W + 400, horizon - 20], [W + 400, H + 400], [-400, H + 400]], { fill: color, outline: 6, jit: 6 });
-  for (let k = 0; k < 9; k++) { const yy = horizon + 10 + Math.pow(k / 8, 1.7) * (H - horizon); ink(ctx, [[-300, yy], [W * 0.5, yy - 6], [W + 300, yy + 4]], { size: 2.5 + k * 0.4, color: 'rgba(34,28,22,0.45)' }); }
+  if (!noSky) { const g = ctx.createLinearGradient(0, -200, 0, horizon); g.addColorStop(0, 'rgba(40,32,30,0.55)'); g.addColorStop(1, 'rgba(40,32,30,0)');
+    ctx.fillStyle = g; ctx.fillRect(-400, -400, W + 800, horizon + 400); }
+  shape(ctx, [[-1200, horizon], [W + 1200, horizon - 20], [W + 1200, H + 400], [-1200, H + 400]], { fill: color, outline: 6, jit: 6 });
+  for (let k = 0; k < 9; k++) { const yy = horizon + 10 + Math.pow(k / 8, 1.7) * (H - horizon); ink(ctx, [[-1100, yy], [W * 0.5, yy - 6], [W + 1100, yy + 4]], { size: 2.5 + k * 0.4, color: 'rgba(34,28,22,0.45)' }); }
 }
 
 function shelf(ctx, x, y, w, h, seed) {
@@ -32,8 +32,17 @@ export const SETS = {
     paper: '#b7a682',
     depth: y => 1.15 * (y - 521) / (985 - 521),
     anchors: { atm: [1080, 560], lamp: [1560, 300] },
+    far(ctx) {   // distant rooftops: moves slower than the street when the camera pans (parallax)
+      const g = ctx.createLinearGradient(0, -200, 0, 600); g.addColorStop(0, 'rgba(40,32,30,0.55)'); g.addColorStop(1, 'rgba(40,32,30,0)');
+      ctx.fillStyle = g; ctx.fillRect(-900, -400, 3700, 1000);
+      let x = -800, k = 5;
+      while (x < 2800) { k = (k * 9301 + 49297) % 233280; const w = 120 + k % 140, h = 140 + (k >> 3) % 220;
+        shape(ctx, [[x, 600], [x + w, 600], [x + w, 600 - h], [x + w * 0.5, 600 - h - 40], [x, 600 - h]], { fill: 'rgba(110,96,76,0.45)', outline: 3, inkColor: 'rgba(34,28,22,0.45)', hatch: 0.12, gap: 14 });
+        for (let wy = 600 - h + 30; wy < 560; wy += 50) for (let wx = x + 18; wx < x + w - 30; wx += 44) if ((wx * 7 + wy) % 7 < 2) shape(ctx, [[wx, wy], [wx + 16, wy], [wx + 16, wy + 20], [wx, wy + 20]], { fill: 'rgba(217,184,102,0.55)', outline: 0, jit: 1 });
+        x += w + 10; }
+    },
     draw(ctx) {
-      ground(ctx);
+      ground(ctx, 600, '#8f7b58', true);
       storefront(ctx, 430, 650, 1.05); atm(ctx, 1080, 660, 0.9); lamp(ctx, 1500, 690, 1.25);
       cart(ctx, 1290, 900, 1.0);
       bill(ctx, 1000, 975, 0.9, 0.3); bill(ctx, 1700, 1010, 0.8, -0.4);
@@ -69,6 +78,7 @@ export const SETS = {
     paper: '#3a2e25',
     depth: y => 1.0 * (y - 300) / (1050 - 300),
     chartBox: { x0: 230, x1: 1330, cx: 780, top: 150, base: 790, source: 880 },
+    mapBox: { x0: 170, x1: 1390, y0: 250, y1: 850, cx: 780, top: 150, source: 905 },
     anchors: {},
     draw(ctx) {
       for (let y = 0; y < 1080; y += 70) ink(ctx, [[-50, y], [1970, y + 8]], { size: 2.5, color: 'rgba(20,14,10,0.5)' });

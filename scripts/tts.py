@@ -37,8 +37,17 @@ def main(script_path):
     hop = sr // fps
     amps = np.array([np.sqrt(np.mean(wav[i:i + hop] ** 2)) for i in range(0, len(wav), hop)])
     amps = np.clip(amps / (amps.max() + 1e-9) * 1.6, 0, 1); amps[amps < 0.12] = 0
+    # mouth shape per frame from the spectral centroid: low → round (O/U), high → wide (E/S), else open (A)
+    vis = []
+    freqs = np.fft.rfftfreq(hop, 1 / sr)
+    for n, i in enumerate(range(0, len(wav), hop)):
+        seg = wav[i:i + hop]
+        if len(seg) < hop or amps[n] == 0: vis.append(0); continue
+        mag = np.abs(np.fft.rfft(seg * np.hanning(hop)))
+        cen = float((freqs * mag).sum() / (mag.sum() + 1e-9))
+        vis.append(2 if cen < 900 else 3 if cen > 2200 else 1)
     tl = {'title': script.get('title', ep), 'fps': fps, 'size': script.get('size', [1920, 1080]),
-          'duration': round(t, 3), 'shots': scenes, 'amps': [round(float(a), 3) for a in amps]}
+          'duration': round(t, 3), 'shots': scenes, 'amps': [round(float(a), 3) for a in amps], 'visemes': vis}
     (out / 'timeline.json').write_text(json.dumps(tl))
     print(f'{ep}: {t:.1f}s narration, {sum(len(s["lines"]) for s in scenes)} lines, {len(scenes)} shots')
 

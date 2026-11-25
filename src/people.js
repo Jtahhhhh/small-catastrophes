@@ -1,5 +1,6 @@
 // Generic townsfolk built from the same cut-out part names as Mortimer, so every action works on them.
 import { PAL, shape, ink, dot, ellipse, rng } from './ink.js';
+import { POSE, drawMouth } from './cast.js';
 
 const COATS = ['#5b4a3c', '#3f5560', '#6b3b34', '#56603f', '#4a4458', '#7a6a4a', '#30383f'];
 const HAIRS = ['flat', 'bun', 'cap', 'bald', 'tuft', 'scarf'];
@@ -33,9 +34,9 @@ export function makePerson(seed) {
         if (hair === 'cap') { shape(c, [[-headR * 0.95, headY - headR * 0.5], [-headR * 0.7, headY - headR * 1.12], [headR * 0.7, headY - headR * 1.12], [headR * 0.95, headY - headR * 0.5]], { fill: PAL.red, outline: 4, hatch: 0.2 }); shape(c, [[headR * 0.5, headY - headR * 0.55], [headR * 1.6, headY - headR * 0.45], [headR * 0.6, headY - headR * 0.35]], { fill: PAL.red, outline: 4 }); }
         if (hair === 'tuft') { ink(c, [[-4, headY - headR * 1.1], [-10, headY - headR * 1.5]], { size: 4 }); ink(c, [[4, headY - headR * 1.1], [12, headY - headR * 1.45]], { size: 4 }); }
         if (hair === 'scarf') shape(c, [[-headR * 1.05, headY + 4], [-headR * 0.8, headY - headR * 1.1], [headR * 0.8, headY - headR * 1.1], [headR * 1.05, headY + 4], [headR * 0.7, headY - headR * 0.5], [-headR * 0.7, headY - headR * 0.5]], { fill: PAL.moss, outline: 4, hatch: 0.2 });
-        dot(c, -13, headY - 2, 4.5); dot(c, 13, headY - 2, 4.5);
+        dot(c, -13 + POSE.look * 5, headY - 2, 4.5); dot(c, 13 + POSE.look * 5, headY - 2, 4.5);
         ink(c, [[-22, headY - 16], [-6, headY - 12]], { size: 3.5 }); ink(c, [[6, headY - 12], [22, headY - 16]], { size: 3.5 });
-        ink(c, [[-9, headY + 24], [0, headY + 22], [9, headY + 25]], { size: 3 }); } },
+        drawMouth(c, 0, headY + 24, 0.75); } },
     { name: 'arm_front', pivot: [-wide + 6, shoulderY + 6], draw: c => {
         shape(c, [[-wide - 4, shoulderY + 4], [-wide + 14, shoulderY], [-wide + 2, shoulderY + 146], [-wide - 12, shoulderY + 140]], { fill: coat, hatch: 0.3, outline: 5 });
         shape(c, ellipse(-wide - 6, shoulderY + 154, 10, 12, 10, 0.15, s + 6), { fill: PAL.skin, outline: 3 }); } },
