@@ -31,7 +31,23 @@ node scripts/render.mjs episodes/demo-day1                   # full video
 
 Render speed on 2 CPU cores: ~1.6 s of render per 1 s of video (19 s demo in 31 s).
 
-## Script format
+## Shot list format (v0.2)
+
+`episodes/v02-test/script.json` is the reference. Each shot:
+
+| Key | Values |
+|---|---|
+| `set` | `street`, `supermarket`, `desk` (chart inserts) |
+| `camera` | `size`: wide / medium / close; `on`: actor id or `[x, y]`; `move`: push / pull / pan-left / pan-right / static |
+| `actors` | `who`: mortimer / gristle / tally / `person:<n>` (generated townsfolk); `at`, optional `to` + `walk: [start, dur]`; `actions: [{do, at, dur}]` with startle, point-left, point-right, shrug, raise, nod, peck; `layer: "behind"` puts them behind the set's front layer (e.g. behind the counter) |
+| `transition` | `ink`, `iris`, `tear` (or a plain cut) ; `fadeIn` / `fadeOut` |
+| `chart` | `{title, subtitle, bars: [[label, value]], unit, decimals, highlight, source}` — bars draw themselves in |
+| `vo` | `true` = narrator off-screen (nobody's mouth moves) |
+| `stamp` | time stamp card, e.g. `HOUR 8` |
+
+The old `scenes` format (v0.1) still works.
+
+## Script format (v0.1)
 
 ```json
 {

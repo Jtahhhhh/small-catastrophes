@@ -8,7 +8,7 @@ import numpy as np, soundfile as sf
 from kokoro_onnx import Kokoro
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-LEAD, GAP, TAIL = 0.4, 0.35, 1.2          # seconds: before first line, between lines, after a scene
+LEAD, GAP, TAIL = 0.4, 0.35, 1.2          # seconds: before first line, between lines, after the last shot
 
 def main(script_path):
     script = json.loads(pathlib.Path(script_path).read_text())
@@ -19,15 +19,18 @@ def main(script_path):
     voice, speed = script.get('voice', 'bm_george'), script.get('speed', 0.95)
     lang = 'en-gb' if voice.startswith('b') else 'en-us'
     sr, pieces, t, scenes = 24000, [], 0.0, []
-    for sc in script['scenes']:
+    shots = script.get('shots') or script['scenes']
+    for n, sc in enumerate(shots):
         s_start = t; lines = []
-        pieces.append(np.zeros(int(LEAD * sr))); t += LEAD
+        lead = sc.get('lead', LEAD if n == 0 else 0.15)
+        pieces.append(np.zeros(int(lead * sr))); t += lead
         for ln in sc['lines']:
             audio, sr = kok.create(ln['text'], voice=voice, speed=speed, lang=lang)
             d = len(audio) / sr
             lines.append({**ln, 'start': round(t, 3), 'end': round(t + d, 3)})
             pieces += [audio, np.zeros(int(GAP * sr))]; t += d + GAP
-        pieces.append(np.zeros(int(TAIL * sr))); t += TAIL
+        hold = sc.get('hold', TAIL if n == len(shots) - 1 else 0.25)
+        pieces.append(np.zeros(int(hold * sr))); t += hold
         scenes.append({k: v for k, v in sc.items() if k != 'lines'} | {'lines': lines, 'start': round(s_start, 3), 'end': round(t, 3)})
     wav = np.concatenate(pieces).astype(np.float32)
     sf.write(out / 'narration.wav', wav, sr)
@@ -35,9 +38,9 @@ def main(script_path):
     amps = np.array([np.sqrt(np.mean(wav[i:i + hop] ** 2)) for i in range(0, len(wav), hop)])
     amps = np.clip(amps / (amps.max() + 1e-9) * 1.6, 0, 1); amps[amps < 0.12] = 0
     tl = {'title': script.get('title', ep), 'fps': fps, 'size': script.get('size', [1920, 1080]),
-          'duration': round(t, 3), 'scenes': scenes, 'amps': [round(float(a), 3) for a in amps]}
+          'duration': round(t, 3), 'shots': scenes, 'amps': [round(float(a), 3) for a in amps]}
     (out / 'timeline.json').write_text(json.dumps(tl))
-    print(f'{ep}: {t:.1f}s narration, {sum(len(s["lines"]) for s in scenes)} lines')
+    print(f'{ep}: {t:.1f}s narration, {sum(len(s["lines"]) for s in scenes)} lines, {len(scenes)} shots')
 
 if __name__ == '__main__':
     main(sys.argv[1])
