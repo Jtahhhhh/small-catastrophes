@@ -1,0 +1,2058 @@
+{
+ "title": "What If the Internet Went Down for 24 Hours?",
+ "voice": "bm_george",
+ "speed": 0.95,
+ "fps": 24,
+ "size": [
+  1920,
+  1080
+ ],
+ "plan": [
+  {
+   "segment": "Cold open, Hour 0",
+   "locations": [
+    "street/us day",
+    "insert: phone",
+    "street close",
+    "intro sting"
+   ]
+  },
+  {
+   "segment": "So what? (how online we are)",
+   "locations": [
+    "board: Pew chart",
+    "street pan"
+   ]
+  },
+  {
+   "segment": "Hour 1: commute, phones",
+   "locations": [
+    "busstop/us day",
+    "street follow",
+    "insert: phone"
+   ]
+  },
+  {
+   "segment": "Hour 2: payments, cash",
+   "locations": [
+    "supermarket",
+    "insert: terminal",
+    "supermarket queue",
+    "street close",
+    "insert: wallet",
+    "street ATM queue"
+   ]
+  },
+  {
+   "segment": "Hour 3: airports",
+   "locations": [
+    "hall: DEPARTURES",
+    "insert: handwritten list"
+   ]
+  },
+  {
+   "segment": "Hour 5: hospital",
+   "locations": [
+    "hall: HOSPITAL",
+    "insert: paper chart"
+   ]
+  },
+  {
+   "segment": "Hour 8: work stops, people adapt",
+   "locations": [
+    "home day",
+    "panels: knock / map / radio"
+   ]
+  },
+  {
+   "segment": "Hour 12: supply chain",
+   "locations": [
+    "market",
+    "supermarket"
+   ]
+  },
+  {
+   "segment": "Hour 18: night, rumours, radio",
+   "locations": [
+    "street night",
+    "busstop night",
+    "home night"
+   ]
+  },
+  {
+   "segment": "Hour 24: back online",
+   "locations": [
+    "street day",
+    "insert: phone"
+   ]
+  },
+  {
+   "segment": "Already happened: Canada 2022",
+   "locations": [
+    "board: world map",
+    "hall + headline",
+    "supermarket",
+    "insert: phone 911"
+   ]
+  },
+  {
+   "segment": "Already happened: July 2024 update",
+   "locations": [
+    "hall + headline",
+    "board: Parametrix",
+    "hall queue"
+   ]
+  },
+  {
+   "segment": "Already happened: Tonga 2022",
+   "locations": [
+    "market",
+    "busstop",
+    "home"
+   ]
+  },
+  {
+   "segment": "On purpose: shutdowns",
+   "locations": [
+    "board: Access Now",
+    "street dusk close"
+   ]
+  },
+  {
+   "segment": "What helps, outro",
+   "locations": [
+    "hall",
+    "supermarket",
+    "home",
+    "insert: list",
+    "street night",
+    "end screen 15 s"
+   ]
+  }
+ ],
+ "shots": [
+  {
+   "set": "street",
+   "stamp": "HOUR 0",
+   "fadeIn": true,
+   "variant": {
+    "sky": "day",
+    "sign": "OPEN",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ]
+    },
+    {
+     "id": "tally",
+     "who": "tally",
+     "at": [
+      1560,
+      300
+     ],
+     "scale": 0.95,
+     "perch": true
+    }
+   ],
+   "lines": [
+    {
+     "text": "At eight o'clock on a Monday morning, the internet stops."
+    },
+    {
+     "text": "Not slow. Not patchy. Gone, everywhere, for twenty-four hours."
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "phone",
+    "text": [
+     "NO CONNECTION",
+     "Message not sent",
+     "Maps offline"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "lines": [
+    {
+     "text": "Every phone still switches on. It just can't reach anything."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "variant": {
+    "sky": "day",
+    "sign": "OPEN",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "close",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ],
+     "actions": [
+      {
+       "do": "raise",
+       "at": 0.4,
+       "dur": 1.6
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "I'm Mortimer Penny, and this is a small catastrophe."
+    },
+    {
+     "text": "Let's watch it unfold, hour by hour."
+    }
+   ]
+  },
+  {
+   "set": "endcard",
+   "brand": "intro",
+   "duration": 3.4,
+   "transition": "iris",
+   "tagline": "everyday systems, breaking hour by hour"
+  },
+  {
+   "set": "desk",
+   "transition": "tear",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "chart": {
+    "title": "How often Americans go online",
+    "subtitle": "share of U.S. adults, 2026",
+    "bars": [
+     [
+      "Almost constantly",
+      44
+     ],
+     [
+      "Several times a day",
+      41
+     ],
+     [
+      "Daily or weekly",
+      9
+     ],
+     [
+      "Rarely or never",
+      5
+     ]
+    ],
+    "unit": "%",
+    "highlight": 0,
+    "source": "Pew Research Center, NPORS (2026)"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1680,
+      1050
+     ],
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 2.5,
+       "dur": 3.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Most people's first thought is: I'd survive a day offline."
+    },
+    {
+     "text": "Maybe. But forty-four percent of American adults say they're online almost constantly.",
+     "source": "Pew Research Center 2026"
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "transition": "ink",
+   "variant": {
+    "sky": "day",
+    "sign": "OPEN",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "pan-right"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ],
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 1.5,
+       "dur": 2.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "And the internet isn't just the stuff on your screen."
+    },
+    {
+     "text": "It's the quiet plumbing under the bus, the shop, the bank, and the hospital."
+    }
+   ]
+  },
+  {
+   "set": "busstop",
+   "stamp": "HOUR 1",
+   "variant": {
+    "sky": "day",
+    "busSign": "BUS ?"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "w1",
+     "who": "person:1211",
+     "at": [
+      1250,
+      930
+     ],
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 4.0,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "who": "person:1212",
+     "at": [
+      1480,
+      905
+     ],
+     "face": "left",
+     "age": "old"
+    },
+    {
+     "id": "c",
+     "crowd": {
+      "n": 2,
+      "seed": 1213,
+      "area": [
+       -200,
+       800,
+       2100,
+       1000
+      ],
+      "walk": "both",
+      "speed": 110,
+      "age": "young"
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "By nine, people notice the small things first."
+    },
+    {
+     "text": "The arrival board at the bus stop goes blank. The ticket app won't load."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "variant": {
+    "sky": "day",
+    "sign": "OPEN",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "follow"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1600,
+      985
+     ],
+     "to": 450,
+     "walk": [
+      0.3,
+      8.0
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Most people assume it's their phone. They switch it off and on again."
+    },
+    {
+     "text": "Then they look up, and see everyone else doing exactly the same thing."
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "phone",
+    "text": [
+     "CALL FAILED",
+     "All lines are busy",
+     "Please try later"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "lines": [
+    {
+     "text": "Ordinary phone calls still work, mostly."
+    },
+    {
+     "text": "But everyone is calling everyone at once, and the lines jam."
+    }
+   ]
+  },
+  {
+   "set": "supermarket",
+   "transition": "tear",
+   "stamp": "HOUR 2",
+   "vo": true,
+   "variant": {
+    "shopSign": "OPEN"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "gristle",
+     "who": "gristle",
+     "at": [
+      1690,
+      880
+     ],
+     "layer": "behind",
+     "actions": [
+      {
+       "do": "nod",
+       "at": 2.0,
+       "dur": 1.2
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "At ten, Mrs. Gristle's card terminal shows a word she has never seen on it before."
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "atmScreen",
+    "text": [
+     "OFFLINE",
+     "card payments unavailable"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "lines": [
+    {
+     "text": "Offline."
+    }
+   ]
+  },
+  {
+   "set": "supermarket",
+   "vo": true,
+   "variant": {
+    "shopSign": "OPEN"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "gristle",
+     "who": "gristle",
+     "at": [
+      1690,
+      880
+     ],
+     "layer": "behind",
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 2.5,
+       "dur": 2.0
+      }
+     ]
+    },
+    {
+     "id": "q",
+     "crowd": {
+      "n": 6,
+      "seed": 1307,
+      "area": [
+       180,
+       990,
+       1150,
+       1030
+      ],
+      "queue": true,
+      "fidget": true
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "A card payment has to ask a bank, somewhere, whether the money is there."
+    },
+    {
+     "text": "No connection, no answer."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "sign": "OPEN",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "c",
+     "crowd": {
+      "n": 5,
+      "seed": 1355,
+      "area": [
+       -200,
+       800,
+       2100,
+       1000
+      ],
+      "walk": "both",
+      "speed": 100
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "Some terminals can save payments and send them later."
+    },
+    {
+     "text": "But then the shop carries the risk if the card turns out to be empty."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "transition": "ink",
+   "variant": {
+    "sky": "day",
+    "sign": "CASH ONLY",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "close",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ],
+     "actions": [
+      {
+       "do": "raise",
+       "at": 1.0,
+       "dur": 1.6
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Remember the last episode, when cash vanished?"
+    },
+    {
+     "text": "This is the morning cash becomes king again."
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "wallet"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "lines": [
+    {
+     "text": "Whoever has a few notes in their wallet can still buy breakfast."
+    },
+    {
+     "text": "Everyone else suddenly becomes very interested in the cash machine."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "variant": {
+    "sky": "day",
+    "sign": "CASH ONLY",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-right"
+   },
+   "actors": [
+    {
+     "id": "q",
+     "crowd": {
+      "n": 6,
+      "seed": 1401,
+      "area": [
+       700,
+       940,
+       1300,
+       1000
+      ],
+      "queue": true,
+      "fidget": true
+     }
+    }
+   ],
+   "vo": true,
+   "lines": [
+    {
+     "text": "Which, of course, also needs the network."
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "transition": "tear",
+   "stamp": "HOUR 3",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "hallSign": "DEPARTURES"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "q",
+     "crowd": {
+      "n": 8,
+      "seed": 1501,
+      "area": [
+       -60,
+       1000,
+       1700,
+       1040
+      ],
+      "queue": true,
+      "fidget": true
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "At the airport, the check-in desks freeze."
+    },
+    {
+     "text": "Boarding passes, bag tags, crew rosters: all of it lives on networked computers."
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "ledger",
+    "text": [
+     "Gate 12  06:40",
+     "Row 3: M. Penny",
+     "Row 14: Mrs. Oakes",
+     "Bags: tag by hand",
+     "Row 14: Mr. Fenn",
+     "Row 22: Pike",
+     "Row 9: the vicar",
+     "Whiteboard updates"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-right"
+   },
+   "lines": [
+    {
+     "text": "So staff do what some airports really did in July 2024.",
+     "source": "NBC News (2024)"
+    },
+    {
+     "text": "They write the boarding passes by hand.",
+     "source": "NBC News, Tom's Guide (Delhi airport), July 2024"
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "transition": "ink",
+   "stamp": "HOUR 5",
+   "variant": {
+    "sky": "day",
+    "hallSign": "COUNTY HOSPITAL"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      960,
+      985
+     ],
+     "actions": [
+      {
+       "do": "point-right",
+       "at": 3.0,
+       "dur": 2.5
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "At the hospital, the doctors are still here. The medicine is still here."
+    },
+    {
+     "text": "What's missing is the record: allergies, test results, last week's scan."
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "ledger",
+    "text": [
+     "Bed 4: NO penicillin",
+     "Bed 7: scan pending",
+     "Bed 9: insulin 08:00",
+     "Lab: send runner",
+     "Bed 2: discharge?",
+     "Bed 5: allergy?",
+     "Ward C: by phone",
+     "Pharmacy: paper"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "lines": [
+    {
+     "text": "So the wards go back to paper, and someone becomes a runner, carrying results by hand."
+    },
+    {
+     "text": "Hospitals practise this. It's slow, but it works."
+    }
+   ]
+  },
+  {
+   "set": "home",
+   "transition": "iris",
+   "stamp": "HOUR 8",
+   "variant": {
+    "sky": "day"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "h1",
+     "who": "person:1601",
+     "at": [
+      1350,
+      980
+     ],
+     "face": "left",
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 3.0,
+       "dur": 2.0
+      }
+     ]
+    }
+   ],
+   "vo": true,
+   "lines": [
+    {
+     "text": "By midday, the people who work from home have stopped working."
+    }
+   ]
+  },
+  {
+   "set": "laundromat",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "laundrySign": "CARD ONLY"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-right"
+   },
+   "actors": [
+    {
+     "id": "l1",
+     "who": "person:1611",
+     "at": [
+      700,
+      930
+     ],
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 2.5,
+       "dur": 2.0
+      }
+     ]
+    },
+    {
+     "id": "l2",
+     "who": "person:1612",
+     "at": [
+      1300,
+      960
+     ],
+     "face": "left",
+     "age": "young"
+    }
+   ],
+   "lines": [
+    {
+     "text": "So have most people in offices. The documents are in the cloud, and the cloud is out of reach."
+    },
+    {
+     "text": "Even the laundromat's card-only machines just sit there."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "transition": "tear",
+   "reveal": true,
+   "panels": [
+    {
+     "set": "street",
+     "variant": {
+      "sky": "day",
+      "sign": "OPEN",
+      "atm": "OFFLINE"
+     },
+     "label": "KNOCK KNOCK",
+     "camera": {
+      "size": "medium",
+      "on": [
+       880,
+       540
+      ],
+      "move": "static"
+     },
+     "actors": [
+      {
+       "id": "a",
+       "who": "person:1701",
+       "at": [
+        760,
+        985
+       ],
+       "age": "young",
+       "actions": [
+        {
+         "do": "point-right",
+         "at": 1.0,
+         "dur": 2.0
+        }
+       ]
+      },
+      {
+       "id": "b",
+       "who": "person:1702",
+       "at": [
+        1000,
+        985
+       ],
+       "face": "left",
+       "age": "young"
+      }
+     ]
+    },
+    {
+     "set": "busstop",
+     "variant": {
+      "sky": "day"
+     },
+     "label": "PAPER MAP",
+     "at": 1.8,
+     "camera": {
+      "size": "medium",
+      "on": [
+       880,
+       540
+      ],
+      "move": "static"
+     },
+     "actors": [
+      {
+       "id": "a",
+       "who": "person:1703",
+       "at": [
+        760,
+        985
+       ],
+       "age": "old"
+      },
+      {
+       "id": "b",
+       "who": "person:1704",
+       "at": [
+        1000,
+        985
+       ],
+       "face": "left",
+       "age": "young",
+       "actions": [
+        {
+         "do": "shrug",
+         "at": 2.6,
+         "dur": 1.6
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "set": "market",
+     "variant": {
+      "sky": "day"
+     },
+     "label": "RADIO",
+     "at": 3.6,
+     "camera": {
+      "size": "medium",
+      "on": [
+       880,
+       540
+      ],
+      "move": "static"
+     },
+     "actors": [
+      {
+       "id": "a",
+       "who": "person:1705",
+       "at": [
+        760,
+        985
+       ]
+      },
+      {
+       "id": "b",
+       "who": "person:1706",
+       "at": [
+        1000,
+        985
+       ],
+       "face": "left",
+       "age": "old",
+       "actions": [
+        {
+         "do": "nod",
+         "at": 4.6,
+         "dur": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "camera": {
+    "size": "wide",
+    "move": "static"
+   },
+   "lines": [
+    {
+     "text": "Teenagers rediscover a strange old ritual: knocking on a friend's door."
+    },
+    {
+     "text": "Someone finds a paper map. Someone else finds a radio."
+    }
+   ]
+  },
+  {
+   "set": "market",
+   "transition": "ink",
+   "stamp": "HOUR 12",
+   "vo": true,
+   "variant": {
+    "sky": "day"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-right"
+   },
+   "actors": [
+    {
+     "id": "c",
+     "crowd": {
+      "n": 5,
+      "seed": 1801,
+      "area": [
+       -200,
+       760,
+       2100,
+       1000
+      ],
+      "walk": "both",
+      "speed": 90
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "By the afternoon, the problems you can't see start to matter."
+    },
+    {
+     "text": "Shops reorder their stock automatically, every night, over the network."
+    }
+   ]
+  },
+  {
+   "set": "supermarket",
+   "vo": true,
+   "variant": {
+    "shopSign": "CASH ONLY"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "gristle",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "gristle",
+     "who": "gristle",
+     "at": [
+      1690,
+      880
+     ],
+     "layer": "behind",
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 3.0,
+       "dur": 2.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Tonight, no orders go out."
+    },
+    {
+     "text": "Tomorrow's trucks will be loaded with yesterday's guesses."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "transition": "iris",
+   "stamp": "HOUR 18",
+   "variant": {
+    "sky": "night",
+    "sign": "CLOSED",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ]
+    },
+    {
+     "id": "c",
+     "crowd": {
+      "n": 4,
+      "seed": 1901,
+      "area": [
+       -200,
+       800,
+       2100,
+       1000
+      ],
+      "walk": "both",
+      "speed": 80
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "As it gets dark, people do something they haven't done in years."
+    },
+    {
+     "text": "They go outside to find out what's going on."
+    }
+   ]
+  },
+  {
+   "set": "busstop",
+   "vo": true,
+   "variant": {
+    "sky": "night"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "n1",
+     "who": "person:1911",
+     "at": [
+      1250,
+      930
+     ],
+     "actions": [
+      {
+       "do": "point-right",
+       "at": 2.0,
+       "dur": 2.0
+      }
+     ]
+    },
+    {
+     "id": "n2",
+     "who": "person:1912",
+     "at": [
+      1480,
+      905
+     ],
+     "face": "left",
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 5.0,
+       "dur": 1.8
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Rumours travel faster than facts. A cyberattack? A war? A solar storm?"
+    },
+    {
+     "text": "Nobody knows, because the usual way of finding out is the thing that's broken."
+    }
+   ]
+  },
+  {
+   "set": "home",
+   "transition": "iris",
+   "variant": {
+    "sky": "night"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1350,
+      980
+     ],
+     "actions": [
+      {
+       "do": "nod",
+       "at": 3.5,
+       "dur": 1.0
+      }
+     ],
+     "face": "left"
+    }
+   ],
+   "lines": [
+    {
+     "text": "The battery radio in the kitchen drawer becomes the most important device in the house."
+    },
+    {
+     "text": "Local stations read out what they know, hour by hour."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "transition": "tear",
+   "stamp": "HOUR 24",
+   "variant": {
+    "sky": "day",
+    "sign": "OPEN",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ]
+    },
+    {
+     "id": "c",
+     "crowd": {
+      "n": 4,
+      "seed": 2001,
+      "area": [
+       -200,
+       800,
+       2100,
+       1000
+      ],
+      "walk": "both",
+      "speed": 120
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "At eight the next morning, the connection comes back."
+    },
+    {
+     "text": "Hundreds of messages arrive at once."
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "phone",
+    "text": [
+     "412 NEW MESSAGES",
+     "Mum (37)",
+     "Work (88)"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "lines": [
+    {
+     "text": "Most people lost a day. A few lost a great deal more."
+    }
+   ]
+  },
+  {
+   "set": "desk",
+   "transition": "ink",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "map": {
+    "region": "world",
+    "title": "It has already happened",
+    "source": "Natural Earth outlines",
+    "highlight": [
+     {
+      "name": "Canada",
+      "label": "Canada 2022",
+      "at": 1.8,
+      "offset": [
+       40,
+       -120
+      ]
+     },
+     {
+      "name": "India",
+      "label": "Airports 2024",
+      "at": 3.4,
+      "offset": [
+       60,
+       -150
+      ]
+     },
+     {
+      "name": "New Zealand",
+      "label": "Tonga 2022 (north-east)",
+      "at": 5.0,
+      "offset": [
+       -420,
+       -160
+      ]
+     }
+    ]
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1680,
+      1050
+     ],
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 2.0,
+       "dur": 3.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "That sounds like fiction. But pieces of it have already happened, more than once."
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "hallSign": "CITY HALL"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "headline": {
+    "paper": "THE MORNING STANDARD",
+    "date": "8 July 2022",
+    "text": "NATIONWIDE NETWORK OUTAGE",
+    "sub": "Phones, internet and debit cards down across Canada",
+    "source": "Illustration · CRTC / Xona Partners report (2024)"
+   },
+   "lines": [
+    {
+     "text": "On the eighth of July, 2022, one configuration error inside Rogers, one of Canada's largest telecom companies, cut off more than twelve million customers.",
+     "source": "CRTC / Xona Partners (2024)"
+    }
+   ]
+  },
+  {
+   "set": "supermarket",
+   "transition": "iris",
+   "vo": true,
+   "variant": {
+    "shopSign": "DEBIT DOWN"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "gristle",
+     "who": "gristle",
+     "at": [
+      1690,
+      880
+     ],
+     "layer": "behind",
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 2.0,
+       "dur": 2.0
+      }
+     ]
+    },
+    {
+     "id": "q",
+     "crowd": {
+      "n": 5,
+      "seed": 2101,
+      "area": [
+       180,
+       990,
+       1150,
+       1030
+      ],
+      "queue": true,
+      "fidget": true
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "Debit payments failed in shops across the country, because the payment network ran over that one company's lines.",
+     "source": "CRTC / Xona Partners (2024)"
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "phone",
+    "text": [
+     "911",
+     "Call failed",
+     "No network"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "lines": [
+    {
+     "text": "Worse, some people couldn't reach 911.",
+     "source": "CBC News 2022"
+    },
+    {
+     "text": "Full service took about twenty-six hours to return.",
+     "card": {
+      "big": "26 h",
+      "small": "to restore service"
+     },
+     "source": "CRTC: 04:58 8 July to 07:00 9 July 2022"
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "transition": "tear",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "hallSign": "DEPARTURES"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "headline": {
+    "paper": "THE EVENING COURIER",
+    "date": "19 July 2024",
+    "text": "MILLIONS OF COMPUTERS CRASH",
+    "sub": "Faulty security update grounds flights worldwide",
+    "source": "Illustration · Reuters, Microsoft figures"
+   },
+   "lines": [
+    {
+     "text": "Two years later, it wasn't even a network. It was one faulty software update."
+    },
+    {
+     "text": "About eight and a half million Windows computers crashed at once.",
+     "source": "Microsoft, via Reuters (2024)"
+    }
+   ]
+  },
+  {
+   "set": "desk",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "chart": {
+    "title": "What one bad update cost, by sector",
+    "subtitle": "estimated direct losses, U.S. Fortune 500, $ billions",
+    "bars": [
+     [
+      "Healthcare",
+      1.94
+     ],
+     [
+      "Banking",
+      1.15
+     ],
+     [
+      "Airlines",
+      0.86
+     ]
+    ],
+    "unit": "",
+    "highlight": 0,
+    "source": "Parametrix (2024)"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1680,
+      1050
+     ],
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 3.0,
+       "dur": 3.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Hospitals, banks and airlines took the biggest hits."
+    },
+    {
+     "text": "Large American companies alone lost an estimated five point four billion dollars.",
+     "card": {
+      "big": "$5.4B",
+      "small": "Fortune 500 losses"
+     },
+     "source": "Parametrix (2024)"
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "hallSign": "DEPARTURES"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-right"
+   },
+   "actors": [
+    {
+     "id": "q",
+     "crowd": {
+      "n": 9,
+      "seed": 2201,
+      "area": [
+       -60,
+       1000,
+       1700,
+       1040
+      ],
+      "queue": true,
+      "fidget": true,
+      "age": [
+       "old",
+       "adult",
+       "young"
+      ]
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "Thousands of flights were cancelled. Departure times went up on whiteboards.",
+     "source": "TechTarget; Business Insider (2024)"
+    }
+   ]
+  },
+  {
+   "set": "market",
+   "transition": "ink",
+   "stamp": "TONGA, 2022",
+   "vo": true,
+   "variant": {
+    "sky": "day"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "c",
+     "crowd": {
+      "n": 6,
+      "seed": 2301,
+      "area": [
+       -200,
+       760,
+       2100,
+       1050
+      ],
+      "walk": "both",
+      "speed": 90
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "And in January 2022, an undersea volcano erupted near Tonga.",
+     "source": "AP via NPR (2022)"
+    },
+    {
+     "text": "It severed the single cable connecting the country to the internet.",
+     "source": "AP via NPR; Euronews (2022)"
+    }
+   ]
+  },
+  {
+   "set": "busstop",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "busSign": "NO CABLE"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "t1",
+     "who": "person:2311",
+     "at": [
+      1250,
+      930
+     ],
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 3.5,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "id": "t2",
+     "who": "person:2312",
+     "at": [
+      1480,
+      905
+     ],
+     "face": "left",
+     "age": "old"
+    }
+   ],
+   "lines": [
+    {
+     "text": "The nearest repair ship was about four thousand seven hundred kilometres away.",
+     "source": "Euronews / Global Marine (2022)"
+    },
+    {
+     "text": "Just getting there took ten days.",
+     "source": "Euronews / Global Marine (2022)"
+    }
+   ]
+  },
+  {
+   "set": "home",
+   "transition": "iris",
+   "variant": {
+    "sky": "day"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1350,
+      980
+     ],
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 2.5,
+       "dur": 2.5
+      }
+     ],
+     "face": "left"
+    }
+   ],
+   "lines": [
+    {
+     "text": "Tonga stayed mostly cut off for thirty-eight days, getting by on a few satellite links.",
+     "card": {
+      "big": "38 days",
+      "small": "before the cable was fixed"
+     },
+     "source": "SBS News; RTÉ (Feb 2022)"
+    }
+   ]
+  },
+  {
+   "set": "desk",
+   "transition": "tear",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "chart": {
+    "title": "Deliberate internet shutdowns",
+    "subtitle": "documented worldwide, per year",
+    "bars": [
+     [
+      "2024",
+      304
+     ],
+     [
+      "2025",
+      313
+     ]
+    ],
+    "unit": "",
+    "highlight": 1,
+    "source": "Access Now & #KeepItOn, report on 2025 (2026)"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1680,
+      1050
+     ],
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 2.5,
+       "dur": 3.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "And sometimes the internet doesn't fail. It gets switched off on purpose."
+    },
+    {
+     "text": "Authorities shut it down at least three hundred and thirteen times in 2025, in fifty-two countries.",
+     "source": "Access Now & #KeepItOn (2026)"
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "variant": {
+    "sky": "dusk",
+    "sign": "CLOSED",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "close",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ],
+     "actions": [
+      {
+       "do": "nod",
+       "at": 4.0,
+       "dur": 1.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "For millions of people, a day without the internet isn't a thought experiment.",
+     "source": "Access Now & #KeepItOn (2026)"
+    },
+    {
+     "text": "It's something that is done to them."
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "transition": "tear",
+   "variant": {
+    "sky": "day",
+    "hallSign": "CITY HALL"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "pan-right"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ],
+     "actions": [
+      {
+       "do": "point-right",
+       "at": 3.0,
+       "dur": 2.5
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "So what actually helps?"
+    },
+    {
+     "text": "After the Rogers outage, Canada's big carriers signed a deal to carry each other's customers, and 911 calls, in an emergency.",
+     "source": "Government of Canada statement, Sept 2022"
+    }
+   ]
+  },
+  {
+   "set": "supermarket",
+   "transition": "iris",
+   "vo": true,
+   "variant": {
+    "shopSign": "CASH WELCOME"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "gristle",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "gristle",
+     "who": "gristle",
+     "at": [
+      1690,
+      880
+     ],
+     "layer": "behind",
+     "actions": [
+      {
+       "do": "raise",
+       "at": 2.0,
+       "dur": 1.6
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Shops that keep a little cash in the till, and a notebook for IOUs, stay open."
+    },
+    {
+     "text": "Mrs. Gristle has both."
+    }
+   ]
+  },
+  {
+   "set": "home",
+   "transition": "iris",
+   "variant": {
+    "sky": "day"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1350,
+      980
+     ],
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 4.0,
+       "dur": 2.0
+      }
+     ],
+     "face": "left"
+    }
+   ],
+   "lines": [
+    {
+     "text": "And at home, the boring things win."
+    },
+    {
+     "text": "A written list of phone numbers. A battery radio. A little cash. Knowing which neighbour to knock on."
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "ledger",
+    "text": [
+     "Mum  555-0142",
+     "Dr. Hale  555-0199",
+     "School  555-0123",
+     "Work  555-0170",
+     "Neighbour: no. 14",
+     "Radio: 1010 AM",
+     "Water: 3 days",
+     "Cash: some"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-right"
+   },
+   "lines": [
+    {
+     "text": "Write it down. On paper. Today."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "transition": "iris",
+   "variant": {
+    "sky": "night",
+    "sign": "OPEN",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ],
+     "actions": [
+      {
+       "do": "raise",
+       "at": 3.0,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "tally",
+     "who": "tally",
+     "at": [
+      1560,
+      300
+     ],
+     "scale": 0.95,
+     "perch": true
+    }
+   ],
+   "lines": [
+    {
+     "text": "The internet will come back. It almost always does."
+    },
+    {
+     "text": "The question is how well your Monday works without it."
+    }
+   ]
+  },
+  {
+   "set": "endcard",
+   "duration": 15,
+   "transition": "iris"
+  }
+ ]
+}
