@@ -1,0 +1,268 @@
+{
+ "title": "Tonga lost the internet for 38 days",
+ "voice": "bm_george",
+ "speed": 0.95,
+ "fps": 24,
+ "size": [
+  1920,
+  1080
+ ],
+ "thumbnail": [
+  {
+   "time": 16.94,
+   "shift": 380,
+   "title": [
+    "INTERNET",
+    "GONE"
+   ],
+   "stamp": "24 HOURS",
+   "accent": 1
+  },
+  {
+   "time": 123.76,
+   "shift": 0,
+   "title": [
+    "NO SIGNAL.",
+    "NOW WHAT?"
+   ],
+   "stamp": "WHAT IF?",
+   "accent": 1,
+   "size": 160,
+   "ty": 230,
+   "sy": 860
+  }
+ ],
+ "hook": "Tonga lost the internet for 38 days",
+ "vertical": true,
+ "source_episode": "ep02-internet-down",
+ "source_shots": [
+  37,
+  38,
+  39,
+  40,
+  41
+ ],
+ "shots": [
+  {
+   "set": "market",
+   "stamp": "TONGA, 2022",
+   "vo": true,
+   "variant": {
+    "sky": "day"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "c",
+     "crowd": {
+      "n": 6,
+      "seed": 2301,
+      "area": [
+       -200,
+       760,
+       2100,
+       1050
+      ],
+      "walk": "both",
+      "speed": 90
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "And in January 2022, an undersea volcano erupted near Tonga.",
+     "source": "AP via NPR (2022)"
+    },
+    {
+     "text": "It severed the single cable connecting the country to the internet.",
+     "source": "AP via NPR; Euronews (2022)"
+    }
+   ]
+  },
+  {
+   "set": "busstop",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "busSign": "NO CABLE"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "t1",
+     "who": "person:2311",
+     "at": [
+      1250,
+      930
+     ],
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 3.5,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "id": "t2",
+     "who": "person:2312",
+     "at": [
+      1480,
+      905
+     ],
+     "face": "left",
+     "age": "old"
+    }
+   ],
+   "lines": [
+    {
+     "text": "The nearest repair ship was about four thousand seven hundred kilometres away.",
+     "source": "Euronews / Global Marine (2022)"
+    },
+    {
+     "text": "Just getting there took ten days.",
+     "source": "Euronews / Global Marine (2022)"
+    }
+   ]
+  },
+  {
+   "set": "home",
+   "transition": "iris",
+   "variant": {
+    "sky": "day"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1350,
+      980
+     ],
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 2.5,
+       "dur": 2.5
+      }
+     ],
+     "face": "left"
+    }
+   ],
+   "lines": [
+    {
+     "text": "Tonga stayed mostly cut off for thirty-eight days, getting by on a few satellite links.",
+     "card": {
+      "big": "38 days",
+      "small": "before the cable was fixed"
+     },
+     "source": "SBS News; RTÉ (Feb 2022)"
+    }
+   ]
+  },
+  {
+   "set": "desk",
+   "transition": "tear",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "chart": {
+    "title": "Deliberate internet shutdowns",
+    "subtitle": "documented worldwide, per year",
+    "bars": [
+     [
+      "2024",
+      304
+     ],
+     [
+      "2025",
+      313
+     ]
+    ],
+    "unit": "",
+    "highlight": 1,
+    "source": "Access Now & #KeepItOn, report on 2025 (2026)"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1680,
+      1050
+     ],
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 2.5,
+       "dur": 3.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "And sometimes the internet doesn't fail. It gets switched off on purpose."
+    },
+    {
+     "text": "Authorities shut it down at least three hundred and thirteen times in 2025, in fifty-two countries.",
+     "source": "Access Now & #KeepItOn (2026)"
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "variant": {
+    "sky": "dusk",
+    "sign": "CLOSED",
+    "atm": "OFFLINE"
+   },
+   "camera": {
+    "size": "close",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ],
+     "actions": [
+      {
+       "do": "nod",
+       "at": 4.0,
+       "dur": 1.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "For millions of people, a day without the internet isn't a thought experiment.",
+     "source": "Access Now & #KeepItOn (2026)"
+    },
+    {
+     "text": "It's something that is done to them."
+    },
+    {
+     "text": "The full story is on Small Catastrophes."
+    }
+   ]
+  }
+ ]
+}

@@ -1306,7 +1306,7 @@
    },
    "chart": {
     "title": "Ambassador Bridge, February 2022",
-    "subtitle": "trade normally crossing per day, US$ millions",
+    "subtitle": "trade per day, US$ millions · only 54 trucks crossed all week",
     "bars": [
      [
       "Normal day",
@@ -1319,7 +1319,7 @@
     ],
     "unit": "",
     "highlight": 1,
-    "source": "Reuters (2022)"
+    "source": "Reuters; Global News / Statistics Canada (2022)"
    },
    "actors": [
     {
@@ -1653,6 +1653,31 @@
    "set": "endcard",
    "duration": 15,
    "transition": "iris"
+  }
+ ],
+ "thumbnail": [
+  {
+   "time": 17.15,
+   "shift": 380,
+   "title": [
+    "TRUCKS",
+    "STOPPED"
+   ],
+   "stamp": "7 DAYS",
+   "accent": 1
+  },
+  {
+   "time": 156.21,
+   "shift": 0,
+   "title": [
+    "EMPTY",
+    "SHELVES"
+   ],
+   "stamp": "WHAT IF?",
+   "accent": 1,
+   "size": 160,
+   "ty": 230,
+   "sy": 860
   }
  ]
 }

@@ -1,0 +1,257 @@
+{
+ "title": "Canada lost its network for a whole day",
+ "voice": "bm_george",
+ "speed": 0.95,
+ "fps": 24,
+ "size": [
+  1920,
+  1080
+ ],
+ "thumbnail": [
+  {
+   "time": 16.94,
+   "shift": 380,
+   "title": [
+    "INTERNET",
+    "GONE"
+   ],
+   "stamp": "24 HOURS",
+   "accent": 1
+  },
+  {
+   "time": 123.76,
+   "shift": 0,
+   "title": [
+    "NO SIGNAL.",
+    "NOW WHAT?"
+   ],
+   "stamp": "WHAT IF?",
+   "accent": 1,
+   "size": 160,
+   "ty": 230,
+   "sy": 860
+  }
+ ],
+ "hook": "Canada lost its network for a whole day",
+ "vertical": true,
+ "source_episode": "ep02-internet-down",
+ "source_shots": [
+  30,
+  31,
+  32,
+  33,
+  42
+ ],
+ "shots": [
+  {
+   "set": "desk",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "map": {
+    "region": "world",
+    "title": "It has already happened",
+    "source": "Natural Earth outlines",
+    "highlight": [
+     {
+      "name": "Canada",
+      "label": "Canada 2022",
+      "at": 1.8,
+      "offset": [
+       40,
+       -120
+      ]
+     },
+     {
+      "name": "India",
+      "label": "Airports 2024",
+      "at": 3.4,
+      "offset": [
+       60,
+       -150
+      ]
+     },
+     {
+      "name": "New Zealand",
+      "label": "Tonga 2022 (north-east)",
+      "at": 5.0,
+      "offset": [
+       -420,
+       -160
+      ]
+     }
+    ]
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1680,
+      1050
+     ],
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 2.0,
+       "dur": 3.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "That sounds like fiction. But pieces of it have already happened, more than once."
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "hallSign": "CITY HALL"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "headline": {
+    "paper": "THE MORNING STANDARD",
+    "date": "8 July 2022",
+    "text": "NATIONWIDE NETWORK OUTAGE",
+    "sub": "Phones, internet and debit cards down across Canada",
+    "source": "Illustration · CRTC / Xona Partners report (2024)"
+   },
+   "lines": [
+    {
+     "text": "On the eighth of July, 2022, one configuration error inside Rogers, one of Canada's largest telecom companies, cut off more than twelve million customers.",
+     "source": "CRTC / Xona Partners (2024)"
+    }
+   ]
+  },
+  {
+   "set": "supermarket",
+   "transition": "iris",
+   "vo": true,
+   "variant": {
+    "shopSign": "DEBIT DOWN"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "gristle",
+     "who": "gristle",
+     "at": [
+      1690,
+      880
+     ],
+     "layer": "behind",
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 2.0,
+       "dur": 2.0
+      }
+     ]
+    },
+    {
+     "id": "q",
+     "crowd": {
+      "n": 5,
+      "seed": 2101,
+      "area": [
+       180,
+       990,
+       1150,
+       1030
+      ],
+      "queue": true,
+      "fidget": true
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "Debit payments failed in shops across the country, because the payment network ran over that one company's lines.",
+     "source": "CRTC / Xona Partners (2024)"
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "phone",
+    "text": [
+     "911",
+     "Call failed",
+     "No network"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "lines": [
+    {
+     "text": "Worse, some people couldn't reach 911.",
+     "source": "CBC News 2022"
+    },
+    {
+     "text": "Full service took about twenty-six hours to return.",
+     "card": {
+      "big": "26 h",
+      "small": "to restore service"
+     },
+     "source": "CRTC: 04:58 8 July to 07:00 9 July 2022"
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "transition": "tear",
+   "variant": {
+    "sky": "day",
+    "hallSign": "CITY HALL"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "pan-right"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ],
+     "actions": [
+      {
+       "do": "point-right",
+       "at": 3.0,
+       "dur": 2.5
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "So what actually helps?"
+    },
+    {
+     "text": "After the Rogers outage, Canada's big carriers signed a deal to carry each other's customers, and 911 calls, in an emergency.",
+     "source": "Government of Canada statement, Sept 2022"
+    },
+    {
+     "text": "The full story is on Small Catastrophes."
+    }
+   ]
+  }
+ ]
+}

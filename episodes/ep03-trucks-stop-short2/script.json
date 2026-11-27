@@ -1,0 +1,269 @@
+{
+ "title": "Britain ran out of fuel in 2021",
+ "voice": "bm_george",
+ "speed": 0.95,
+ "fps": 24,
+ "size": [
+  1920,
+  1080
+ ],
+ "thumbnail": [
+  {
+   "time": 17.15,
+   "shift": 380,
+   "title": [
+    "TRUCKS",
+    "STOPPED"
+   ],
+   "stamp": "7 DAYS",
+   "accent": 1
+  },
+  {
+   "time": 156.21,
+   "shift": 0,
+   "title": [
+    "EMPTY",
+    "SHELVES"
+   ],
+   "stamp": "WHAT IF?",
+   "accent": 1,
+   "size": 160,
+   "ty": 230,
+   "sy": 860
+  }
+ ],
+ "hook": "Britain ran out of fuel in 2021",
+ "vertical": true,
+ "source_episode": "ep03-trucks-stop",
+ "source_shots": [
+  24,
+  25,
+  26,
+  27,
+  36
+ ],
+ "shots": [
+  {
+   "set": "desk",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "map": {
+    "region": "world",
+    "title": "It has already happened",
+    "source": "Natural Earth outlines",
+    "highlight": [
+     {
+      "name": "United Kingdom",
+      "label": "Britain 2021",
+      "at": 1.8,
+      "offset": [
+       -260,
+       -140
+      ]
+     },
+     {
+      "name": "Canada",
+      "label": "Canada 2022",
+      "at": 3.4,
+      "offset": [
+       40,
+       -120
+      ]
+     }
+    ]
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1680,
+      1050
+     ],
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 2.0,
+       "dur": 3.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Nobody has switched off every truck at once. But smaller versions keep happening."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "transition": "tear",
+   "stamp": "BRITAIN, 2021",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "sign": "SORRY NO FUEL",
+    "atm": "CASH"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "q",
+     "crowd": {
+      "n": 8,
+      "seed": 3501,
+      "area": [
+       100,
+       920,
+       1600,
+       1000
+      ],
+      "queue": true,
+      "fidget": true
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "In 2021, Britain was short of around a hundred thousand lorry drivers.",
+     "source": "Road Haulage Association, via Reuters (2021)"
+    },
+    {
+     "text": "Fuel was plentiful at the refineries. There just weren't enough people to drive the tankers.",
+     "source": "Petrol Retailers Association (2021)"
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "hallSign": "CITY HALL"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "headline": {
+    "paper": "THE MORNING STANDARD",
+    "date": "27 September 2021",
+    "text": "PUMPS RUN DRY",
+    "sub": "Army put on standby to deliver fuel",
+    "source": "Illustration · Reuters, Al Jazeera reporting"
+   },
+   "lines": [
+    {
+     "text": "When the news broke, panic buying did the rest. In some areas, up to ninety percent of pumps ran dry.",
+     "card": {
+      "big": "90%",
+      "small": "of pumps dry in some areas"
+     },
+     "source": "Petrol Retailers Association, via Reuters (2021)"
+    }
+   ]
+  },
+  {
+   "set": "busstop",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "busSign": "BUS"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-right"
+   },
+   "actors": [
+    {
+     "id": "s1",
+     "who": "person:3511",
+     "at": [
+      1250,
+      930
+     ],
+     "actions": [
+      {
+       "do": "point-right",
+       "at": 2.0,
+       "dur": 2.0
+      }
+     ]
+    },
+    {
+     "id": "s2",
+     "who": "person:3512",
+     "at": [
+      1480,
+      905
+     ],
+     "face": "left",
+     "age": "old"
+    }
+   ],
+   "lines": [
+    {
+     "text": "The government put army tanker drivers on standby to help refill the stations.",
+     "source": "Al Jazeera; S&P Global (Sept 2021)"
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "transition": "iris",
+   "variant": {
+    "sky": "night",
+    "sign": "OPEN",
+    "atm": "CASH"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ],
+     "actions": [
+      {
+       "do": "raise",
+       "at": 3.0,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "tally",
+     "who": "tally",
+     "at": [
+      1560,
+      300
+     ],
+     "scale": 0.95,
+     "perch": true
+    }
+   ],
+   "lines": [
+    {
+     "text": "Everything you own arrived on a truck, at some point."
+    },
+    {
+     "text": "The question is how many days you could go before you'd notice."
+    },
+    {
+     "text": "The full story is on Small Catastrophes."
+    }
+   ]
+  }
+ ]
+}

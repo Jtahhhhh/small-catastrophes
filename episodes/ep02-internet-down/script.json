@@ -2054,5 +2054,30 @@
    "duration": 15,
    "transition": "iris"
   }
+ ],
+ "thumbnail": [
+  {
+   "time": 16.94,
+   "shift": 380,
+   "title": [
+    "INTERNET",
+    "GONE"
+   ],
+   "stamp": "24 HOURS",
+   "accent": 1
+  },
+  {
+   "time": 123.76,
+   "shift": 0,
+   "title": [
+    "NO SIGNAL.",
+    "NOW WHAT?"
+   ],
+   "stamp": "WHAT IF?",
+   "accent": 1,
+   "size": 160,
+   "ty": 230,
+   "sy": 860
+  }
  ]
 }

@@ -1,0 +1,275 @@
+{
+ "title": "What if every truck stopped tonight?",
+ "voice": "bm_george",
+ "speed": 0.95,
+ "fps": 24,
+ "size": [
+  1920,
+  1080
+ ],
+ "thumbnail": [
+  {
+   "time": 17.15,
+   "shift": 380,
+   "title": [
+    "TRUCKS",
+    "STOPPED"
+   ],
+   "stamp": "7 DAYS",
+   "accent": 1
+  },
+  {
+   "time": 156.21,
+   "shift": 0,
+   "title": [
+    "EMPTY",
+    "SHELVES"
+   ],
+   "stamp": "WHAT IF?",
+   "accent": 1,
+   "size": 160,
+   "ty": 230,
+   "sy": 860
+  }
+ ],
+ "hook": "What if every truck stopped tonight?",
+ "vertical": true,
+ "source_episode": "ep03-trucks-stop",
+ "source_shots": [
+  0,
+  1,
+  6,
+  7,
+  9,
+  10
+ ],
+ "shots": [
+  {
+   "set": "street",
+   "stamp": "HOUR 0",
+   "variant": {
+    "sky": "dusk",
+    "sign": "OPEN",
+    "atm": "CASH"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ]
+    },
+    {
+     "id": "tally",
+     "who": "tally",
+     "at": [
+      1560,
+      300
+     ],
+     "scale": 0.95,
+     "perch": true
+    }
+   ],
+   "lines": [
+    {
+     "text": "Tonight, at midnight, every truck in the country pulls over and switches off its engine."
+    },
+    {
+     "text": "No crash. No storm. They just stop, for one week."
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "ledger",
+    "text": [
+     "DELIVERIES TODAY",
+     "Milk  06:00",
+     "Bread  06:30",
+     "Fuel  07:15",
+     "Pharmacy  08:00",
+     "Mail  09:00",
+     "Parcels  11:00",
+     "Cash van  14:00"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-right"
+   },
+   "lines": [
+    {
+     "text": "Tomorrow morning, none of these arrive."
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "transition": "tear",
+   "stamp": "HOUR 8",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "sign": "NO FUEL",
+    "atm": "CASH"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "q",
+     "crowd": {
+      "n": 6,
+      "seed": 3101,
+      "area": [
+       200,
+       920,
+       1500,
+       1000
+      ],
+      "queue": true,
+      "fidget": true
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "The first thing to run out is fuel."
+    },
+    {
+     "text": "The busiest filling stations can run dry within hours of their last delivery.",
+     "source": "ATA, When Trucks Stop, America Stops"
+    }
+   ]
+  },
+  {
+   "set": "busstop",
+   "variant": {
+    "sky": "day",
+    "busSign": "BUS"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "w1",
+     "who": "person:3111",
+     "at": [
+      1250,
+      930
+     ],
+     "actions": [
+      {
+       "do": "shrug",
+       "at": 3.5,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "who": "person:3112",
+     "at": [
+      1480,
+      905
+     ],
+     "face": "left",
+     "age": "old"
+    }
+   ],
+   "vo": true,
+   "lines": [
+    {
+     "text": "The rest follow within a day or two.",
+     "source": "ATA, When Trucks Stop, America Stops"
+    },
+    {
+     "text": "And the bus at this stop runs on diesel that also came by truck."
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "transition": "tear",
+   "stamp": "HOUR 12",
+   "variant": {
+    "sky": "day",
+    "hallSign": "COUNTY HOSPITAL"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      960,
+      985
+     ],
+     "actions": [
+      {
+       "do": "point-right",
+       "at": 3.0,
+       "dur": 2.5
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Hospitals are next, and faster than you'd think."
+    },
+    {
+     "text": "They keep very little in storage, so basics like syringes and catheters can run short within hours.",
+     "source": "ATA, When Trucks Stop, America Stops"
+    }
+   ]
+  },
+  {
+   "set": "table",
+   "insert": {
+    "prop": "ledger",
+    "text": [
+     "Syringes: 1 box",
+     "Gloves: low",
+     "Saline: 2 days",
+     "Oxygen: 7–10 days",
+     "Linen: send home?",
+     "Meals: soup",
+     "Blood: call donors",
+     "Waste: piling"
+    ]
+   },
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "lines": [
+    {
+     "text": "Oxygen lasts longer: about seven to ten days.",
+     "source": "ATA via Business Insider"
+    },
+    {
+     "text": "After that, hospitals start choosing which operations can wait."
+    },
+    {
+     "text": "The full story is on Small Catastrophes."
+    }
+   ]
+  }
+ ]
+}

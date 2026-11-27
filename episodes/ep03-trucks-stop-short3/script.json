@@ -1,0 +1,213 @@
+{
+ "title": "One bridge carries a quarter of U.S.–Canada trade",
+ "voice": "bm_george",
+ "speed": 0.95,
+ "fps": 24,
+ "size": [
+  1920,
+  1080
+ ],
+ "thumbnail": [
+  {
+   "time": 17.15,
+   "shift": 380,
+   "title": [
+    "TRUCKS",
+    "STOPPED"
+   ],
+   "stamp": "7 DAYS",
+   "accent": 1
+  },
+  {
+   "time": 156.21,
+   "shift": 0,
+   "title": [
+    "EMPTY",
+    "SHELVES"
+   ],
+   "stamp": "WHAT IF?",
+   "accent": 1,
+   "size": 160,
+   "ty": 230,
+   "sy": 860
+  }
+ ],
+ "hook": "One bridge carries a quarter of U.S.–Canada trade",
+ "vertical": true,
+ "source_episode": "ep03-trucks-stop",
+ "source_shots": [
+  28,
+  29,
+  30,
+  31
+ ],
+ "shots": [
+  {
+   "set": "desk",
+   "camera": {
+    "size": "wide",
+    "move": "push"
+   },
+   "chart": {
+    "title": "Ambassador Bridge, February 2022",
+    "subtitle": "trade per day, US$ millions · only 54 trucks crossed all week",
+    "bars": [
+     [
+      "Normal day",
+      360
+     ],
+     [
+      "During blockade",
+      0
+     ]
+    ],
+    "unit": "",
+    "highlight": 1,
+    "source": "Reuters; Global News / Statistics Canada (2022)"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      1680,
+      1050
+     ],
+     "actions": [
+      {
+       "do": "point-left",
+       "at": 2.5,
+       "dur": 3.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "A few months later, in February 2022, protesters blocked the Ambassador Bridge between Detroit and Windsor for six days.",
+     "source": "Reuters (2022)"
+    },
+    {
+     "text": "That one bridge carries about a quarter of all the goods trade between the U.S. and Canada.",
+     "source": "Reuters (2022)"
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "vo": true,
+   "variant": {
+    "sky": "day",
+    "hallSign": "CAR PLANT"
+   },
+   "camera": {
+    "size": "wide",
+    "move": "pan-left"
+   },
+   "actors": [
+    {
+     "id": "c",
+     "crowd": {
+      "n": 5,
+      "seed": 3601,
+      "area": [
+       -200,
+       1000,
+       1700,
+       1040
+      ],
+      "walk": "both",
+      "speed": 60
+     }
+    }
+   ],
+   "lines": [
+    {
+     "text": "Car factories on both sides had to cut production, waiting for parts that were stuck on the wrong side of a river.",
+     "source": "Reuters (2022): Ford, GM, Toyota"
+    }
+   ]
+  },
+  {
+   "set": "street",
+   "variant": {
+    "sky": "day",
+    "sign": "OPEN",
+    "atm": "CASH"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "push"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ],
+     "actions": [
+      {
+       "do": "point-right",
+       "at": 2.5,
+       "dur": 2.0
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "Here's the interesting part: trucks rerouted to other crossings, and traffic there jumped seventy-two percent.",
+     "source": "Global News / Statistics Canada (2022)"
+    },
+    {
+     "text": "A second route made the difference between a jam and a collapse."
+    }
+   ]
+  },
+  {
+   "set": "hall",
+   "transition": "tear",
+   "variant": {
+    "sky": "day",
+    "hallSign": "CITY HALL"
+   },
+   "camera": {
+    "size": "medium",
+    "on": "mortimer",
+    "move": "pan-right"
+   },
+   "actors": [
+    {
+     "id": "mortimer",
+     "who": "mortimer",
+     "at": [
+      760,
+      985
+     ],
+     "actions": [
+      {
+       "do": "point-right",
+       "at": 3.0,
+       "dur": 2.5
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "text": "So what actually helps?"
+    },
+    {
+     "text": "Spare routes, like those other bridges. And spare people: Britain handed out temporary visas and trained more drivers.",
+     "source": "Energy Institute (2021): visa scheme"
+    },
+    {
+     "text": "The full story is on Small Catastrophes."
+    }
+   ]
+  }
+ ]
+}
