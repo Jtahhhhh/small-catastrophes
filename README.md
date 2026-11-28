@@ -133,3 +133,9 @@ The old `scenes` format (v0.1) still works.
 
 Code deps: perfect-freehand, Rough.js, puppeteer-core (MIT). Voice model: Kokoro-82M (Apache-2.0). Font: DejaVu Serif (temporary — replace with a commercially licensed hand-lettered font).
 Characters and style are original; inspired by gothic hand-drawn games but no Klei/Don't Starve assets, names or characters are used.
+
+## YouTube agent skills
+
+`.claude/skills/yt-*` is a vendored copy of [youtube-agent-skill](https://github.com/Jakeschincariol/youtube-agent-skill) (MIT, see `.claude/skills/YT_AGENT_LICENSE`). Claude Code sessions opened in this repo load them as `/yt-script`, `/yt-package`, `/yt-seo`, `/yt-chapters`, `/yt-shorts`, `/yt-comment`, etc. They draft content only; uploading and scheduling still happen in YouTube Studio / Facebook via Chrome.
+
+Before using them: `mkdir -p ~/.claude/youtube && cp .claude/youtube/voice.md ~/.claude/youtube/voice.md`
